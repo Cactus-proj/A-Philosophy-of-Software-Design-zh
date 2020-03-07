@@ -18,7 +18,7 @@ Complexity is what a developer experiences at a particular point in time when tr
 
 Complexity is determined by the activities that are most common. If a system has a few parts that are very complicated, but those parts almost never need to be touched, then they don’t have much impact on the overall complexity of the system. To characterize this in a crude mathematical way:
 
-![](./ffigures/00009.gif)
+![](./figures/00009.gif)
 
 The overall complexity of a system (C) is determined by the complexity of each part p (cp) weighted by the fraction of time developers spend working on that part (tp). Isolating complexity in a place where it will never be seen is almost as good as eliminating the complexity entirely.
 
