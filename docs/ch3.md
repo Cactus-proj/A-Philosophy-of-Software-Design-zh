@@ -1,3 +1,5 @@
+# 第 3 章 工作代码是不够的
+
 Chapter 3
 
 Working Code Isn’t Enough
@@ -6,7 +8,7 @@ Working Code Isn’t Enough
 
 One of the most important elements of good software design is the mindset you adopt when you approach a programming task. Many organizations encourage a tactical mindset, focused on getting features working as quickly as possible. However, if you want a good design, you must take a more strategic approach where you invest time to produce clean designs and fix problems. This chapter discusses why the strategic approach produces better designs and is actually cheaper than the tactical approach over the long run.
 
-3.1    Tactical programming
+## 3.1 Tactical programming
 
 Most programmers approach software development with a mindset I call tactical programming. In the tactical approach, your main focus is to get something working, such as a new feature or a bug fix. At first glance this seems totally reasonable: what could be more important than writing code that works? However, tactical programming makes it nearly impossible to produce a good system design.
 
@@ -20,7 +22,7 @@ If you have worked on a large software project for very long, I suspect you have
 
 Almost every software development organization has at least one developer who takes tactical programming to the extreme: a tactical tornado. The tactical tornado is a prolific programmer who pumps out code far faster than others but works in a totally tactical fashion. When it comes to implementing a quick feature, nobody gets it done faster than the tactical tornado. In some organizations, management treats tactical tornadoes as heroes. However, tactical tornadoes leave behind a wake of destruction. They are rarely considered heroes by the engineers who must work with their code in the future. Typically, other engineers must clean up the messes left behind by the tactical tornado, which makes it appear that those engineers (who are the real heroes) are making slower progress than the tactical tornado.
 
-3.2    Strategic programming
+## 3.2 Strategic programming
 
 The first step towards becoming a good software designer is to realize that working code isn’t enough. It’s not acceptable to introduce unnecessary complexities in order to finish your current task faster. The most important thing is the long-term structure of the system. Most of the code in any system is written by extending the existing code base, so your most important job as a developer is to facilitate those future extensions. Thus, you should not think of “working code” as your primary goal, though of course your code must work. Your primary goal must be to produce a great design, which also happens to work. This is strategic programming.
 
@@ -30,7 +32,7 @@ Some of the investments will be proactive. For example, it’s worth taking a li
 
 Other investments will be reactive. No matter how much you invest up front, there will inevitably be mistakes in your design decisions. Over time, these mistakes will become obvious. When you discover a design problem, don’t just ignore it or patch around it; take a little extra time to fix it. If you program strategically, you will continually make small improvements to the system design. This is the opposite of tactical programming, where you are continually adding small bits of complexity that cause problems in the future.
 
-3.3    How much to invest?
+## 3.3 How much to invest?
 
 So, what is the right amount of investment? A huge up-front investment, such as trying to design the entire system, won’t be effective. This is the waterfall method, and we know it doesn’t work. The ideal design tends to emerge in bits and pieces, as you get experience with the system. Thus, the best approach is to make lots of small investments on a continual basis. I suggest spending about 10–20% of your total development time on investments. This amount is small enough that it won’t impact your schedules significantly, but large enough to produce significant benefits over time. Your initial projects will thus take 10–20% longer than they would in a purely tactical approach. That extra time will result in a better software design, and you will start experiencing the benefits within a few months. It won’t be long before you’re developing at least 10–20% faster than you would if you had programmed tactically. At this point your investments become free: the benefits from your past investments will save enough time to cover the cost of future investments. You will quickly recover the cost of the initial investment. Figure 3.1 illustrates this phenomenon.
 
@@ -40,7 +42,7 @@ Figure 3.1: At the beginning, a tactical approach to programming will make progr
 
 Conversely, if you program tactically, you will finish your first projects 10–20% faster, but over time your development speed will slow as complexity accumulates. It won’t be long before you’re programming at least 10–20% slower. You will quickly give back all of the time you saved at the beginning, and for the rest of system’s lifetime you will be developing more slowly than if you had taken the strategic approach. If you haven’t ever worked in a badly degraded code base, talk to someone who has; they will tell you that poor code quality slows development by at least 20%.
 
-3.4    Startups and investment
+## 3.4 Startups and investment
 
 In some environments there are strong forces working against the strategic approach. For example, early-stage startups feel tremendous pressure to get their early releases out quickly. In these companies, it might seem that even a 10–20% investment isn’t affordable. As a result, many startups take a tactical approach, spending little effort on design and even less on cleanup when problems pop up. They rationalize this with the thought that, if they are successful, they’ll have enough money to hire extra engineers to clean things up.
 
@@ -58,7 +60,7 @@ Fortunately, it is also possible to succeed in Silicon Valley with a strategic a
 
 These examples show that a company can succeed with either approach. However, it’s a lot more fun to work in a company that cares about software design and has a clean code base.
 
-3.5    Conclusion
+## 3.5 Conclusion
 
 Good design doesn’t come for free. It has to be something you invest in continually, so that small problems don’t accumulate into big ones. Fortunately, good design eventually pays for itself, and sooner than you might think.
 

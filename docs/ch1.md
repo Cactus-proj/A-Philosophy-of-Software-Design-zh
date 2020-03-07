@@ -1,3 +1,5 @@
+# 第 1 章 介绍
+
 Chapter 1
 
 Introduction
@@ -28,7 +30,7 @@ If software developers should always be thinking about design issues, and reduci
 
 This book has two overall goals. The first is to describe the nature of software complexity: what does “complexity” mean, why does it matter, and how can you recognize when a program has unnecessary complexity? The book’s second, and more challenging, goal is to present techniques you can use during the software development process to minimize complexity. Unfortunately, there isn’t a simple recipe that will guarantee great software designs. Instead, I will present a collection of higher-level concepts that border on the philosophical, such as “classes should be deep” or “define errors out of existence.” These concepts may not immediately identify the best design, but you can use them to compare design alternatives and guide your exploration of the design space.
 
-1.1    How to use this book
+## 1.1 How to use this book
 
 Many of the design principles described here are somewhat abstract, so they may be hard to appreciate without looking at actual code. It has been a challenge to find examples that are small enough to include in the book, yet large enough to illustrate problems with real systems (if you encounter good examples, please send them to me). Thus, this book may not be sufficient by itself for you to learn how to apply the principles.
 

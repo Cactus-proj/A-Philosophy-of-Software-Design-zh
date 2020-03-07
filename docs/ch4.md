@@ -1,10 +1,12 @@
+# 第 4 章 模块应该是深的
+
 Chapter 4
 
 Modules Should Be Deep
 
 One of the most important techniques for managing software complexity is to design systems so that developers only need to face a small fraction of the overall complexity at any given time. This approach is called modular design, and this chapter presents its basic principles.
 
-4.1    Modular design
+## 4.1 Modular design
 
 In modular design, a software system is decomposed into a collection of modules that are relatively independent. Modules can take many forms, such as classes, subsystems, or services. In an ideal world, each module would be completely independent of the others: a developer could work in any of the modules without knowing anything about any of the other modules. In this world, the complexity of a system would be the complexity of its worst module.
 
@@ -18,7 +20,7 @@ For the purposes of this book, a module is any unit of code that has an interfac
 
 The best modules are those whose interfaces are much simpler than their implementations. Such modules have two advantages. First, a simple interface minimizes the complexity that a module imposes on the rest of the system. Second, if a module is modified in a way that does not change its interface, then no other module will be affected by the modification. If a module’s interface is much simpler than its implementation, there will be many aspects of the module that can be changed without affecting other modules.
 
-4.2    What’s in an interface?
+## 4.2 What’s in an interface?
 
 The interface to a module contains two kinds of information: formal and informal. The formal parts of an interface are specified explicitly in the code, and some of these can be checked for correctness by the programming language. For example, the formal interface for a method is its signature, which includes the names and types of its parameters, the type of its return value, and information about exceptions thrown by the method. Most programming languages ensure that each invocation of a method provides the right number and types of arguments to match its signature. The formal interface for a class consists of the signatures for all of its public methods, plus the names and types of any public variables.
 
@@ -26,7 +28,7 @@ Each interface also includes informal elements. These are not specified in a way
 
 One of the benefits of a clearly specified interface is that it indicates exactly what developers need to know in order to use the associated module. This helps to eliminate the “unknown unknowns” problem described in Section 2.2.
 
-4.3    Abstractions
+## 4.3 Abstractions
 
 The term abstraction is closely related to the idea of modular design. An abstraction is a simplified view of an entity, which omits unimportant details. Abstractions are useful because they make it easier for us to think about and manipulate complex things.
 
@@ -38,7 +40,7 @@ As an example, consider a file system. The abstraction provided by a file system
 
 We depend on abstractions to manage complexity not just in programming, but pervasively in our everyday lives. A microwave oven contains complex electronics to convert alternating current into microwave radiation and distribute that radiation throughout the cooking cavity. Fortunately, users see a much simpler abstraction, consisting of a few buttons to control the timing and intensity of the microwaves. Cars provide a simple abstraction that allows us to drive them without understanding the mechanisms for electrical motors, battery power management, anti-lock brakes, cruise control, and so on.
 
-4.4    Deep modules
+## 4.4 Deep modules
 
 The best modules are those that provide powerful functionality yet have simple interfaces. I use the term deep to describe such modules. To visualize the notion of depth, imagine that each module is represented by a rectangle, as shown in Figure 4.1. The area of each rectangle is proportional to the functionality implemented by the module. The top edge of a rectangle represents the module’s interface; the length of that edge indicates the complexity of the interface. The best modules are deep: they have a lot of functionality hidden behind a simple interface. A deep module is a good abstraction because only a small fraction of its internal complexity is visible to its users.
 
@@ -50,44 +52,43 @@ Module depth is a way of thinking about cost versus benefit. The benefit provide
 
 The mechanism for file I/O provided by the Unix operating system and its descendants, such as Linux, is a beautiful example of a deep interface. There are only five basic system calls for I/O, with simple signatures:
 
+```c
 int open(const char* path, int flags, mode_t permissions);
-
 ssize_t read(int fd, void* buffer, size_t count);
-
 ssize_t write(int fd, const void* buffer, size_t count);
-
 off_t lseek(int fd, off_t offset, int referencePosition);
-
 int close(int fd);
+```
 
 The open system call takes a hierarchical file name such as /a/b/c and returns an integer file descriptor, which is used to reference the open file. The other arguments for open provide optional information such as whether the file is being opened for reading or writing, whether a new file should be created if there is no existing file, and access permissions for the file, if a new file is created. The read and write system calls transfer information between buffer areas in the application’s memory and the file; close ends the access to the file. Most files are accessed sequentially, so that is the default; however, random access can be achieved by invoking the lseek system call to change the current access position.
 
 A modern implementation of the Unix I/O interface requires hundreds of thousands of lines of code, which address complex issues such as:
 
-How are files represented on disk in order to allow efficient access?
-How are directories stored, and how are hierarchical path names processed to find the files they refer to?
-How are permissions enforced, so that one user cannot modify or delete another user’s files?
-How are file accesses implemented? For example, how is functionality divided between interrupt handlers and background code, and how do these two elements communicate safely?
-What scheduling policies are used when there are concurrent accesses to multiple files?
-How can recently accessed file data be cached in memory in order to reduce the number of disk accesses?
-How can a variety of different secondary storage devices, such as disks and flash drives, be incorporated into a single file system?
+- How are files represented on disk in order to allow efficient access?
+- How are directories stored, and how are hierarchical path names processed to find the files they refer to?
+- How are permissions enforced, so that one user cannot modify or delete another user’s files?
+- How are file accesses implemented? For example, how is functionality divided between interrupt handlers and background code, and how do these two elements communicate safely?
+- What scheduling policies are used when there are concurrent accesses to multiple files?
+- How can recently accessed file data be cached in memory in order to reduce the number of disk accesses?
+- How can a variety of different secondary storage devices, such as disks and flash drives, be incorporated into a single file system?
+
 All of these issues, and many more, are handled by the Unix file system implementation; they are invisible to programmers who invoke the system calls. Implementations of the Unix I/O interface have evolved radically over the years, but the five basic kernel calls have not changed.
 
 Another example of a deep module is the garbage collector in a language such as Go or Java. This module has no interface at all; it works invisibly behind the scenes to reclaim unused memory. Adding garbage collection to a system actually shrinks its overall interface, since it eliminates the interface for freeing objects. The implementation of a garbage collector is quite complex, but that complexity is hidden from programmers using the language.
 
 Deep modules such as Unix I/O and garbage collectors provide powerful abstractions because they are easy to use, yet they hide significant implementation complexity.
 
-4.5    Shallow modules
+## 4.5 Shallow modules
 
 On the other hand, a shallow module is one whose interface is relatively complex in comparison to the functionality that it provides. For example, a class that implements linked lists is shallow. It doesn’t take much code to manipulate a linked list (inserting or deleting an element takes only a few lines), so the linked list abstraction doesn’t hide very many details. The complexity of a linked list interface is nearly as great as the complexity of its implementation. Shallow classes are sometimes unavoidable, but they don’t provide help much in managing complexity.
 
 Here is an extreme example of a shallow method, taken from a project in a software design class:
 
+```java
 private void addNullValueForAttribute(String attribute) {
-
        data.put(attribute, null);
-
 }
+```
 
 From the standpoint of managing complexity, this method makes things worse, not better. The method offers no abstraction, since all of its functionality is visible through its interface. For example, callers probably need to know that the attribute will be stored in the data variable. It is no simpler to think about the interface than to think about the full implementation. If the method is documented properly, the documentation will be longer than the method’s code. It even takes more keystrokes to invoke the method than it would take for a caller to manipulate the data variable directly. The method adds complexity (in the form of a new interface for developers to learn) but provides no compensating benefit.
 
@@ -95,24 +96,23 @@ img Red Flag: Shallow Module img
 
 A shallow module is one whose interface is complicated relative to the functionality it provides. Shallow modules don’t help much in the battle against complexity, because the benefit they provide (not having to learn about how they work internally) is negated by the cost of learning and using their interfaces. Small modules tend to be shallow.
 
-4.6    Classitis
+## 4.6 Classitis
 
 Unfortunately, the value of deep classes is not widely appreciated today. The conventional wisdom in programming is that classes should be small, not deep. Students are often taught that the most important thing in class design is to break up larger classes into smaller ones. The same advice is often given about methods: “Any method longer than N lines should be divided into multiple methods” (N can be as low as 10). This approach results in large numbers of shallow classes and methods, which add to overall system complexity.
 
 The extreme of the “classes should be small” approach is a syndrome I call classitis, which stems from the mistaken view that “classes are good, so more classes are better.” In systems suffering from classitis, developers are encouraged to minimize the amount of functionality in each new class: if you want more functionality, introduce more classes. Classitis may result in classes that are individually simple, but it increases the complexity of the overall system. Small classes don’t contribute much functionality, so there have to be a lot of them, each with its own interface. These interfaces accumulate to create tremendous complexity at the system level. Small classes also result in a verbose programming style, due to the boilerplate required for each class.
 
-4.7    Examples: Java and Unix I/O
+## 4.7 Examples: Java and Unix I/O
 
 One of the most visible examples of classitis today is the Java class library. The Java language doesn’t require lots of small classes, but a culture of classitis seems to have taken root in the Java programming community. For example, to open a file in order to read serialized objects from it, you must create three different objects:
 
-FileInputStream fileStream =
-new FileInputStream(fileName);
+```java
+FileInputStream fileStream = new FileInputStream(fileName);
 
-BufferedInputStream bufferedStream =
-new BufferedInputStream(fileStream);
+BufferedInputStream bufferedStream = new BufferedInputStream(fileStream);
 
-ObjectInputStream objectStream =
-new ObjectInputStream(bufferedStream);
+ObjectInputStream objectStream = new ObjectInputStream(bufferedStream);
+```
 
 A FileInputStream object provides only rudimentary I/O: it is not capable of performing buffered I/O, nor can it read or write serialized objects. The BufferedInputStream object adds buffering to a FileInputStream, and the ObjectInputStream adds the ability to read and write serialized objects. The first two objects in the code above, fileStream and bufferedStream, are never used once the file has been opened; all future operations use objectStream.
 
@@ -120,7 +120,7 @@ It is particularly annoying (and error-prone) that buffering must be requested e
 
 In contrast, the designers of the Unix system calls made the common case simple. For example, they recognized that sequential I/O is most common, so they made that the default behavior. Random access is still relatively easy to do, using the lseek system call, but a developer doing only sequential access need not be aware of that mechanism. If an interface has many features, but most developers only need to be aware of a few of them, the effective complexity of that interface is just the complexity of the commonly used features.
 
-4.8    Conclusion
+## 4.8 Conclusion
 
 By separating the interface of a module from its implementation, we can hide the complexity of the implementation from the rest of the system. Users of a module need only understand the abstraction provided by its interface. The most important issue in designing classes and other modules is to make them deep, so that they have simple interfaces for the common use cases, yet still provide significant functionality. This maximizes the amount of complexity that is concealed.
 

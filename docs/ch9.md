@@ -1,3 +1,5 @@
+# 第 9 章 在一起更好还是分开更好？
+
 Chapter 9
 
 Better Together Or Better Apart?
@@ -6,35 +8,37 @@ One of the most fundamental questions in software design is this: given two piec
 
 When deciding whether to combine or separate, the goal is to reduce the complexity of the system as a whole and improve its modularity. It might appear that the best way to achieve this goal is to divide the system into a large number of small components: the smaller the components, the simpler each individual component is likely to be. However, the act of subdividing creates additional complexity that was not present before subdivision:
 
-Some complexity comes just from the number of components: the more components, the harder to keep track of them all and the harder to find a desired component within the large collection. Subdivision usually results in more interfaces, and every new interface adds complexity.
-Subdivision can result in additional code to manage the components. For example, a piece of code that used a single object before subdivision might now have to manage multiple objects.
-Subdivision creates separation: the subdivided components will be farther apart than they were before subdivision. For example, methods that were together in a single class before subdivision may be in different classes after subdivision, and possibly in different files. Separation makes it harder for developers to see the components at the same time, or even to be aware of their existence. If the components are truly independent, then separation is good: it allows the developer to focus on a single component at a time, without being distracted by the other components. On the other hand, if there are dependencies between the components, then separation is bad: developers will end up flipping back and forth between the components. Even worse, they may not be aware of the dependencies, which can lead to bugs.
-Subdivision can result in duplication: code that was present in a single instance before subdivision may need to be present in each of the subdivided components.
+- Some complexity comes just from the number of components: the more components, the harder to keep track of them all and the harder to find a desired component within the large collection. Subdivision usually results in more interfaces, and every new interface adds complexity.
+- Subdivision can result in additional code to manage the components. For example, a piece of code that used a single object before subdivision might now have to manage multiple objects.
+- Subdivision creates separation: the subdivided components will be farther apart than they were before subdivision. For example, methods that were together in a single class before subdivision may be in different classes after subdivision, and possibly in different files. Separation makes it harder for developers to see the components at the same time, or even to be aware of their existence. If the components are truly independent, then separation is good: it allows the developer to focus on a single component at a time, without being distracted by the other components. On the other hand, if there are dependencies between the components, then separation is bad: developers will end up flipping back and forth between the components. Even worse, they may not be aware of the dependencies, which can lead to bugs.
+- Subdivision can result in duplication: code that was present in a single instance before subdivision may need to be present in each of the subdivided components.
+
 Bringing pieces of code together is most beneficial if they are closely related. If the pieces are unrelated, they are probably better off apart. Here are a few indications that two pieces of code are related:
 
-They share information; for example, both pieces of code might depend on the syntax of a particular type of document.
-They are used together: anyone using one of the pieces of code is likely to use the other as well. This form of relationship is only compelling if it is bidirectional. As a counter-example, a disk block cache will almost always involve a hash table, but hash tables can be used in many situations that don’t involve block caches; thus, these modules should be separate.
-They overlap conceptually, in that there is a simple higher-level category that includes both of the pieces of code. For example, searching for a substring and case conversion both fall under the category of string manipulation; flow control and reliable delivery both fall under the category of network communication.
-It is hard to understand one of the pieces of code without looking at the other.
+- They share information; for example, both pieces of code might depend on the syntax of a particular type of document.
+- They are used together: anyone using one of the pieces of code is likely to use the other as well. This form of relationship is only compelling if it is bidirectional. As a counter-example, a disk block cache will almost always involve a hash table, but hash tables can be used in many situations that don’t involve block caches; thus, these modules should be separate.
+- They overlap conceptually, in that there is a simple higher-level category that includes both of the pieces of code. For example, searching for a substring and case conversion both fall under the category of string manipulation; flow control and reliable delivery both fall under the category of network communication.
+- It is hard to understand one of the pieces of code without looking at the other.
+
 The rest of this chapter uses more specific rules as well as examples to show when it makes sense to bring pieces of code together and when it makes sense to separate them.
 
-9.1    Bring together if information is shared
+## 9.1 Bring together if information is shared
 
 Section 5.4 introduced this principle in the context of a project implementing an HTTP server. In its first implementation, the project used two different methods in different classes to read in and parse HTTP requests. The first method read the text of an incoming request from a network socket and placed it in a string object. The second method parsed the string to extract the various components of the request. With this decomposition, both of the methods ended up with considerable knowledge of the format of HTTP requests: the first method was only trying to read the request, not parse it, but it couldn’t identify the end of the request without doing most of the work of parsing it (for example, it had to parse header lines in order to identify the header containing the overall request length). Because of this shared information, it is better to both read and parse the request in the same place; when the two classes were combined into one, the code got shorter and simpler.
 
-9.2    Bring together if it will simplify the interface
+## 9.2 Bring together if it will simplify the interface
 
 When two or more modules are combined into a single module, it may be possible to define an interface for the new module that is simpler or easier to use than the original interfaces. This often happens when the original modules each implement part of the solution to a problem. In the HTTP server example from the preceding section, the original methods required an interface to return the HTTP request string from the first method and pass it to the second. When the methods were combined, these interfaces were eliminated.
 
 In addition, when the functionality of two or more classes is combined, it may be possible to perform some functions automatically, so that most users need not be aware of them. The Java I/O library illustrates this opportunity. If the FileInputStream and BufferedInputStream classes were combined and buffering were provided by default, the vast majority of users would never even need to be aware of the existence of buffering. A combined FileInputStream class might provide methods to disable or replace the default buffering mechanism, but most users would not need to learn about them.
 
-9.3    Bring together to eliminate duplication
+## 9.3 Bring together to eliminate duplication
 
 If you find the same pattern of code repeated over and over, see if you can reorganize the code to eliminate the repetition. One approach is to factor the repeated code out into a separate method and replace the repeated code snippets with calls to the method. This approach is most effective if the repeated code snippet is long and the replacement method has a simple signature. If the snippet is only one or two lines long, there may not be much benefit in replacing it with a method call. If the snippet interacts in complex ways with its environment (such as by accessing numerous local variables), then the replacement method might require a complex signature (such as many pass-by-reference arguments), which would reduce its value.
 
 Another way to eliminate duplication is to refactor the code so that the snippet in question only needs to be executed in one place. Suppose you are writing a method that needs to return errors at several different points, and the same cleanup actions need to be performed at each of these points before returning (see Figure 9.1 for an example). If the programming language supports goto, you can move the cleanup code to the very end of the method and then goto that snippet at each of the points where an error return is required, as in Figure 9.2. Goto statements are generally considered a bad idea, and they can result in indecipherable code if used indiscriminately, but they are useful in situations like this where they are used to escape from nested code.
 
-9.4    Separate general-purpose and special-purpose code
+## 9.4 Separate general-purpose and special-purpose code
 
 If a module contains a mechanism that can be used for several different purposes, then it should provide just that one general-purpose mechanism. It should not include code that specializes the mechanism for a particular use, nor should it contain other general-purpose mechanisms. Special-purpose code associated with a general-purpose mechanism should normally go in a different module (typically one associated with the particular purpose). The GUI editor discussion in Chapter 6 illustrated this principle: the best design was one where the text class provided general-purpose text operations, while operations particular to the user interface (such as deleting the selection) were implemented in the user interface module. This approach eliminated information leakage and additional interfaces that were present in an earlier design where the specialized user interface operations were implemented in the text class.
 
@@ -52,7 +56,7 @@ Figure 9.2: A reorganization of the code from Figure 9.1 so that there is only o
 
 In general, the lower layers of a system tend to be more general-purpose and the upper layers more special-purpose. For example, the topmost layer of an application consists of features totally specific to that application. The way to separate special-purpose code from general-purpose code is to pull the special-purpose code upwards, into the higher layers, leaving the lower layers general-purpose. When you encounter a class that includes both general-purpose and special-purpose features for the same abstraction, see if the class can be separated into two classes, one containing the general-purpose features, and the other layered on top of it to provide the special-purpose features.
 
-9.5    Example: insertion cursor and selection
+## 9.5 Example: insertion cursor and selection
 
 The next sections work through three examples that illustrate the principles discussed above. In two of the examples the best approach is to separate the relevant pieces of code; in the third example it is better to join them together.
 
@@ -68,57 +72,40 @@ This red flag occurs when a general-purpose mechanism also contains code special
 
 In this case, the selection and cursor were not closely enough related to combine them. When the code was revised to separate the selection and the cursor, both the usage and the implementation became simpler. Separate objects provided a simpler interface than a combined object from which selection and cursor information had to be extracted. The cursor implementation also got simpler because the cursor position was represented directly, rather than indirectly through a selection and a boolean. In fact, in the revised version no special classes were used for either the selection or the cursor. Instead, a new Position class was introduced to represent a location in the file (a line number and character within line). The selection was represented with two Positions and the cursor with one. Positions also found other uses in the project. This example also demonstrates the benefits of a lower-level but more general-purpose interface, which were discussed in Chapter 6.
 
-9.6    Example: separate class for logging
+## 9.6 Example: separate class for logging
 
 The second example involved error logging in a student project. A class contained several code sequences like the following:
 
+```java
 try {
-
       rpcConn = connectionPool.getConnection(dest);
-
 } catch (IOException e) {
-
       NetworkErrorLogger.logRpcOpenError(req, dest, e);
-
       return null;
-
 }
+```
 
 Rather than logging the error at the point where it was detected, a separate method in a special error logging class was invoked. The error logging class was defined at the end of the same source file:
 
+```java
 private static class NetworkErrorLogger {
-
      /**
-
       *  Output information relevant to an error that occurs when trying
-
       *  to open a connection to send an RPC.
-
       *
-
       *  @param req
-
       *       The RPC request that would have been sent through the connection
-
       *  @param dest
-
       *       The destination of the RPC
-
       *  @param e
-
       *       The caught error
-
       */
-
      public static void logRpcOpenError(RpcRequest req, AddrPortTuple dest, Exception e) {
-
          logger.log(Level.WARNING, "Cannot send message: " + req + ". \n" + "Unable to find or open connection to " + dest + " :" + e);
-
       }
-
 ...
-
 }
+```
 
 The NetworkErrorLogger class contained several methods such as logRpcSendError and logRpcReceiveError, each of which logged a different kind of error.
 
@@ -126,7 +113,7 @@ This separation added complexity with no benefit. The logging methods were shall
 
 In this example, it would be better to eliminate the logging methods and place the logging statements at the locations where the errors were detected. This would make the code easier to read and eliminate the interfaces required for the logging methods.
 
-9.7    Example: editor undo mechanism
+## 9.7 Example: editor undo mechanism
 
 In the GUI editor project from Section 6.2, one of the requirements was to support multi-level undo/redo, not just for changes to the text itself, but also for changes in the selection, insertion cursor, and view. For example, if a user selected some text, deleted it, scrolled to a different place in the file, and then invoked undo, the editor had to restore its state to what it was just before the deletion. This included restoring the deleted text, selecting it again, and also making the selected text visible in the window.
 
@@ -136,27 +123,19 @@ This approach resulted in an awkward set of features in the text class. The core
 
 These problems can be solved by extracting the general-purpose core of the undo/redo mechanism and placing it in a separate class:
 
+```java
 public class History {
-
         public interface Action {
-
                public void redo();
-
                public void undo();
-
         }
-
         History() {...}
-
         void addAction(Action action) {...}
-
         void addFence() {...}
-
         void undo() {...}
-
         void redo() {...}
-
 }
+```
 
 In this design, the History class manages a collection of objects that implement the interface History.Action. Each History.Action describes a single operation, such as a text insertion or a change in the cursor location, and it provides methods that can undo or redo the operation. The History class knows nothing about the information stored in the actions or how they implement their undo and redo methods. History maintains a history list describing all of the actions executed over the lifetime of an application, and it provides undo and redo methods that walk backwards and forwards through the list in response to user-requested undos and redos, calling undo and redo methods in the History.Actions.
 
@@ -175,7 +154,7 @@ The key design decision was the one that separated the general-purpose part of t
 
 Note: the suggestion to separate general-purpose code from special-purpose code refers to code related to a particular mechanism. For example, special-purpose undo code (such as code to undo a text insertion) should be separated from general-purpose undo code (such as code to manage the history list). However, it often makes sense to combine special-purpose code for one mechanism with general-purpose code for another. The text class is an example of this: it implements a general-purpose mechanism for managing text, but it includes special-purpose code related to undoing. The undo code is special-purpose because it only handles undo operations for text modifications. It doesn’t make sense to combine this code with the general-purpose undo infrastructure in the History class, but it does make sense to put it in the text class, since it is closely related to other text functions.
 
-9.8    Splitting and joining methods
+## 9.8 Splitting and joining methods
 
 The issue of when to subdivide applies not just to classes, but also to methods: are there times when it is better to divide an existing method into multiple smaller methods? Or, should two smaller methods be combined into one larger one? Long methods tend to be more difficult to understand than shorter ones, so many people argue that length alone is a good justification for breaking up a method. Students in classes are often given rigid criteria, such as “Split up any method longer than 20 lines!”
 
@@ -201,6 +180,6 @@ img Red Flag: Conjoined Methods img
 
 It should be possible to understand each method independently. If you can’t understand the implementation of one method without also understanding the implementation of another, that’s a red flag. This red flag can occur in other contexts as well: if two pieces of code are physically separated, but each can only be understood by looking at the other, that is a red flag.
 
-9.9    Conclusion
+## 9.9 Conclusion
 
 The decision to split or join modules should be based on complexity. Pick the structure that results in the best information hiding, the fewest dependencies, and the deepest interfaces.
