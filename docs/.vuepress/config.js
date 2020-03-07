@@ -15,6 +15,7 @@ module.exports = {
     sidebar: {
       "/": [
         "",
+        "preface.md",
         "ch1.md",
         "ch2.md",
         "ch3.md",
