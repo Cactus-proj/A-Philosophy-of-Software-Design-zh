@@ -1,8 +1,6 @@
 # 第 9 章 在一起更好还是分开更好？
 
-Chapter 9
-
-Better Together Or Better Apart?
+> Chapter 9 Better Together Or Better Apart?
 
 One of the most fundamental questions in software design is this: given two pieces of functionality, should they be implemented together in the same place, or should their implementations be separated? This question applies at all levels in a system, such as functions, methods, classes, and services. For example, should buffering be included in the class that provides stream-oriented file I/O, or should it be in a separate class? Should the parsing of an HTTP request be implemented entirely in one method, or should it be divided among multiple methods (or even multiple classes)? This chapter discusses the factors to consider when making these decisions. Some of these factors have already been discussed in previous chapters, but they will be revisited here for completeness.
 

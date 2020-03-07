@@ -1,5 +1,9 @@
 # 《软件设计的哲学》中文
 
+<div style="margin: 0 auto;">
+  <img src="./cover.jpeg" width="210px" height="280px" />
+</div>
+
 ## 目录
 
 - [前言](preface.md)

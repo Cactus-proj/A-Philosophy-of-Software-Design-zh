@@ -1,8 +1,6 @@
 # 第 7 章 不同的层，不同的抽象
 
-Chapter 7
-
-Different Layer, Different Abstraction
+> Chapter 7 Different Layer, Different Abstraction
 
 Software systems are composed in layers, where higher layers use the facilities provided by lower layers. In a well-designed system, each layer provides a different abstraction from the layers above and below it; if you follow a single operation as it moves up and down through layers by invoking methods, the abstractions change with each method call. For example:
 

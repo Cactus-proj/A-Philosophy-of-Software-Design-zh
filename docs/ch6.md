@@ -1,8 +1,6 @@
 # 第 6 章 通用模块更深入
 
-Chapter 6
-
-General-Purpose Modules are Deeper
+> Chapter 6 General-Purpose Modules are Deeper
 
 One of the most common decisions that you will face when designing a new module is whether to implement it in a general-purpose or special-purpose fashion. Some might argue that you should take a general-purpose approach, in which you implement a mechanism that can be used to address a broad range of problems, not just the ones that are important today. In this case, the new mechanism may find unanticipated uses in the future, thereby saving time. The general-purpose approach seems consistent with the investment mindset discussed in Chapter 3, where you spend a bit more time up front to save time later on.
 

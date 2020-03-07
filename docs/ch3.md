@@ -1,10 +1,6 @@
 # 第 3 章 工作代码是不够的
 
-Chapter 3
-
-Working Code Isn’t Enough
-
-(Strategic vs. Tactical Programming)
+> Chapter 3 Working Code Isn’t Enough(Strategic vs. Tactical Programming)
 
 One of the most important elements of good software design is the mindset you adopt when you approach a programming task. Many organizations encourage a tactical mindset, focused on getting features working as quickly as possible. However, if you want a good design, you must take a more strategic approach where you invest time to produce clean designs and fix problems. This chapter discusses why the strategic approach produces better designs and is actually cheaper than the tactical approach over the long run.
 

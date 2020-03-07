@@ -4,6 +4,10 @@
 
 在线阅读：[http://gdut_yy.gitee.io/doc-aposd/](http://gdut_yy.gitee.io/doc-aposd/)
 
+<div style="inline">
+  <img src="./docs/cover.jpeg" width="210px" height="280px" />
+</div>
+
 ## Index
 
 - [前言](docs/preface.md)
