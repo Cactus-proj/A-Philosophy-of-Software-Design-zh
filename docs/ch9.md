@@ -44,11 +44,11 @@ img Red Flag: Repetition img
 
 If the same piece of code (or code that is almost the same) appears over and over again, that’s a red flag that you haven’t found the right abstractions.
 
-img
+![](./figures/00017.gif)
 
 Figure 9.1: This code processes incoming network packets of different types; for each type, if the packet is too short for that type, a message gets logged. In this version of the code, the LOG statement is duplicated for several different packet types.
 
-img
+![](./figures/00018.gif)
 
 Figure 9.2: A reorganization of the code from Figure 9.1 so that there is only one copy of the LOG statement.
 
@@ -160,7 +160,7 @@ However, length by itself is rarely a good reason for splitting up a method. In 
 
 Long methods aren’t always bad. For example, suppose a method contains five 20-line blocks of code that are executed in order. If the blocks are relatively independent, then the method can be read and understood one block at a time; there’s not much benefit in moving each of the blocks into a separate method. If the blocks have complex interactions, it’s even more important to keep them together so readers can see all of the code at once; if each block is in a separate method, readers will have to flip back and forth between these spread-out methods in order to understand how they work together. Methods containing hundreds of lines of code are fine if they have a simple signature and are easy to read. These methods are deep (lots of functionality, simple interface), which is good.
 
-img
+![](./figures/00019.jpeg)
 
 Figure 9.3: A method (a) can be split either by by extracting a subtask (b) or by dividing its functionality into two separate methods (c). A method should not be split if it results in shallow methods, as in (d).
 
