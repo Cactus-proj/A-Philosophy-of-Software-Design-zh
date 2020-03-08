@@ -32,6 +32,7 @@
 - [第 19 章 软件发展趋势](docs/ch19.md)
 - [第 20 章 设计性能](docs/ch20.md)
 - [第 21 章 结论](docs/ch21.md)
+- [总结](docs/summary.md)
 
 ## 本地开发 & 阅读
 

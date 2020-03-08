@@ -36,7 +36,8 @@ module.exports = {
         "ch18.md",
         "ch19.md",
         "ch20.md",
-        "ch21.md"
+        "ch21.md",
+        "summary.md"
       ]
     }
   }
