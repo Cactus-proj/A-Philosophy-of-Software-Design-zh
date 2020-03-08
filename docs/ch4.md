@@ -146,7 +146,7 @@ Here is an extreme example of a shallow method, taken from a project in a softwa
 
 ```java
 private void addNullValueForAttribute(String attribute) {
-       data.put(attribute, null);
+    data.put(attribute, null);
 }
 ```
 

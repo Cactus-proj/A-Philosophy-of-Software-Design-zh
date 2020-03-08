@@ -132,7 +132,7 @@ However, most of the students used an interface for returning parameters that wa
 
 ```java
 public Map<String, String> getParams() {
-       return this.params;
+    return this.params;
 }
 ```
 
