@@ -36,7 +36,7 @@ The hidden information includes data structures and algorithms related to the me
 
 Information hiding reduces complexity in two ways. First, it simplifies the interface to a module. The interface reflects a simpler, more abstract view of the module’s functionality and hides the details; this reduces the cognitive load on developers who use the module. For instance, a developer using a B-tree class need not worry about the ideal fanout for nodes in the tree or how to keep the tree balanced. Second, information hiding makes it easier to evolve the system. If a piece of information is hidden, there are no dependencies on that information outside the module containing the information, so a design change related to that information will affect only the one module. For example, if the TCP protocol changes (to introduce a new mechanism for congestion control, for instance), the protocol’s implementation will have to be modified, but no changes should be needed in higher-level code that uses TCP to send and receive data.
 
-> 信息隐藏通过两种方式降低了复杂性。首先，它简化了与模块的接口。该界面反映了该模块功能的更简单，更抽象的视图，并隐藏了详细信息。这减少了使用该模块的开发人员的认知负担。例如，使用 B 树类的开发人员不必担心树中节点的理想扇出或如何保持树平衡。其次，信息隐藏使开发系统变得更加容易。如果隐藏了一条信息，则在包含该信息的模块之外对该信息没有依赖性，因此与该信息相关的设计更改将仅影响一个模块。例如，如果 TCP 协议发生变化（例如，为了引入一种新的拥塞控制机制），则该协议的实现必须进行修改，
+> 信息隐藏在两个方面降低了复杂性。首先，它将接口简化为模块。接口反映了模块功能的更简单、更抽象的视图，并隐藏了细节;这减少了使用该模块的开发人员的认知负担。例如，使用 B-tree 类的开发人员不需要考虑树中节点的理想扇出，也不需要考虑如何保持树的平衡。其次，信息隐藏使系统更容易演化。如果隐藏了一段信息，那么在包含该信息的模块之外就不存在对该信息的依赖，因此与该信息相关的设计更改将只影响一个模块。例如，如果 TCP 协议发生了变化(例如，为了引入一种新的拥塞控制机制)，协议的实现就必须进行修改，但是在使用 TCP 发送和接收数据的高级代码中不需要进行任何修改。
 
 When designing a new module, you should think carefully about what information can be hidden in that module. If you can hide more information, you should also be able to simplify the module’s interface, and this makes the module deeper.
 
@@ -58,7 +58,7 @@ The opposite of information hiding is information leakage. Information leakage o
 
 Information leakage is one of the most important red flags in software design. One of the best skills you can learn as a software designer is a high level of sensitivity to information leakage. If you encounter information leakage between classes, ask yourself “How can I reorganize these classes so that this particular piece of knowledge only affects a single class?” If the affected classes are relatively small and closely tied to the leaked information, it may make sense to merge them into a single class. Another possible approach is to pull the information out of all of the affected classes and create a new class that encapsulates just that information. However, this approach will be effective only if you can find a simple interface that abstracts away from the details; if the new class exposes most of the knowledge through its interface, then it won’t provide much value (you’ve simply replaced back-door leakage with leakage through an interface).
 
-> 信息泄漏是软件设计中最重要的危险信号之一。作为软件设计师，您可以学习的最佳技能之一是对信息泄漏的高度敏感性。如果您在各个班级之间遇到信息泄漏，请问自己“我如何重组这些班级，以使这部分知识仅影响单个班级？” 如果受影响的类别相对较小并且与泄漏的信息紧密相关，则可以将它们合并为一个类别。另一种可能的方法是从所有受影响的类中提取信息，并创建一个仅封装该信息的新类。但是，只有找到一个从细节中抽象出来的简单接口，这种方法才有效。如果新类通过其界面公开了大部分知识，
+> 信息泄漏是软件设计中最重要的危险信号之一。作为一个软件设计师，你能学到的最好的技能之一就是对信息泄露的高度敏感性。如果您在类之间遇到信息泄漏，请自问“我如何才能重新组织这些类，使这些特定的知识只影响一个类?”如果受影响的类相对较小，并且与泄漏的信息紧密相关，那么将它们合并到一个类中是有意义的。另一种可能的方法是从所有受影响的类中提取信息，并创建一个只封装这些信息的新类。但是，这种方法只有在您能够找到一个从细节中抽象出来的简单接口时才有效;如果新类通过其接口公开了大部分知识，那么它就不会提供太多的价值(您只是用通过接口的泄漏替换了后门泄漏)。
 
 img Red Flag: Information Leakage img
 
@@ -138,7 +138,7 @@ public Map<String, String> getParams() {
 
 Rather than returning a single parameter, the method returns a reference to the Map used internally to store all of the parameters. This method is shallow, and it exposes the internal representation used by the HTTPRequest class to store parameters. Any change to that representation will result in a change to the interface, which will require modifications to all callers. When implementations are modified, the changes often involve changes in the representation of key data structures (to improve performance, for example). Thus, it’s important to avoid exposing internal data structures as much as possible. This approach also makes more work for callers: a caller must first invoke getParams, then it must call another method to retrieve a specific parameter from the Map. Finally, callers must realize that they should not modify the Map returned by getParams, since that will affect the internal state of the HTTPRequest.
 
-> 该方法不会返回单个参数，而是返回对内部用于存储所有参数的 Map 的引用。此方法很浅，它公开了 HTTPRequest 类用于存储参数的内部表示形式。对该表示形式的任何更改都将导致界面的更改，这将要求对所有调用者进行修改。修改实现后，更改通常涉及关键数据结构表示的更改（例如，以提高性能）。因此，重要的是尽可能避免公开内部数据结构。这种方法还为调用者增加了更多工作：调用者必须首先调用 getParams，然后必须调用另一个方法以从 Map 中检索特定参数。最后，
+> 该方法不是返回单个参数，而是返回内部用于存储所有参数的映射的引用。这个方法是浅层的，它公开了 HTTPRequest 类用来存储参数的内部表示。对该表示的任何更改都将导致接口的更改，这将需要对所有调用者进行修改。在修改实现时，更改通常涉及关键数据结构表示的更改(例如，为了提高性能)。因此，尽量避免暴露内部数据结构是很重要的。这种方法还为调用者提供了更多的工作:调用者必须首先调用 getParams，然后必须调用另一个方法来从映射中检索特定的参数。最后，调用者必须意识到他们不应该修改 getParams 返回的映射，因为这会影响 HTTPRequest 的内部状态。
 
 Here is a better interface for retrieving parameter values:
 
@@ -166,7 +166,7 @@ Defaults illustrate the principle that interfaces should be designed to make the
 
 Whenever possible, classes should “do the right thing” without being explicitly asked. Defaults are an example of this. The Java I/O example on page 26 illustrates this point in a negative way. Buffering in file I/O is so universally desirable that noone should ever have to ask explicitly for it, or even be aware of its existence; the I/O classes should do the right thing and provide it automatically. The best features are the ones you get without even knowing they exist.
 
-> 只要有可能，类就应该“做正确的事”，而无需明确要求。默认值就是一个例子。第 26 页上的 Java I / O 示例以负面方式说明了这一点。普遍希望在文件 I / O 中缓冲，以至于没有人需要明确要求它，甚至不知道它的存在。I / O 类应该做正确的事情并自动提供它。最好的功能是您甚至不知道它们存在的功能。
+> 只要有可能，类就应该“做正确的事”，而无需明确要求。默认值就是一个例子。第 26 页上的 Java I/O 示例以负面方式说明了这一点。普遍希望在文件 I/O 中缓冲，以至于没有人需要明确要求它，甚至不知道它的存在。I/O 类应该做正确的事情并自动提供它。最好的功能是您甚至不知道它们存在的功能。
 
 img Red Flag: Overexposure img
 

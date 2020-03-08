@@ -4,7 +4,7 @@
 
 One of the most fundamental questions in software design is this: given two pieces of functionality, should they be implemented together in the same place, or should their implementations be separated? This question applies at all levels in a system, such as functions, methods, classes, and services. For example, should buffering be included in the class that provides stream-oriented file I/O, or should it be in a separate class? Should the parsing of an HTTP request be implemented entirely in one method, or should it be divided among multiple methods (or even multiple classes)? This chapter discusses the factors to consider when making these decisions. Some of these factors have already been discussed in previous chapters, but they will be revisited here for completeness.
 
-> 软件设计中最基本的问题之一是：给定两个功能，它们应该在同一位置一起实现，还是应该分开实现？这个问题适用于系统中的所有级别，例如功能，方法，类和服务。例如，应该在提供面向流的文件 I / O 的类中包括缓冲，还是应该在单独的类中？HTTP 请求的解析应该完全在一种方法中实现，还是应该在多个方法（甚至多个类）之间划分？本章讨论做出这些决定时要考虑的因素。这些因素中的一些已经在前面的章节中进行了讨论，但是为了完整起见，这里将对其进行重新讨论。
+> 软件设计中最基本的问题之一是：给定两个功能，它们应该在同一位置一起实现，还是应该分开实现？这个问题适用于系统中的所有级别，例如功能，方法，类和服务。例如，应该在提供面向流的文件 I/O 的类中包括缓冲，还是应该在单独的类中？HTTP 请求的解析应该完全在一种方法中实现，还是应该在多个方法（甚至多个类）之间划分？本章讨论做出这些决定时要考虑的因素。这些因素中的一些已经在前面的章节中进行了讨论，但是为了完整起见，这里将对其进行重新讨论。
 
 When deciding whether to combine or separate, the goal is to reduce the complexity of the system as a whole and improve its modularity. It might appear that the best way to achieve this goal is to divide the system into a large number of small components: the smaller the components, the simpler each individual component is likely to be. However, the act of subdividing creates additional complexity that was not present before subdivision:
 
@@ -56,7 +56,7 @@ When two or more modules are combined into a single module, it may be possible t
 
 In addition, when the functionality of two or more classes is combined, it may be possible to perform some functions automatically, so that most users need not be aware of them. The Java I/O library illustrates this opportunity. If the FileInputStream and BufferedInputStream classes were combined and buffering were provided by default, the vast majority of users would never even need to be aware of the existence of buffering. A combined FileInputStream class might provide methods to disable or replace the default buffering mechanism, but most users would not need to learn about them.
 
-> 另外，将两个或更多类的功能组合在一起时，可能会自动执行某些功能，因此大多数用户无需了解它们。Java I / O 库说明了这种机会。如果将 FileInputStream 和 BufferedInputStream 类组合在一起，并且默认情况下提供了缓冲，则绝大多数用户甚至都不需要知道缓冲的存在。组合的 FileInputStream 类可能提供禁用或替换默认缓冲机制的方法，但是大多数用户不需要了解它们。
+> 另外，将两个或更多类的功能组合在一起时，可能会自动执行某些功能，因此大多数用户无需了解它们。Java I/O 库说明了这种机会。如果将 FileInputStream 和 BufferedInputStream 类组合在一起，并且默认情况下提供了缓冲，则绝大多数用户甚至都不需要知道缓冲的存在。组合的 FileInputStream 类可能提供禁用或替换默认缓冲机制的方法，但是大多数用户不需要了解它们。
 
 ## 9.3 Bring together to eliminate duplication 消除重复
 
@@ -236,7 +236,7 @@ The key design decision was the one that separated the general-purpose part of t
 
 Note: the suggestion to separate general-purpose code from special-purpose code refers to code related to a particular mechanism. For example, special-purpose undo code (such as code to undo a text insertion) should be separated from general-purpose undo code (such as code to manage the history list). However, it often makes sense to combine special-purpose code for one mechanism with general-purpose code for another. The text class is an example of this: it implements a general-purpose mechanism for managing text, but it includes special-purpose code related to undoing. The undo code is special-purpose because it only handles undo operations for text modifications. It doesn’t make sense to combine this code with the general-purpose undo infrastructure in the History class, but it does make sense to put it in the text class, since it is closely related to other text functions.
 
-> 注意：将通用代码与专用代码分开的建议是指与特定机制相关的代码。例如，专用撤消代码（例如撤消文本插入的代码）应与通用撤消代码（例如管理历史列表的代码）分开。但是，将一种机制的专用代码与另一种机制的通用代码组合在一起通常是有意义的。文本类就是这样的一个示例：它实现了一种用于管理文本的通用机制，但是它包括与撤消相关的专用代码。撤消代码是专用的，因为它仅处理文本修改的撤消操作。将此代码与 History 类中的通用 undo 基础结构结合起来是没有意义的，但将其放入 text 类中确实有道理，
+> 注意:将通用代码与专用代码分离的建议是指与特定机制相关的代码。例如，特殊用途的撤消代码(例如撤消文本插入的代码)应该与通用用途的撤消代码(例如管理历史记录列表的代码)分开。然而，将一种机制的专用代码与另一种机制的通用代码组合起来通常是有意义的。text 类就是这样一个例子:它实现了一种管理文本的通用机制，但是它包含了与撤销相关的专用代码。撤消代码是专用的，因为它只处理文本修改的撤消操作。将这段代码与 History 类中通用的 undo 基础结构结合在一起是没有意义的，但是将它放在 text 类中是有意义的，因为它与其他文本函数密切相关。
 
 ## 9.8 Splitting and joining methods 拆分和合并方法
 

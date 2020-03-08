@@ -101,11 +101,11 @@ It is fine for several methods to have the same signature as long as each of the
 
 The decorator design pattern (also known as a “wrapper”) is one that encourages API duplication across layers. A decorator object takes an existing object and extends its functionality; it provides an API similar or identical to the underlying object, and its methods invoke the methods of the underlying object. In the Java I/O example from Chapter 4, the BufferedInputStream class is a decorator: given an InputStream object, it provides the same API but introduces buffering. For example, when its read method is invoked to read a single character, it invokes read on the underlying InputStream to read a much larger block, and saves the extra characters to satisfy future read calls. Another example occurs in windowing systems: a Window class implements a simple form of window that is not scrollable, and a ScrollableWindow class decorates the Window class by adding horizontal and vertical scrollbars.
 
-> 装饰器设计模式（也称为“包装器”）是一种鼓励跨层 API 复制的模式。装饰器对象采用现有对象并扩展其功能；它提供与基础对象相似或相同的 API，并且其方法调用基础对象的方法。在第 4 章的 Java I / O 示例中，BufferedInputStream 类是一个装饰器：给定一个 InputStream 对象，它提供相同的 API，但引入了缓冲。例如，当调用其 read 方法以读取单个字符时，它将在基础 InputStream 上调用 read 以读取更大的块，并保存多余的字符以满足将来的读取调用。另一个例子发生在窗口系统中：Window 类实现了不可滚动的窗口的简单形式，
+> 装饰器设计模式(也称为“包装器”)是一种鼓励跨层复制 API 的模式。装饰对象接受现有对象并扩展其功能;它提供一个与底层对象相似或相同的 API，它的方法调用底层对象的方法。在第 4 章的 Java I/O 示例中，BufferedInputStream 类是一个装饰器:给定一个 InputStream 对象，它提供了相同的 API，但是引入了缓冲。例如，当它的 read 方法被调用来读取单个字符时，它会调用底层 InputStream 上的 read 来读取更大的块，并保存额外的字符来满足未来的 read 调用。另一个例子出现在窗口系统中:Window 类实现了一个不能滚动的窗口的简单形式，而 ScrollableWindow 类通过添加水平和垂直滚动条来装饰窗口类。
 
 The motivation for decorators is to separate special-purpose extensions of a class from a more generic core. However, decorator classes tend to be shallow: they introduce a large amount of boilerplate for a small amount of new functionality. Decorator classes often contain many pass-through methods. It’s easy to overuse the decorator pattern, creating a new class for every small new feature. This results in an explosion of shallow classes, such as the Java I/O example.
 
-> 装饰器的动机是将类的专用扩展与更通用的核心分开。但是，装饰器类往往很浅：它们引入了大量的样板，以实现少量的新功能。装饰器类通常包含许多传递方法。过度使用装饰器模式很容易，为每个小的新功能创建一个新类。这导致诸如 Java I / O 示例之类的浅层类激增。
+> 装饰器的动机是将类的专用扩展与更通用的核心分开。但是，装饰器类往往很浅：它们引入了大量的样板，以实现少量的新功能。装饰器类通常包含许多传递方法。过度使用装饰器模式很容易，为每个小的新功能创建一个新类。这导致诸如 Java I/O 示例之类的浅层类激增。
 
 Before creating a decorator class, consider alternatives such as the following:
 
@@ -118,7 +118,7 @@ Before creating a decorator class, consider alternatives such as the following:
 
 ---
 
-> - 您能否将新功能直接添加到基础类，而不是创建装饰器类？如果新功能是相对通用的，或者在逻辑上与基础类相关，或者如果基础类的大多数使用也将使用新功能，则这是有意义的。例如，几乎每个创建 Java InputStream 的人都会创建一个 BufferedInputStream，并且缓冲是 I / O 的自然组成部分，因此应该合并这些类。
+> - 您能否将新功能直接添加到基础类，而不是创建装饰器类？如果新功能是相对通用的，或者在逻辑上与基础类相关，或者如果基础类的大多数使用也将使用新功能，则这是有意义的。例如，几乎每个创建 Java InputStream 的人都会创建一个 BufferedInputStream，并且缓冲是 I/O 的自然组成部分，因此应该合并这些类。
 > - 如果新功能专用于特定用例，将其与用例合并而不是创建单独的类是否有意义？
 > - 您可以将新功能与现有的装饰器合并，而不是创建新的装饰器吗？这将导致一个更深的装饰器类，而不是多个浅的装饰器类。
 > - 最后，问问自己新功能是否真的需要包装现有功能：是否可以将其实现为独立于基类的独立类？在窗口示例中，滚动条可能与主窗口分开实现，而无需包装其所有现有功能。

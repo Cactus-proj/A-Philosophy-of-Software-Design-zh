@@ -86,7 +86,7 @@ Module depth is a way of thinking about cost versus benefit. The benefit provide
 
 The mechanism for file I/O provided by the Unix operating system and its descendants, such as Linux, is a beautiful example of a deep interface. There are only five basic system calls for I/O, with simple signatures:
 
-> Unix 操作系统及其后代（例如 Linux）提供的文件 I / O 机制是深层接口的一个很好的例子。I / O 只有五个基本系统调用，带有简单签名：
+> Unix 操作系统及其后代（例如 Linux）提供的文件 I/O 机制是深层接口的一个很好的例子。I/O 只有五个基本系统调用，带有简单签名：
 
 ```c
 int open(const char* path, int flags, mode_t permissions);
@@ -102,7 +102,7 @@ The open system call takes a hierarchical file name such as /a/b/c and returns a
 
 A modern implementation of the Unix I/O interface requires hundreds of thousands of lines of code, which address complex issues such as:
 
-> Unix I / O 接口的现代实现需要成千上万行代码，这些代码可以解决诸如以下的复杂问题：
+> Unix I/O 接口的现代实现需要成千上万行代码，这些代码可以解决诸如以下的复杂问题：
 
 - How are files represented on disk in order to allow efficient access?
 - How are directories stored, and how are hierarchical path names processed to find the files they refer to?
@@ -124,7 +124,7 @@ A modern implementation of the Unix I/O interface requires hundreds of thousands
 
 All of these issues, and many more, are handled by the Unix file system implementation; they are invisible to programmers who invoke the system calls. Implementations of the Unix I/O interface have evolved radically over the years, but the five basic kernel calls have not changed.
 
-> 所有这些问题，以及更多的问题，都由 Unix 文件系统实现来解决。对于调用系统调用的程序员来说，它们是不可见的。多年来，Unix I / O 接口的实现已经发生了根本的发展，但是五个基本内核调用并没有改变。
+> 所有这些问题，以及更多的问题，都由 Unix 文件系统实现来解决。对于调用系统调用的程序员来说，它们是不可见的。多年来，Unix I/O 接口的实现已经发生了根本的发展，但是五个基本内核调用并没有改变。
 
 Another example of a deep module is the garbage collector in a language such as Go or Java. This module has no interface at all; it works invisibly behind the scenes to reclaim unused memory. Adding garbage collection to a system actually shrinks its overall interface, since it eliminates the interface for freeing objects. The implementation of a garbage collector is quite complex, but that complexity is hidden from programmers using the language.
 
@@ -132,7 +132,7 @@ Another example of a deep module is the garbage collector in a language such as 
 
 Deep modules such as Unix I/O and garbage collectors provide powerful abstractions because they are easy to use, yet they hide significant implementation complexity.
 
-> 诸如 Unix I / O 和垃圾收集器之类的深层模块提供了强大的抽象，因为它们易于使用，但隐藏了巨大的实现复杂性。
+> 诸如 Unix I/O 和垃圾收集器之类的深层模块提供了强大的抽象，因为它们易于使用，但隐藏了巨大的实现复杂性。
 
 ## 4.5 Shallow modules 浅模块
 
@@ -170,7 +170,7 @@ The extreme of the “classes should be small” approach is a syndrome I call c
 
 > “班级应小”的极端做法是我称之为“类炎”的综合症，这是由于错误地认为“班级好，所以班级越多越好”。在遭受类共患的系统中，鼓励开发人员最小化每个新类的功能：如果您想要更多的功能，请引入更多的类。分类炎可能导致个别地简单的分类，但是却增加了整个系统的复杂性。小类不会贡献太多功能，因此必须有很多小类，每个小类都有自己的接口。这些接口的累积会在系统级别产生巨大的复杂性。小类也导致冗长的编程风格，这是由于每个类都需要样板。
 
-## 4.7 Examples: Java and Unix I/O 示例：Java 和 Unix I / O
+## 4.7 Examples: Java and Unix I/O 示例：Java 和 Unix I/O
 
 One of the most visible examples of classitis today is the Java class library. The Java language doesn’t require lots of small classes, but a culture of classitis seems to have taken root in the Java programming community. For example, to open a file in order to read serialized objects from it, you must create three different objects:
 
@@ -186,15 +186,15 @@ ObjectInputStream objectStream = new ObjectInputStream(bufferedStream);
 
 A FileInputStream object provides only rudimentary I/O: it is not capable of performing buffered I/O, nor can it read or write serialized objects. The BufferedInputStream object adds buffering to a FileInputStream, and the ObjectInputStream adds the ability to read and write serialized objects. The first two objects in the code above, fileStream and bufferedStream, are never used once the file has been opened; all future operations use objectStream.
 
-> FileInputStream 对象仅提供基本的 I / O：它不能执行缓冲的 I / O，也不能读取或写入序列化的对象。BufferedInputStream 对象将缓冲添加到 FileInputStream，而 ObjectInputStream 添加了读取和写入序列化对象的功能。一旦文件被打开，上面代码中的前两个对象 fileStream 和 bufferedStream 将永远不会被使用。以后的所有操作都使用 objectStream。
+> FileInputStream 对象仅提供基本的 I/O：它不能执行缓冲的 I/O，也不能读取或写入序列化的对象。BufferedInputStream 对象将缓冲添加到 FileInputStream，而 ObjectInputStream 添加了读取和写入序列化对象的功能。一旦文件被打开，上面代码中的前两个对象 fileStream 和 bufferedStream 将永远不会被使用。以后的所有操作都使用 objectStream。
 
 It is particularly annoying (and error-prone) that buffering must be requested explicitly by creating a separate BufferedInputStream object; if a developer forgets to create this object, there will be no buffering and I/O will be slow. Perhaps the Java developers would argue that not everyone wants to use buffering for file I/O, so it shouldn’t be built into the base mechanism. They might argue that it’s better to keep buffering separate, so people can choose whether or not to use it. Providing choice is good, but interfaces should be designed to make the common case as simple as possible (see the formula on page 6). Almost every user of file I/O will want buffering, so it should be provided by default. For those few situations where buffering is not desirable, the library can provide a mechanism to disable it. Any mechanism for disabling buffering should be cleanly separated in the interface (for example, by providing a different constructor for FileInputStream, or through a method that disables or replaces the buffering mechanism), so that most developers do not even need to be aware of its existence.
 
-> 特别令人烦恼（并且容易出错）的是，必须通过创建一个单独的 BufferedInputStream 对象来显式请求缓冲。如果开发人员忘记创建该对象，将没有缓冲，并且 I / O 将变慢。也许 Java 开发人员会争辩说，并不是每个人都希望对文件 I / O 使用缓冲，因此不应将其内置到基本机制中。他们可能会争辩说，最好分开保持缓冲，以便人们可以选择是否使用它。提供选择是好的，但是应该设计接口以使常见情况尽可能简单（请参阅第 6 页的公式）。几乎每个文件 I / O 用户都希望缓冲，因此默认情况下应提供缓冲。对于不需要缓冲的少数情况，该库可以提供一种禁用它的机制。
+> 特别令人烦恼（并且容易出错）的是，必须通过创建一个单独的 BufferedInputStream 对象来显式请求缓冲。如果开发人员忘记创建该对象，将没有缓冲，并且 I/O 将变慢。也许 Java 开发人员会争辩说，并不是每个人都希望对文件 I/O 使用缓冲，因此不应将其内置到基本机制中。他们可能会争辩说，最好分开保持缓冲，以便人们可以选择是否使用它。提供选择是好的，但是应该设计接口以使常见情况尽可能简单（请参阅第 6 页的公式）。几乎每个文件 I/O 用户都希望缓冲，因此默认情况下应提供缓冲。对于不需要缓冲的少数情况，该库可以提供一种禁用它的机制。
 
 In contrast, the designers of the Unix system calls made the common case simple. For example, they recognized that sequential I/O is most common, so they made that the default behavior. Random access is still relatively easy to do, using the lseek system call, but a developer doing only sequential access need not be aware of that mechanism. If an interface has many features, but most developers only need to be aware of a few of them, the effective complexity of that interface is just the complexity of the commonly used features.
 
-> 相反，Unix 系统调用的设计者使常见情况变得简单。例如，他们认识到顺序 I / O 是最常见的，因此他们将其作为默认行为。使用 lseek 系统调用，随机访问仍然相对容易实现，但是仅执行顺序访问的开发人员无需了解该机制。如果一个界面具有许多功能，但是大多数开发人员只需要了解其中的一些功能，那么该界面的有效复杂性就是常用功能的复杂性。
+> 相反，Unix 系统调用的设计者使常见情况变得简单。例如，他们认识到顺序 I/O 是最常见的，因此他们将其作为默认行为。使用 lseek 系统调用，随机访问仍然相对容易实现，但是仅执行顺序访问的开发人员无需了解该机制。如果一个界面具有许多功能，但是大多数开发人员只需要了解其中的一些功能，那么该界面的有效复杂性就是常用功能的复杂性。
 
 ## 4.8 Conclusion 结论
 
