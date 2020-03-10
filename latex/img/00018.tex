@@ -1,0 +1,24 @@
+\begin{lstlisting}[language=Java]
+switch (common->opcode) { 
+    case DATA: {
+        DataHeader* header = received->getStart<DataHeader>(); 
+        if (header == NULL)
+            goto packetTooShort;
+    case GRANT: {
+        GrantHeader* header = received->getStart<GrantHeader>(); 
+        if (header == NULL)
+            goto packetTooShort;
+    case RESEND: {
+        ResendHeader* header = received->getStart<ResendHeader>(); 
+        if (header == NULL)
+            goto packetTooShort;
+        ...
+}
+...
+packetTooShort:
+LOG(WARNING, "Xs packet from %s too short (%u bytes)", 
+        opcodeSymbol(coinnion->opcode), 
+        received->sender->toString(), 
+        received->len);
+return;
+\end{lstlisting}

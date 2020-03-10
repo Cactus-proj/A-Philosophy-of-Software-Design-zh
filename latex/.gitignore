@@ -4,9 +4,15 @@
 *.log
 *.out
 *.toc
-*.gz
+*.synctex.*
 *.pdf
 
 # latexmk
 *.*_latexmk
 *.fls
+
+# img
+img/*.jpg
+
+# test file
+ch0.*

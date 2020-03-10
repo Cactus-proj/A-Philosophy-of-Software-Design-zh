@@ -1,0 +1,18 @@
+\begin{lstlisting}[language=Java]
+char* Buffer::alloc(mt numBytes){
+    if (this->extraAppendBytes >= numBytes) {
+        // There is extra space at the end of the current 
+        // last chunk, so we can just allocate the new 
+        // region there.
+        Buffer::Chunk* chunk = this->lastChunk; 
+        char* result = chunk->data + chunk->length; 
+        chunk->length += nuinBytes; 
+        this->extraAppendBytes -= nuinBytes; 
+        this->totalLength += numBytes; 
+        return result;
+    }
+
+    // We're going to have to create a new chunk.
+    ...
+}
+\end{lstlisting}

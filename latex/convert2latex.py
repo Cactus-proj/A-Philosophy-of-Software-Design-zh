@@ -61,8 +61,8 @@ class LaTeXRenderer(mistune.HTMLRenderer):
     def english(self, text):
         return ''
 
-    # def english_list_item(self, text, level):
-    #     return ''
+    def english_list(self, text, ordered, level, start=None):
+        return ''
 
     # 所有文本的处理函数
     def text(self, text):
@@ -73,10 +73,29 @@ class LaTeXRenderer(mistune.HTMLRenderer):
         return ' \\href{'+link+'}' + '{'+(text or link)+'} '
 
     def image(self, src, alt="", title=None):
-        s = '<img src="' + src + '" alt="' + alt + '"'
-        if title:
-            s += ' title="' + escape_html(title) + '"'
-        return s + ' />'
+        _, fname = os.path.split(src)
+        fname = fname[0:5]
+
+        ltx_fig = """
+        \\begin{{figure}}[htbp]
+        % \\label{{{label}}}
+        \\centering
+        \\includegraphics{gargs}{{{gname}}}
+        % \\caption{{{caption}}}
+        \\end{{figure}}
+        """.format(label="", caption="", gargs="[width=0.95\\textwidth]", gname=fname)
+        
+        jmp_list = [
+            '00009',  # equ
+            '00017', '00018', '00023', '00024' # code
+        ]
+
+        if '00013' == fname:  # icon
+            return '\n'
+        elif fname in jmp_list:
+            return '\\input{img/' + fname + '.tex}\n'
+        else:
+            return ltx_fig
 
     def emphasis(self, text):
         return ' \\emph{ ' + text + ' } '
@@ -153,18 +172,30 @@ class LaTeXRenderer(mistune.HTMLRenderer):
 # hook func
 def remove_english(self, tokens, state):
     # 删除所有英文节点
-    # print(tokens)
+    # print(tokens) # for debug
     for tok in tokens:
-        if 'paragraph' == tok['type']:  # 顶层的段落
-            # 变为换行
+        if 'list' == tok['type']:
+            # 顶层的列表
+            tok['type'] = 'english_list'
+            continue
+        elif 'paragraph' != tok['type']:
+            # 其他 md 节点
+            continue
+        
+        # 是否有子节点
+        if ('children' in tok.keys() and
+                'text' == tok['children'][0]['type']):
+            if None == re.match(r"!\[\]\(", tok['children'][0]['text']):
+                tok['type'] = 'english'
+        elif None==re.match(r"!\[\]\(", tok['text']):
+            # 非图片
             tok['type'] = 'english'
-        # if 'list_item' == tok['type']:  # 顶层的列表
-        #     tok['type'] = 'english_list_item'
     return tokens
 
 
 # main 
 for mdfile in os.listdir(ROOT_MD_DIR):
+    # mdfile = 'ch0.md' # for debug
     fname, ext = os.path.splitext(mdfile)
     # 跳过非 markdown 文件 和 README.md
     if ('.md' != ext) or ('README'==fname):
