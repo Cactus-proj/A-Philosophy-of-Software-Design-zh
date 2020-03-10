@@ -1,0 +1,12 @@
+# latex
+*.aux
+*.bak
+*.log
+*.out
+*.toc
+*.gz
+*.pdf
+
+# latexmk
+*.*_latexmk
+*.fls
