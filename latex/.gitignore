@@ -4,7 +4,8 @@
 *.log
 *.out
 *.toc
-*.synctex.*
+*.dvi
+*.synctex*
 *.pdf
 
 # latexmk
