@@ -87,7 +87,9 @@ class LaTeXRenderer(mistune.HTMLRenderer):
         
         jmp_list = [
             '00009',  # equ
-            '00017', '00018', '00023', '00024' # code
+            '00017', '00018', '00023', '00024', # code
+            # plots
+            '00011',
         ]
 
         if '00013' == fname:  # icon
