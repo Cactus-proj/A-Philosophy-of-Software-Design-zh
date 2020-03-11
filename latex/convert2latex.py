@@ -89,7 +89,7 @@ class LaTeXRenderer(mistune.HTMLRenderer):
             '00009',  # equ
             '00017', '00018', '00023', '00024', # code
             # plots
-            '00011',
+            '00011', '00012',
         ]
 
         if '00013' == fname:  # icon
