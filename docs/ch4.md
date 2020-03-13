@@ -138,7 +138,7 @@ Deep modules such as Unix I/O and garbage collectors provide powerful abstractio
 
 On the other hand, a shallow module is one whose interface is relatively complex in comparison to the functionality that it provides. For example, a class that implements linked lists is shallow. It doesn’t take much code to manipulate a linked list (inserting or deleting an element takes only a few lines), so the linked list abstraction doesn’t hide very many details. The complexity of a linked list interface is nearly as great as the complexity of its implementation. Shallow classes are sometimes unavoidable, but they don’t provide help much in managing complexity.
 
-> 另一方面，浅层模块是其接口与其提供的功能相比相对复杂的模块。例如，实现链接列表的类很浅。操作链接列表不需要太多代码（插入或删除元素仅需几行），因此链接列表抽象不会隐藏很多细节。链接列表接口的复杂度几乎与其实现的复杂度一样高。浅类有时是不可避免的，但是它们在管理复杂性方面没有提供太多帮助。
+> 另一方面，浅层模块是其接口与其提供的功能相比相对复杂的模块。例如，实现链表的类很浅。操作链表不需要太多代码（插入或删除元素仅需几行），因此链表抽象不会隐藏很多细节。链表接口的复杂度几乎与其实现的复杂度一样高。浅类有时是不可避免的，但是它们在管理复杂性方面没有提供太多帮助。
 
 Here is an extreme example of a shallow method, taken from a project in a software design class:
 
