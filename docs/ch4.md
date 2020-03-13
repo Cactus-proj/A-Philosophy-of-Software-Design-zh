@@ -18,11 +18,11 @@ Unfortunately, this ideal is not achievable. Modules must work together by calli
 
 In order to manage dependencies, we think of each module in two parts: an interface and an implementation. The interface consists of everything that a developer working in a different module must know in order to use the given module. Typically, the interface describes what the module does but not how it does it. The implementation consists of the code that carries out the promises made by the interface. A developer working in a particular module must understand the interface and implementation of that module, plus the interfaces of any other modules invoked by the given module. A developer should not need to understand the implementations of modules other than the one he or she is working in.
 
-> 为了管理依赖关系，我们将每个模块分为两个部分：接口和实现。接口包含使用其他模块的开发人员必须知道的所有内容，才能使用给定的模块。通常，界面描述模块的功能，但不描述模块的功能。该实现由执行接口所承诺的代码组成。在特定模块中工作的开发人员必须了解该模块的接口和实现，以及由给定模块调用的任何其他模块的接口。除了正在使用的模块以外，开发人员无需了解其他模块的实现。
+> 为了管理依赖关系，我们将每个模块分为两个部分：接口和实现。接口包含使用其他模块的开发人员必须知道的所有内容，才能使用给定的模块。通常，接口描述模块的功能，但不描述模块的功能。该实现由执行接口所承诺的代码组成。在特定模块中工作的开发人员必须了解该模块的接口和实现，以及由给定模块调用的任何其他模块的接口。除了正在使用的模块以外，开发人员无需了解其他模块的实现。
 
 Consider a module that implements balanced trees. The module probably contains sophisticated code for ensuring that the tree remains balanced. However, this complexity is not visible to users of the module. Users see a relatively simple interface for invoking operations to insert, remove, and fetch nodes in the tree. To invoke an insert operation, the caller need only provide the key and value for the new node; the mechanisms for traversing the tree and splitting nodes are not visible in the interface.
 
-> 考虑一个实现平衡树的模块。该模块可能包含复杂的代码，以确保树保持平衡。但是，此复杂性对于模块用户而言是不可见的。用户可以看到一个相对简单的界面，用于调用在树中插入，删除和获取节点的操作。要调用插入操作，调用者只需提供新节点的键和值即可。遍历树和拆分节点的机制在界面中不可见。
+> 考虑一个实现平衡树的模块。该模块可能包含复杂的代码，以确保树保持平衡。但是，此复杂性对于模块用户而言是不可见的。用户可以看到一个相对简单的接口，用于调用在树中插入，删除和获取节点的操作。要调用插入操作，调用者只需提供新节点的键和值即可。遍历树和拆分节点的机制在接口中不可见。
 
 For the purposes of this book, a module is any unit of code that has an interface and an implementation. Each class in an object-oriented programming language is a module. Methods within a class, or functions in a language that isn’t object-oriented, can also be thought of as modules: each of these has an interface and an implementation, and modular design techniques can be applied to them. Higher-level subsystems and services are also modules; their interfaces may take different forms, such as kernel calls or HTTP requests. Much of the discussion about modular design in this book focuses on designing classes, but the techniques and concepts apply to other kinds of modules as well.
 
@@ -40,7 +40,7 @@ The interface to a module contains two kinds of information: formal and informal
 
 Each interface also includes informal elements. These are not specified in a way that can be understood or enforced by the programming language. The informal parts of an interface include its high-level behavior, such as the fact that a function deletes the file named by one of its arguments. If there are constraints on the usage of a class (perhaps one method must be called before another), these are also part of the class’s interface. In general, if a developer needs to know a particular piece of information in order to use a module, then that information is part of the module’s interface. The informal aspects of an interface can only be described using comments, and the programming language cannot ensure that the description is complete or accurate1. For most interfaces the informal aspects are larger and more complex than the formal aspects.
 
-> 每个界面还包括非正式元素。这些没有以编程语言可以理解或执行的方式指定。接口的非正式部分包括其高级行为，例如，函数删除由其参数之一命名的文件的事实。如果对类的使用存在限制（也许必须先调用一种方法），则这些约束也是类接口的一部分。通常，如果开发人员需要了解特定信息才能使用模块，则该信息是模块界面的一部分。界面的非正式方面只能使用注释来描述，而编程语言不能确保描述是完整或准确的 1。对于大多数界面，非正式方面比正式方面更大，更复杂。
+> 每个接口还包括非正式元素。这些没有以编程语言可以理解或执行的方式指定。接口的非正式部分包括其高级行为，例如，函数删除由其参数之一命名的文件的事实。如果对类的使用存在限制（也许必须先调用一种方法），则这些约束也是类接口的一部分。通常，如果开发人员需要了解特定信息才能使用模块，则该信息是模块接口的一部分。接口的非正式方面只能使用注释来描述，而编程语言不能确保描述是完整或准确的 1。对于大多数界面，非正式方面比正式方面更大，更复杂。
 
 One of the benefits of a clearly specified interface is that it indicates exactly what developers need to know in order to use the associated module. This helps to eliminate the “unknown unknowns” problem described in Section 2.2.
 
@@ -54,7 +54,7 @@ The term abstraction is closely related to the idea of modular design. An abstra
 
 In modular programming, each module provides an abstraction in form of its interface. The interface presents a simplified view of the module’s functionality; the details of the implementation are unimportant from the standpoint of the module’s abstraction, so they are omitted from the interface.
 
-> 在模块化编程中，每个模块以其接口的形式提供抽象。该界面提供了模块功能的简化视图；从模块抽象的角度来看，实现的细节并不重要，因此在接口中将其省略。
+> 在模块化编程中，每个模块以其接口的形式提供抽象。该接口提供了模块功能的简化视图；从模块抽象的角度来看，实现的细节并不重要，因此在接口中将其省略。
 
 In the definition of abstraction, the word “unimportant” is crucial. The more unimportant details that are omitted from an abstraction, the better. However, a detail can only be omitted from an abstraction if it is unimportant. An abstraction can go wrong in two ways. First, it can include details that are not really important; when this happens, it makes the abstraction more complicated than necessary, which increases the cognitive load on developers using the abstraction. The second error is when an abstraction omits details that really are important. This results in obscurity: developers looking only at the abstraction will not have all the information they need to use the abstraction correctly. An abstraction that omits important details is a false abstraction: it might appear simple, but in reality it isn’t. The key to designing abstractions is to understand what is important, and to look for designs that minimize the amount of information that is important.
 
@@ -62,7 +62,7 @@ In the definition of abstraction, the word “unimportant” is crucial. The mor
 
 As an example, consider a file system. The abstraction provided by a file system omits many details, such as the mechanism for choosing which blocks on a storage device to use for the data in a given file. These details are unimportant to users of the file system (as long as the system provides adequate performance). However, some of the details of a file system’s implementation are important to users. Most file systems cache data in main memory, and they may delay writing new data to the storage device in order to improve performance. Some applications, such as databases, need to know exactly when data is written through to storage, so they can ensure that data will be preserved after system crashes. Thus, the rules for flushing data to secondary storage must be visible in the file system’s interface.
 
-> 例如，考虑一个文件系统。文件系统提供的抽象省略了许多细节，例如用于选择存储设备上的哪些块用于给定文件中的数据的机制。这些详细信息对于文件系统的用户而言并不重要（只要系统提供足够的性能即可）。但是，文件系统实现的一些细节对用户很重要。大多数文件系统将数据缓存在主内存中，并且它们可能会延迟将新数据写入存储设备以提高性能。一些应用程序（例如数据库）需要确切地知道何时将数据写入存储设备，因此它们可以确保在系统崩溃后将保留数据。因此，将数据刷新到辅助存储的规则必须在文件系统的界面中可见。
+> 例如，考虑一个文件系统。文件系统提供的抽象省略了许多细节，例如用于选择存储设备上的哪些块用于给定文件中的数据的机制。这些详细信息对于文件系统的用户而言并不重要（只要系统提供足够的性能即可）。但是，文件系统实现的一些细节对用户很重要。大多数文件系统将数据缓存在主内存中，并且它们可能会延迟将新数据写入存储设备以提高性能。一些应用程序（例如数据库）需要确切地知道何时将数据写入存储设备，因此它们可以确保在系统崩溃后将保留数据。因此，将数据刷新到辅助存储的规则必须在文件系统的接口中可见。
 
 We depend on abstractions to manage complexity not just in programming, but pervasively in our everyday lives. A microwave oven contains complex electronics to convert alternating current into microwave radiation and distribute that radiation throughout the cooking cavity. Fortunately, users see a much simpler abstraction, consisting of a few buttons to control the timing and intensity of the microwaves. Cars provide a simple abstraction that allows us to drive them without understanding the mechanisms for electrical motors, battery power management, anti-lock brakes, cruise control, and so on.
 
@@ -72,17 +72,17 @@ We depend on abstractions to manage complexity not just in programming, but perv
 
 The best modules are those that provide powerful functionality yet have simple interfaces. I use the term deep to describe such modules. To visualize the notion of depth, imagine that each module is represented by a rectangle, as shown in Figure 4.1. The area of each rectangle is proportional to the functionality implemented by the module. The top edge of a rectangle represents the module’s interface; the length of that edge indicates the complexity of the interface. The best modules are deep: they have a lot of functionality hidden behind a simple interface. A deep module is a good abstraction because only a small fraction of its internal complexity is visible to its users.
 
-> 最好的模块是那些提供强大功能但具有简单接口的模块。我用“深入”一词来描述这样的模块。为了形象化深度的概念，假设每个模块都由一个矩形表示，如图 4.1 所示。每个矩形的面积与模块实现的功能成比例。矩形的顶部边缘代表模块的界面；边缘的长度表示接口的复杂性。最好的模块很深：它们在简单的界面后隐藏了许多功能。深度模块是一个很好的抽象，因为其内部复杂性的很小一部分对其用户可见。
+> 最好的模块是那些提供强大功能但具有简单接口的模块。我用“深入”一词来描述这样的模块。为了形象化深度的概念，假设每个模块都由一个矩形表示，如图 4.1 所示。每个矩形的面积与模块实现的功能成比例。矩形的顶部边缘代表模块的接口；边缘的长度表示接口的复杂性。最好的模块很深：它们在简单的接口后隐藏了许多功能。深度模块是一个很好的抽象，因为其内部复杂性的很小一部分对其用户可见。
 
 ![](./figures/00012.jpeg)
 
 Figure 4.1: Deep and shallow modules. The best modules are deep: they allow a lot of functionality to be accessed through a simple interface. A shallow module is one with a relatively complex interface, but not much functionality: it doesn’t hide much complexity.
 
-> 图 4.1：深浅模块。最好的模块很深：它们允许通过简单的界面访问许多功能。浅层模块是具有相对复杂的接口的模块，但功能不多：它不会掩盖太多的复杂性。
+> 图 4.1：深浅模块。最好的模块很深：它们允许通过简单的接口访问许多功能。浅层模块是具有相对复杂的接口的模块，但功能不多：它不会掩盖太多的复杂性。
 
 Module depth is a way of thinking about cost versus benefit. The benefit provided by a module is its functionality. The cost of a module (in terms of system complexity) is its interface. A module’s interface represents the complexity that the module imposes on the rest of the system: the smaller and simpler the interface, the less complexity that it introduces. The best modules are those with the greatest benefit and the least cost. Interfaces are good, but more, or larger, interfaces are not necessarily better!
 
-> 模块深度是考虑成本与收益的一种方式。模块提供的好处是其功能。模块的成本（就系统复杂性而言）是其接口。模块的接口代表了模块强加给系统其余部分的复杂性：接口越小越简单，引入的复杂性就越小。最好的模块是那些收益最大，成本最低的模块。界面不错，但更多或更大的界面不一定更好！
+> 模块深度是考虑成本与收益的一种方式。模块提供的好处是其功能。模块的成本（就系统复杂性而言）是其接口。模块的接口代表了模块强加给系统其余部分的复杂性：接口越小越简单，引入的复杂性就越小。最好的模块是那些收益最大，成本最低的模块。接口不错，但更多或更大的接口不一定更好！
 
 The mechanism for file I/O provided by the Unix operating system and its descendants, such as Linux, is a beautiful example of a deep interface. There are only five basic system calls for I/O, with simple signatures:
 
@@ -138,7 +138,7 @@ Deep modules such as Unix I/O and garbage collectors provide powerful abstractio
 
 On the other hand, a shallow module is one whose interface is relatively complex in comparison to the functionality that it provides. For example, a class that implements linked lists is shallow. It doesn’t take much code to manipulate a linked list (inserting or deleting an element takes only a few lines), so the linked list abstraction doesn’t hide very many details. The complexity of a linked list interface is nearly as great as the complexity of its implementation. Shallow classes are sometimes unavoidable, but they don’t provide help much in managing complexity.
 
-> 另一方面，浅层模块是其接口与其提供的功能相比相对复杂的模块。例如，实现链接列表的类很浅。操作链接列表不需要太多代码（插入或删除元素仅需几行），因此链接列表抽象不会隐藏很多细节。链接列表接口的复杂度几乎与其实现的复杂度一样高。浅类有时是不可避免的，但是它们在管理复杂性方面没有提供太多帮助。
+> 另一方面，浅层模块是其接口与其提供的功能相比相对复杂的模块。例如，实现链表的类很浅。操作链表不需要太多代码（插入或删除元素仅需几行），因此链表抽象不会隐藏很多细节。链表接口的复杂度几乎与其实现的复杂度一样高。浅类有时是不可避免的，但是它们在管理复杂性方面没有提供太多帮助。
 
 Here is an extreme example of a shallow method, taken from a project in a software design class:
 
@@ -152,13 +152,13 @@ private void addNullValueForAttribute(String attribute) {
 
 From the standpoint of managing complexity, this method makes things worse, not better. The method offers no abstraction, since all of its functionality is visible through its interface. For example, callers probably need to know that the attribute will be stored in the data variable. It is no simpler to think about the interface than to think about the full implementation. If the method is documented properly, the documentation will be longer than the method’s code. It even takes more keystrokes to invoke the method than it would take for a caller to manipulate the data variable directly. The method adds complexity (in the form of a new interface for developers to learn) but provides no compensating benefit.
 
-> 从管理复杂性的角度来看，此方法会使情况变得更糟，而不是更好。该方法不提供任何抽象，因为其所有功能都可以通过其接口看到。例如，调用者可能需要知道该属性将存储在 data 变量中。考虑接口并不比考虑完整实现简单。如果正确记录了该方法，则文档将比该方法的代码长。与调用方直接操作数据变量相比，调用该方法所花费的击键甚至更多。该方法增加了复杂性（以供开发人员学习的新界面的形式），但没有提供任何补偿。
+> 从管理复杂性的角度来看，此方法会使情况变得更糟，而不是更好。该方法不提供任何抽象，因为其所有功能都可以通过其接口看到。例如，调用者可能需要知道该属性将存储在 data 变量中。考虑接口并不比考虑完整实现简单。如果正确记录了该方法，则文档将比该方法的代码长。与调用方直接操作数据变量相比，调用该方法所花费的击键甚至更多。该方法增加了复杂性（以供开发人员学习的新接口的形式），但没有提供任何补偿。
 
 img Red Flag: Shallow Module img
 
 A shallow module is one whose interface is complicated relative to the functionality it provides. Shallow modules don’t help much in the battle against complexity, because the benefit they provide (not having to learn about how they work internally) is negated by the cost of learning and using their interfaces. Small modules tend to be shallow.
 
-> 浅层模块是一个界面相对于其提供的功能而言复杂的模块。浅层模块在对抗复杂性方面无济于事，因为它们提供的好处（不必了解它们在内部如何工作）被学习和使用其接口的成本所抵消。小模块往往很浅。
+> 浅层模块是一个接口相对于其提供的功能而言复杂的模块。浅层模块在对抗复杂性方面无济于事，因为它们提供的好处（不必了解它们在内部如何工作）被学习和使用其接口的成本所抵消。小模块往往很浅。
 
 ## 4.6 Classitis
 
@@ -194,7 +194,7 @@ It is particularly annoying (and error-prone) that buffering must be requested e
 
 In contrast, the designers of the Unix system calls made the common case simple. For example, they recognized that sequential I/O is most common, so they made that the default behavior. Random access is still relatively easy to do, using the lseek system call, but a developer doing only sequential access need not be aware of that mechanism. If an interface has many features, but most developers only need to be aware of a few of them, the effective complexity of that interface is just the complexity of the commonly used features.
 
-> 相反，Unix 系统调用的设计者使常见情况变得简单。例如，他们认识到顺序 I/O 是最常见的，因此他们将其作为默认行为。使用 lseek 系统调用，随机访问仍然相对容易实现，但是仅执行顺序访问的开发人员无需了解该机制。如果一个界面具有许多功能，但是大多数开发人员只需要了解其中的一些功能，那么该界面的有效复杂性就是常用功能的复杂性。
+> 相反，Unix 系统调用的设计者使常见情况变得简单。例如，他们认识到顺序 I/O 是最常见的，因此他们将其作为默认行为。使用 lseek 系统调用，随机访问仍然相对容易实现，但是仅执行顺序访问的开发人员无需了解该机制。如果一个接口具有许多功能，但是大多数开发人员只需要了解其中的一些功能，那么该接口的有效复杂性就是常用功能的复杂性。
 
 ## 4.8 Conclusion 结论
 
@@ -204,4 +204,4 @@ By separating the interface of a module from its implementation, we can hide the
 
 1There exist languages, mostly in the research community, where the overall behavior of a method or function can be described formally using a specification language. The specification can be checked automatically to ensure that it matches the implementation. An interesting question is whether such a formal specification could replace the informal parts of an interface. My current opinion is that an interface described in English is likely to be more intuitive and understandable for developers than one written in a formal specification language.
 
-> 1 存在语言，主要是在研究社区中，在其中可以使用规范语言来正式描述方法或功能的整体行为。可以自动检查该规范以确保它与实现相匹配。一个有趣的问题是，这样的正式规范是否可以代替接口的非正式部分。我目前的观点是，用英语描述的界面比使用正式规范语言编写的界面对开发人员来说更直观和易于理解。
+> 1 存在语言，主要是在研究社区中，在其中可以使用规范语言来正式描述方法或功能的整体行为。可以自动检查该规范以确保它与实现相匹配。一个有趣的问题是，这样的正式规范是否可以代替接口的非正式部分。我目前的观点是，用英语描述的接口比使用正式规范语言编写的接口对开发人员来说更直观和易于理解。
