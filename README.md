@@ -54,6 +54,16 @@ cd A-Philosophy-of-Software-Design-zh/
 yarn docs:dev
 ```
 
+## Contributors
+
+<table>
+  <tr>
+    <td align="center"><a href="https://gdut-yy.github.io/"><img src="https://avatars2.githubusercontent.com/u/33390928?s=460&v=4" width="100px;" /><br /><sub><b>gdut-yy</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/inkydragon"><img src="https://avatars1.githubusercontent.com/u/5158738?s=460&u=b9cbd51a3d1bbff1df994214e50058b9b3a9715a&v=4" width="100px;" /><br /><sub><b>inkydragon</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/chenpy228"><img src="https://avatars2.githubusercontent.com/u/5305370?s=460&v=4" width="100px;" /><br /><sub><b>chenpy228</b></sub></a><br /></td>    
+  </tr>
+</table>
+
 ## License
 
 [MIT](https://github.com/gdut-yy/A-Philosophy-of-Software-Design-zh/blob/master/LICENSE)
