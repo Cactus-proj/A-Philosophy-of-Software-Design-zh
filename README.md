@@ -64,6 +64,10 @@ yarn docs:dev
   </tr>
 </table>
 
+## 更多书籍
+
+[https://github.com/xx-zh/xx-zh-roadmap](https://github.com/xx-zh/xx-zh-roadmap)
+
 ## License
 
-[MIT](https://github.com/gdut-yy/A-Philosophy-of-Software-Design-zh/blob/master/LICENSE)
+[MIT](./LICENSE)
