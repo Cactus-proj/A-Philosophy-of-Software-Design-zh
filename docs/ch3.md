@@ -64,7 +64,7 @@ Figure 3.1: At the beginning, a tactical approach to programming will make progr
 
 Conversely, if you program tactically, you will finish your first projects 10–20% faster, but over time your development speed will slow as complexity accumulates. It won’t be long before you’re programming at least 10–20% slower. You will quickly give back all of the time you saved at the beginning, and for the rest of system’s lifetime you will be developing more slowly than if you had taken the strategic approach. If you haven’t ever worked in a badly degraded code base, talk to someone who has; they will tell you that poor code quality slows development by at least 20%.
 
-> 相反，如果您进行战术编程，则可以将第一个项目完成的速度提高 10％到 20％，但是随着时间的推移，复杂性的累积会降低开发速度。不久之后，您的编程速度至少会降低 10–20％。您将很快退回在开始时保存的所有时间，并且在系统的整个生命周期中，与采用策略性方法相比，您的开发速度将更加缓慢。如果您从未使用过严重降级的代码库，请与有经验的人联系。他们会告诉您不良的代码质量会使开发速度至少降低 20％。
+> 相反，如果您进行战术编程，则可以将第一个项目完成的速度提高 10％到 20％，但是随着时间的推移，复杂性的累积会降低开发速度。不久之后，您的编程速度至少会降低 10–20％。您将很快退回在开始时节省的所有时间，并且在系统的整个生命周期中，与采用策略性方法相比，您的开发速度将更加缓慢。如果您从未使用过严重降级的代码库，请与有经验的人联系。他们会告诉您不良的代码质量会使开发速度至少降低 20％。
 
 ## 3.4 Startups and investment 创业与投资
 
