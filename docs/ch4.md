@@ -164,11 +164,11 @@ A shallow module is one whose interface is complicated relative to the functiona
 
 Unfortunately, the value of deep classes is not widely appreciated today. The conventional wisdom in programming is that classes should be small, not deep. Students are often taught that the most important thing in class design is to break up larger classes into smaller ones. The same advice is often given about methods: “Any method longer than N lines should be divided into multiple methods” (N can be as low as 10). This approach results in large numbers of shallow classes and methods, which add to overall system complexity.
 
-> 不幸的是，深度类的价值在今天并未得到广泛认可。编程中的传统观点是，类应该小而不是深。经常告诉学生，班级设计中最重要的事情是将较大的班级分成较小的班级。对于方法，通常会给出相同的建议：“任何长于 N 行的方法都应分为多种方法”（N 可以低至 10）。这种方法导致了大量的浅类和方法，这增加了整体系统的复杂性。
+> 不幸的是，深度类的价值在今天并未得到广泛认可。编程中的传统观点是，类应该小而不是深。经常告诉学生，类设计中最重要的事情是将较大的类分成较小的类。对于方法，通常会给出相同的建议：“任何长于 N 行的方法都应分为多种方法”（N 可以低至 10）。这种方法导致了大量的浅类和方法，这增加了整体系统的复杂性。
 
 The extreme of the “classes should be small” approach is a syndrome I call classitis, which stems from the mistaken view that “classes are good, so more classes are better.” In systems suffering from classitis, developers are encouraged to minimize the amount of functionality in each new class: if you want more functionality, introduce more classes. Classitis may result in classes that are individually simple, but it increases the complexity of the overall system. Small classes don’t contribute much functionality, so there have to be a lot of them, each with its own interface. These interfaces accumulate to create tremendous complexity at the system level. Small classes also result in a verbose programming style, due to the boilerplate required for each class.
 
-> “班级应小”的极端做法是我称之为“类炎”的综合症，这是由于错误地认为“班级好，所以班级越多越好”。在遭受类共患的系统中，鼓励开发人员最小化每个新类的功能：如果您想要更多的功能，请引入更多的类。分类炎可能导致个别地简单的分类，但是却增加了整个系统的复杂性。小类不会贡献太多功能，因此必须有很多小类，每个小类都有自己的接口。这些接口的累积会在系统级别产生巨大的复杂性。小类也导致冗长的编程风格，这是由于每个类都需要样板。
+> “类应该小”的极端做法是我称之为“类炎”的综合症，这是由于错误地认为“类是好的，所以类越多越好”。在遭受类炎的系统中，鼓励开发人员最小化每个新类的功能：如果您想要更多的功能，请引入更多的类。分类炎可能导致个别地简单的分类，但是却增加了整个系统的复杂性。小类不会贡献太多功能，因此必须有很多小类，每个小类都有自己的接口。这些接口的累积会在系统级别产生巨大的复杂性。小类也导致冗长的编程风格，这是由于每个类都需要样板。
 
 ## 4.7 Examples: Java and Unix I/O 示例：Java 和 Unix I/O
 
