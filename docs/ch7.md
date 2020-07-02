@@ -95,7 +95,7 @@ For example, when a Web server receives an incoming HTTP request from a Web brow
 
 It is fine for several methods to have the same signature as long as each of them provides useful and distinct functionality. The methods invoked by a dispatcher have this property. Another example is interfaces with multiple implementations, such as disk drivers in an operating system. Each driver provides support for a different kind of disk, but they all have the same interface. When several methods provide different implementations of the same interface, it reduces cognitive load. Once you have worked with one of these methods, it’s easier to work with the others, since you don’t need to learn a new interface. Methods like this are usually in the same layer and they don’t invoke each other.
 
-> 只要每种方法都提供有用且独特的功能，几种方法都应具有相同的签名。调度程序调用的方法具有此属性。另一个示例是具有多种实现方式的接口，例如操作系统中的磁盘驱动程序。每个驱动程序都支持不同类型的磁盘，但是它们都有相同的接口。当几种方法提供同一接口的不同实现时，它将减少认知负担。使用其中一种方法后，与其他方法一起使用会更容易，因为您无需学习新的界面。像这样的方法通常位于同一层，并且它们不会相互调用。
+> 只要每种方法都提供有用且独特的功能，几种方法都应具有相同的签名。调度程序调用的方法具有此属性。另一个示例是具有多种实现方式的接口，例如操作系统中的磁盘驱动程序。每个驱动程序都支持不同类型的磁盘，但是它们都有相同的接口。当几种方法提供同一接口的不同实现时，它将减少认知负担。使用其中一种方法后，与其他方法一起使用会更容易，因为您无需学习新的接口。像这样的方法通常位于同一层，并且它们不会相互调用。
 
 ## 7.3 Decorators 装饰器
 
@@ -181,7 +181,7 @@ Contexts are far from an ideal solution. The variables stored in a context have 
 
 Each piece of design infrastructure added to a system, such as an interface, argument, function, class, or definition, adds complexity, since developers must learn about this element. In order for an element to provide a net gain against complexity, it must eliminate some complexity that would be present in the absence of the design element. Otherwise, you are better off implementing the system without that particular element. For example, a class can reduce complexity by encapsulating functionality so that users of the class needn’t be aware of it.
 
-> 界面，参数，函数，类或定义之类的添加到系统中的每个设计基础架构都会增加复杂性，因为开发人员必须了解该元素。为了使元素能够提供相对于复杂性的净收益，它必须消除在没有设计元素的情况下会出现的一些复杂性。否则，最好不要使用该特定元素来实施系统。例如，一个类可以通过封装功能来降低复杂性，以使该类的用户无需意识到这一点。
+> 接口，参数，函数，类或定义之类的添加到系统中的每个设计基础架构都会增加复杂性，因为开发人员必须了解该元素。为了使元素能够提供相对于复杂性的净收益，它必须消除在没有设计元素的情况下会出现的一些复杂性。否则，最好不要使用该特定元素来实施系统。例如，一个类可以通过封装功能来降低复杂性，以使该类的用户无需意识到这一点。
 
 The “different layer, different abstraction” rule is just an application of this idea: if different layers have the same abstraction, such as pass-through methods or decorators, then there’s a good chance that they haven’t provided enough benefit to compensate for the additional infrastructure they represent. Similarly, pass-through arguments require each of several methods to be aware of their existence (which adds to complexity) without contributing additional functionality.
 
