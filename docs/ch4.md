@@ -18,7 +18,7 @@ Unfortunately, this ideal is not achievable. Modules must work together by calli
 
 In order to manage dependencies, we think of each module in two parts: an interface and an implementation. The interface consists of everything that a developer working in a different module must know in order to use the given module. Typically, the interface describes what the module does but not how it does it. The implementation consists of the code that carries out the promises made by the interface. A developer working in a particular module must understand the interface and implementation of that module, plus the interfaces of any other modules invoked by the given module. A developer should not need to understand the implementations of modules other than the one he or she is working in.
 
-> 为了管理依赖关系，我们将每个模块分为两个部分：接口和实现。接口包含使用其他模块的开发人员必须知道的所有内容，才能使用给定的模块。通常，接口描述模块能做什么，而不描述模块如何做。该实现由执行接口所承诺的代码组成。在特定模块中工作的开发人员必须了解该模块的接口和实现，以及由给定模块调用的任何其他模块的接口。除了正在使用的模块以外，开发人员无需了解其他模块的实现。
+> 为了管理依赖关系，我们将每个模块分为两个部分：接口和实现。接口包含使用其他模块的开发人员必须知道的所有内容，才能使用给定的模块。通常，接口描述模块做什么，而不描述模块如何做。该实现由执行接口所承诺的代码组成。在特定模块中工作的开发人员必须了解该模块的接口和实现，以及由给定模块调用的任何其他模块的接口。除了正在使用的模块以外，开发人员无需了解其他模块的实现。
 
 Consider a module that implements balanced trees. The module probably contains sophisticated code for ensuring that the tree remains balanced. However, this complexity is not visible to users of the module. Users see a relatively simple interface for invoking operations to insert, remove, and fetch nodes in the tree. To invoke an insert operation, the caller need only provide the key and value for the new node; the mechanisms for traversing the tree and splitting nodes are not visible in the interface.
 
