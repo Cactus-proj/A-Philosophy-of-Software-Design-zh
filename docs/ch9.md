@@ -48,7 +48,7 @@ Section 5.4 introduced this principle in the context of a project implementing a
 
 > 5.4 节在实现 HTTP 服务器的项目上下文中介绍了此原理。在其第一个实现中，该项目在不同的类中使用了两种不同的方法来读取和解析 HTTP 请求。第一种方法从网络套接字读取传入请求的文本，并将其放置在字符串对象中。第二种方法解析字符串以提取请求的各个组成部分。经过这种分解，这两种方法最终都对 HTTP 请求的格式有了相当的了解：第一种方法只是尝试读取请求，而不是解析请求，但是如果不执行大多数操作，就无法确定请求的结束解析它的工作（例如，它必须解析标头行才能识别包含整个请求长度的标头）。由于此共享信息，最好在同一位置读取和解析请求；当两个类合而为一时，代码变得更短，更简单。
 
-## 9.2 Bring together if it will simplify the interface 汇集在一起 ​​ 是否可以简化界面
+## 9.2 Bring together if it will simplify the interface 汇集在一起 ​​ 是否可以简化接口
 
 When two or more modules are combined into a single module, it may be possible to define an interface for the new module that is simpler or easier to use than the original interfaces. This often happens when the original modules each implement part of the solution to a problem. In the HTTP server example from the preceding section, the original methods required an interface to return the HTTP request string from the first method and pass it to the second. When the methods were combined, these interfaces were eliminated.
 
@@ -122,7 +122,7 @@ This red flag occurs when a general-purpose mechanism also contains code special
 
 In this case, the selection and cursor were not closely enough related to combine them. When the code was revised to separate the selection and the cursor, both the usage and the implementation became simpler. Separate objects provided a simpler interface than a combined object from which selection and cursor information had to be extracted. The cursor implementation also got simpler because the cursor position was represented directly, rather than indirectly through a selection and a boolean. In fact, in the revised version no special classes were used for either the selection or the cursor. Instead, a new Position class was introduced to represent a location in the file (a line number and character within line). The selection was represented with two Positions and the cursor with one. Positions also found other uses in the project. This example also demonstrates the benefits of a lower-level but more general-purpose interface, which were discussed in Chapter 6.
 
-> 在这种情况下，选择和光标之间的关联度不足以将它们组合在一起。当修改代码以分隔选择和光标时，用法和实现都变得更加简单。与必须从中提取选择和光标信息的组合对象相比，单独的对象提供了更简单的界面。游标的实现也变得更加简单，因为游标的位置是直接表示的，而不是通过选择和布尔值间接表示的。实际上，在修订版中，没有特殊的类用于选择或游标。相反，引入了一个新的 Position 类来表示文件中的位置（行号和行内的字符）。选择用两个位置表示，光标用一个位置表示。职位还在项目中找到了其他用途。
+> 在这种情况下，选择和光标之间的关联度不足以将它们组合在一起。当修改代码以分隔选择和光标时，用法和实现都变得更加简单。与必须从中提取选择和光标信息的组合对象相比，单独的对象提供了更简单的接口。游标的实现也变得更加简单，因为游标的位置是直接表示的，而不是通过选择和布尔值间接表示的。实际上，在修订版中，没有特殊的类用于选择或游标。相反，引入了一个新的 Position 类来表示文件中的位置（行号和行内的字符）。选择用两个位置表示，光标用一个位置表示。职位还在项目中找到了其他用途。
 
 ## 9.6 Example: separate class for logging 示例：用于记录的单独类
 
@@ -250,7 +250,7 @@ However, length by itself is rarely a good reason for splitting up a method. In 
 
 Long methods aren’t always bad. For example, suppose a method contains five 20-line blocks of code that are executed in order. If the blocks are relatively independent, then the method can be read and understood one block at a time; there’s not much benefit in moving each of the blocks into a separate method. If the blocks have complex interactions, it’s even more important to keep them together so readers can see all of the code at once; if each block is in a separate method, readers will have to flip back and forth between these spread-out methods in order to understand how they work together. Methods containing hundreds of lines of code are fine if they have a simple signature and are easy to read. These methods are deep (lots of functionality, simple interface), which is good.
 
-> 长方法并不总是坏的。例如，假设一个方法包含按顺序执行的五个 20 行代码块。如果这些块是相对独立的，则可以一次读取并理解该方法的一个块。将每个块移动到单独的方法中并没有太大的好处。如果这些块具有复杂的交互作用，则将它们保持在一起就显得尤为重要，这样读者就可以一次看到所有代码。如果每个块使用单独的方法，则读者将不得不在这些扩展方法之间来回切换，以了解它们如何协同工作。如果方法具有简单的签名并且易于阅读，则包含数百行代码的方法就可以了。这些方法很深入（很多功能，简单的界面），很好。
+> 长方法并不总是坏的。例如，假设一个方法包含按顺序执行的五个 20 行代码块。如果这些块是相对独立的，则可以一次读取并理解该方法的一个块。将每个块移动到单独的方法中并没有太大的好处。如果这些块具有复杂的交互作用，则将它们保持在一起就显得尤为重要，这样读者就可以一次看到所有代码。如果每个块使用单独的方法，则读者将不得不在这些扩展方法之间来回切换，以了解它们如何协同工作。如果方法具有简单的签名并且易于阅读，则包含数百行代码的方法就可以了。这些方法很深入（很多功能，简单的接口），很好。
 
 ![](./figures/00019.jpeg)
 
@@ -260,7 +260,7 @@ Figure 9.3: A method (a) can be split either by by extracting a subtask (b) or b
 
 When designing methods, the most important goal is to provide clean and simple abstractions. Each method should do one thing and do it completely. The method should have a clean and simple interface, so that users don’t need to have much information in their heads in order to use it correctly. The method should be deep: its interface should be much simpler than its implementation. If a method has all of these properties, then it probably doesn’t matter whether it is long or not.
 
-> 设计方法时，最重要的目标是提供简洁的抽象。每种方法都应该做一件事并且完全做到这一点。该方法应该具有简洁的界面，以便用户无需费神就可以正确使用它。该方法应该很深：其接口应该比其实现简单得多。如果一个方法具有所有这些属性，那么它的长短与否可能无关紧要。
+> 设计方法时，最重要的目标是提供简洁的抽象。每种方法都应该做一件事并且完全做到这一点。该方法应该具有简洁的接口，以便用户无需费神就可以正确使用它。该方法应该很深：其接口应该比其实现简单得多。如果一个方法具有所有这些属性，那么它的长短与否可能无关紧要。
 
 Splitting up a method only makes sense if it results in cleaner abstractions, overall. There are two ways to do this, which are diagrammed in Figure 9.3. The best way is by factoring out a subtask into a separate method, as shown in Figure 9.3(b). The subdivision results in a child method containing the subtask and a parent method containing the remainder of the original method; the parent invokes the child. The interface of the new parent method is the same as the original method. This form of subdivision makes sense if there is a subtask that is cleanly separable from the rest of the original method, which means (a) someone reading the child method doesn’t need to know anything about the parent method and (b) someone reading the parent method doesn’t need to understand the implementation of the child method. Typically this means that the child method is relatively general-purpose: it could conceivably be used by other methods besides the parent. If you make a split of this form and then find yourself flipping back and forth between the parent and child to understand how they work together, that is a red flag (“Conjoined Methods”) indicating that the split was probably a bad idea.
 
@@ -276,7 +276,7 @@ Splits of the form shown in Figure 9.3(c) don’t make sense very often, because
 
 There are also situations where a system can be made simpler by joining methods together. For example, joining methods might replace two shallow methods with one deeper method; it might eliminate duplication of code; it might eliminate dependencies between the original methods, or intermediate data structures; it might result in better encapsulation, so that knowledge that was previously present in multiple places is now isolated in a single place; or it might result in a simpler interface, as discussed in Section 9.2.
 
-> 在某些情况下，通过将方法结合在一起可以简化系统。例如，连接方法可以用一种更深的方法代替两种浅的方法。它可以消除重复的代码；它可以消除原始方法或中间数据结构之间的依赖关系；它可能导致更好的封装，从而使以前在多个位置存在的知识现在被隔离在一个位置；否则可能会导致界面更简单，如 9.2 节所述。
+> 在某些情况下，通过将方法结合在一起可以简化系统。例如，连接方法可以用一种更深的方法代替两种浅的方法。它可以消除重复的代码；它可以消除原始方法或中间数据结构之间的依赖关系；它可能导致更好的封装，从而使以前在多个位置存在的知识现在被隔离在一个位置；否则可能会导致接口更简单，如 9.2 节所述。
 
 img Red Flag: Conjoined Methods img
 
