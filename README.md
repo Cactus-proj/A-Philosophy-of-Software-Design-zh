@@ -61,6 +61,8 @@ yarn docs:dev
     <td align="center"><a href="https://gdut-yy.github.io/"><img src="https://avatars2.githubusercontent.com/u/33390928?s=460&v=4" width="100px;" /><br /><sub><b>gdut-yy</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/inkydragon"><img src="https://avatars1.githubusercontent.com/u/5158738?s=460&u=b9cbd51a3d1bbff1df994214e50058b9b3a9715a&v=4" width="100px;" /><br /><sub><b>inkydragon</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/chenpy228"><img src="https://avatars2.githubusercontent.com/u/5305370?s=460&v=4" width="100px;" /><br /><sub><b>chenpy228</b></sub></a><br /></td>    
+    <td align="center"><a href="https://github.com/wuwenzhao"><img src="https://avatars0.githubusercontent.com/u/4035972?s=400&v=4" width="100px;" /><br /><sub><b>wuwenzhao</b></sub></a><br /></td>    
+    <td align="center"><a href="https://github.com/BlackGlory"><img src="https://avatars3.githubusercontent.com/u/1365962?s=400&u=5a810f678ad49f010670436cca78fd0c5dc1863b&v=4" width="100px;" /><br /><sub><b>BlackGlory</b></sub></a><br /></td>    
   </tr>
 </table>
 
