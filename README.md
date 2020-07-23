@@ -63,6 +63,7 @@ yarn docs:dev
     <td align="center"><a href="https://github.com/chenpy228"><img src="https://avatars2.githubusercontent.com/u/5305370?s=460&v=4" width="100px;" /><br /><sub><b>chenpy228</b></sub></a><br /></td>    
     <td align="center"><a href="https://github.com/wuwenzhao"><img src="https://avatars0.githubusercontent.com/u/4035972?s=400&v=4" width="100px;" /><br /><sub><b>wuwenzhao</b></sub></a><br /></td>    
     <td align="center"><a href="https://github.com/BlackGlory"><img src="https://avatars3.githubusercontent.com/u/1365962?s=400&u=5a810f678ad49f010670436cca78fd0c5dc1863b&v=4" width="100px;" /><br /><sub><b>BlackGlory</b></sub></a><br /></td>    
+    <td align="center"><a href="https://github.com/xulongfei"><img src="https://avatars3.githubusercontent.com/u/9260697?s=400&u=134db0399963d2a7741db02c837282a93b6b1b40&v=4" width="100px;" /><br /><sub><b>xulongfei</b></sub></a><br /></td>
   </tr>
 </table>
 
