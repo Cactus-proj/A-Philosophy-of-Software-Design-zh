@@ -56,4 +56,4 @@ Chapter 6 described how some students defined methods in the text class that ref
 
 When developing a module, look for opportunities to take a little bit of extra suffering upon yourself in order to reduce the suffering of your users.
 
-> 在开发模块时，请寻找机会减轻自己的痛苦，以减轻用户的痛苦。
+> 在开发模块时，为了减少用户的痛苦，要找机会给自己多吃一点苦。
