@@ -69,6 +69,7 @@ yarn docs:dev
     <tr>
     <td align="center"><a href="https://github.com/wangzhongliang"><img src="https://avatars1.githubusercontent.com/u/17668601?s=400&u=b796a585d9aa3577bf78033f5ae689c461ae7a02&v=4" width="100px;" /><br /><sub><b>wangzhongliang</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/fanjiangqi"><img src="https://avatars0.githubusercontent.com/u/19711488?s=400&u=37821dd702ab00848cb3a7cbca9235863f8deeb1&v=4" width="100px;" /><br /><sub><b>fanjiangqi</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/AllenKaiChen"><img src="https://avatars3.githubusercontent.com/u/49896664?s=400&u=21a54e715cbdfe854c8d6cb51bb91b7aae0f270f&v=4" width="100px;" /><br /><sub><b>AllenKaiChen</b></sub></a><br /></td>
   </tr>
 </table>
 
