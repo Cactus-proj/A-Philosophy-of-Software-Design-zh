@@ -134,7 +134,7 @@ In how many situations will this method be used? If a method is designed for one
 
 Is this API easy to use for my current needs? This question can help you to determine when you have gone too far in making an API simple and general-purpose. If you have to write a lot of additional code to use a class for your current purpose, that’s a red flag that the interface doesn’t provide the right functionality. For example, one approach for the text class would be to design it around single-character operations: insert inserts a single character and delete deletes a single character. This API is both simple and general-purpose. However, it would not be particularly easy to use for a text editor: higher-level code would contain lots of loops to insert or delete ranges of characters. The single-character approach would also be inefficient for large operations. Thus it’s better for the text class to have built-in support for operations on ranges of characters.
 
-> 这个 API 是否易于使用以满足我当前的需求？这个问题可以帮助你确定什么时候你在让一个API变得简单和通用方面走得太远了。如果您必须编写许多其他代码才能将类用于当前用途，那么这是一个危险信号，即该接口未提供正确的功能。例如，针对文本类的一种方式是围绕单字符操作进行设计：insert 插入单个字符 和 delete 删除单个字符。该 API 既简单又通用。但是，对于文本编辑器来说并不是特别容易使用：更高级别的代码将包含许多循环，用于插入或删除字符范围。单字符方法对于大型操作也将是低效的。因此，文本类最好内置对字符范围操作的支持。
+> 这个 API 是否易于使用以满足我当前的需求？这个问题可以帮助你确定什么时候你在让一个 API 变得简单和通用方面走得太远了。如果您必须编写许多其他代码才能将类用于当前用途，那么这是一个危险信号，即该接口未提供正确的功能。例如，针对文本类的一种方式是围绕单字符操作进行设计：insert 插入单个字符 和 delete 删除单个字符。该 API 既简单又通用。但是，对于文本编辑器来说并不是特别容易使用：更高级别的代码将包含许多循环，用于插入或删除字符范围。单字符方法对于大型操作也将是低效的。因此，文本类最好内置对字符范围操作的支持。
 
 ## 6.6 Conclusion 结论
 
