@@ -4,7 +4,7 @@
 
 One of the most fundamental questions in software design is this: given two pieces of functionality, should they be implemented together in the same place, or should their implementations be separated? This question applies at all levels in a system, such as functions, methods, classes, and services. For example, should buffering be included in the class that provides stream-oriented file I/O, or should it be in a separate class? Should the parsing of an HTTP request be implemented entirely in one method, or should it be divided among multiple methods (or even multiple classes)? This chapter discusses the factors to consider when making these decisions. Some of these factors have already been discussed in previous chapters, but they will be revisited here for completeness.
 
-> 软件设计中最基本的问题之一是：给定两个功能，它们应该在同一位置一起实现，还是应该分开实现？这个问题适用于系统中的所有级别，例如功能，方法，类和服务。例如，应该在提供面向流的文件 I/O 的类中包括缓冲，还是应该在单独的类中？HTTP 请求的解析应该完全在一种方法中实现，还是应该在多个方法（甚至多个类）之间划分？本章讨论做出这些决定时要考虑的因素。这些因素中的一些已经在前面的章节中进行了讨论，但是为了完整起见，这里将对其进行重新讨论。
+> 软件设计中最基本的问题之一是：给定两个功能，它们应该在同一位置一起实现，还是应该分开实现？这个问题适用于系统中的所有级别，例如功能，方法，类和服务。例如，应该在提供面向流的文件 I/O 的类中包括缓冲，还是应该在单独的类中？HTTP 请求的解析应该完全在一个方法中实现，还是应该在多个方法（甚至多个类）之间划分？本章讨论做出这些决定时要考虑的因素。这些因素中的一些已经在前面的章节中进行了讨论，但是为了完整起见，这里将对其进行重新讨论。
 
 When deciding whether to combine or separate, the goal is to reduce the complexity of the system as a whole and improve its modularity. It might appear that the best way to achieve this goal is to divide the system into a large number of small components: the smaller the components, the simpler each individual component is likely to be. However, the act of subdividing creates additional complexity that was not present before subdivision:
 
@@ -46,9 +46,9 @@ The rest of this chapter uses more specific rules as well as examples to show wh
 
 Section 5.4 introduced this principle in the context of a project implementing an HTTP server. In its first implementation, the project used two different methods in different classes to read in and parse HTTP requests. The first method read the text of an incoming request from a network socket and placed it in a string object. The second method parsed the string to extract the various components of the request. With this decomposition, both of the methods ended up with considerable knowledge of the format of HTTP requests: the first method was only trying to read the request, not parse it, but it couldn’t identify the end of the request without doing most of the work of parsing it (for example, it had to parse header lines in order to identify the header containing the overall request length). Because of this shared information, it is better to both read and parse the request in the same place; when the two classes were combined into one, the code got shorter and simpler.
 
-> 5.4 节在实现 HTTP 服务器的项目上下文中介绍了此原理。在其第一个实现中，该项目在不同的类中使用了两种不同的方法来读取和解析 HTTP 请求。第一种方法从网络套接字读取传入请求的文本，并将其放置在字符串对象中。第二种方法解析字符串以提取请求的各个组成部分。经过这种分解，这两种方法最终都对 HTTP 请求的格式有了相当的了解：第一种方法只是尝试读取请求，而不是解析请求，但是如果不执行大多数操作，就无法确定请求的结束解析它的工作（例如，它必须解析标头行才能识别包含整个请求长度的标头）。由于此共享信息，最好在同一位置读取和解析请求；当两个类合而为一时，代码变得更短，更简单。
+> 5.4 节在实现 HTTP 服务器的项目上下文中介绍了此原则。在其第一个实现中，该项目使用了两个位于不同类的方法来读取和解析 HTTP 请求。第一个方法从网络套接字读取传入请求的文本，并将其放置在字符串对象中。第二个方法解析字符串以提取请求的各个组成部分。经过这种分解，这两种方法最终都对 HTTP 请求的格式有了相当的了解：第一个方法只是尝试读取请求，而不是解析请求，但是如果不执行大多数操作，就无法确定请求的结束解析它的工作（例如，它必须解析标头行才能识别包含整个请求长度的标头）。由于此共享信息，最好在同一位置读取和解析请求；当两个类合而为一时，代码变得更短，更简单。
 
-## 9.2 Bring together if it will simplify the interface 汇集在一起 ​​ 是否可以简化接口
+## 9.2 Bring together if it will simplify the interface 如果可以简化接口则汇集在一起
 
 When two or more modules are combined into a single module, it may be possible to define an interface for the new module that is simpler or easier to use than the original interfaces. This often happens when the original modules each implement part of the solution to a problem. In the HTTP server example from the preceding section, the original methods required an interface to return the HTTP request string from the first method and pass it to the second. When the methods were combined, these interfaces were eliminated.
 
@@ -56,23 +56,23 @@ When two or more modules are combined into a single module, it may be possible t
 
 In addition, when the functionality of two or more classes is combined, it may be possible to perform some functions automatically, so that most users need not be aware of them. The Java I/O library illustrates this opportunity. If the FileInputStream and BufferedInputStream classes were combined and buffering were provided by default, the vast majority of users would never even need to be aware of the existence of buffering. A combined FileInputStream class might provide methods to disable or replace the default buffering mechanism, but most users would not need to learn about them.
 
-> 另外，将两个或更多类的功能组合在一起时，可能会自动执行某些功能，因此大多数用户无需了解它们。Java I/O 库说明了这种机会。如果将 FileInputStream 和 BufferedInputStream 类组合在一起，并且默认情况下提供了缓冲，则绝大多数用户甚至都不需要知道缓冲的存在。组合的 FileInputStream 类可能提供禁用或替换默认缓冲机制的方法，但是大多数用户不需要了解它们。
+> 另外，将两个或更多类的功能组合在一起时，可能会自动执行某些功能，因此大多数用户无需了解它们。Java I/O 库说明了这种机会。如果将 FileInputStream 和 BufferedInputStream 类组合在一起，并且默认情况下提供了缓冲，则绝大多数用户甚至都不需要知道缓冲的存在。组合后的 FileInputStream 类可能提供禁用或替换默认缓冲机制的方法，但是大多数用户不需要了解它们。
 
 ## 9.3 Bring together to eliminate duplication 消除重复
 
 If you find the same pattern of code repeated over and over, see if you can reorganize the code to eliminate the repetition. One approach is to factor the repeated code out into a separate method and replace the repeated code snippets with calls to the method. This approach is most effective if the repeated code snippet is long and the replacement method has a simple signature. If the snippet is only one or two lines long, there may not be much benefit in replacing it with a method call. If the snippet interacts in complex ways with its environment (such as by accessing numerous local variables), then the replacement method might require a complex signature (such as many pass-by-reference arguments), which would reduce its value.
 
-> 如果发现反复重复相同的代码模式，请查看是否可以重新组织代码以消除重复。一种方法是将重复的代码分解为一个单独的方法，并用对该方法的调用替换重复的代码段。如果重复的代码段很长并且替换方法具有简单的签名，则此方法最有效。如果代码段只有一两行，那么用方法调用替换它可能不会有太多好处。如果代码段与其环境以复杂的方式进行交互（例如，通过访问多个局部变量），则替换方法可能需要复杂的签名（例如，许多“按引用传递”参数），这会降低其价值。
+> 如果发现反复重复的代码模式，请查看是否可以重新组织代码以消除重复。一种方法是将重复的代码分解为一个单独的方法，并用对该方法的调用替换重复的代码段。如果重复的代码段很长并且用来替换方法具有简单的签名，则此方法最有效。如果代码段只有一两行，那么用方法调用替换它可能不会有太多好处。如果代码段与其环境以复杂的方式进行交互（例如，通过访问多个局部变量），则替换方法可能需要复杂的签名（例如，许多“按引用传递”参数），这会降低其价值。
 
 Another way to eliminate duplication is to refactor the code so that the snippet in question only needs to be executed in one place. Suppose you are writing a method that needs to return errors at several different points, and the same cleanup actions need to be performed at each of these points before returning (see Figure 9.1 for an example). If the programming language supports goto, you can move the cleanup code to the very end of the method and then goto that snippet at each of the points where an error return is required, as in Figure 9.2. Goto statements are generally considered a bad idea, and they can result in indecipherable code if used indiscriminately, but they are useful in situations like this where they are used to escape from nested code.
 
-> 消除重复的另一种方法是重构代码，使相关代码段仅需要在一个地方执行。假设您正在编写一种方法，该方法需要在几个不同的点返回错误，并且在返回之前需要在每个这些点执行相同的清除操作（示例请参见图 9.1）。如果编程语言支持 goto，则可以将清除代码移到方法的最后，然后在需要返回错误的每个点处转到该片段，如图 9.2 所示。Goto 语句通常被认为是一个坏主意，如果不加选择地使用它们，可能会导致无法识别的代码，但是在诸如此类的情况下，它们可用于从嵌套代码中转义，因此它们非常有用。
+> 消除重复的另一种方法是重构代码，使相关代码段仅需要在一个地方执行。假设您正在编写一种方法，该方法需要在几个不同的点返回错误，并且在返回之前需要在每个这些点执行相同的清除操作（示例请参见图 9.1）。如果编程语言支持 goto，则可以将清除代码移到方法的最后，然后在需要返回错误的每个点处转到该片段，如图 9.2 所示。Goto 语句通常被认为是一个坏主意，如果不加选择地使用它们，可能会导致无法识别的代码，但是在诸如此类的情况下，它们可用于从嵌套代码中脱离，因此它们非常有用。
 
 ## 9.4 Separate general-purpose and special-purpose code 单独的通用代码和专用代码
 
 If a module contains a mechanism that can be used for several different purposes, then it should provide just that one general-purpose mechanism. It should not include code that specializes the mechanism for a particular use, nor should it contain other general-purpose mechanisms. Special-purpose code associated with a general-purpose mechanism should normally go in a different module (typically one associated with the particular purpose). The GUI editor discussion in Chapter 6 illustrated this principle: the best design was one where the text class provided general-purpose text operations, while operations particular to the user interface (such as deleting the selection) were implemented in the user interface module. This approach eliminated information leakage and additional interfaces that were present in an earlier design where the specialized user interface operations were implemented in the text class.
 
-> 如果模块包含可用于多种不同目的的机制，则它应仅提供一种通用机制。它不应包含专门针对特定用途的机制的代码，也不应包含其他通用机制。与通用机制关联的专用代码通常应放在不同的模块中（通常是与特定用途关联的模块）。第 6 章中的 GUI 编辑器讨论阐明了这一原理：最佳设计是文本类提供通用文本操作，而特定于用户界面的操作（例如删除所选内容）则在用户界面模块中实现。
+> 如果模块包含可用于多种不同目的的机制，则它应仅提供一种通用机制。它不应包含专门针对特定用途的机制的代码，也不应包含其他通用机制。与通用机制关联的专用代码通常应放在不同的模块中（通常是与特定用途关联的模块）。第 6 章中的 GUI 编辑器讨论阐明了这一原则：最佳设计是文本类提供通用文本操作，而特定于用户界面的操作（例如删除所选内容）则在用户界面模块中实现。这种方法消除了早期设计中存在的信息泄漏和附加接口，在早期设计中，专门的用户界面操作是在文本类中实现的。
 
 img Red Flag: Repetition img
 
@@ -100,7 +100,7 @@ In general, the lower layers of a system tend to be more general-purpose and the
 
 The next sections work through three examples that illustrate the principles discussed above. In two of the examples the best approach is to separate the relevant pieces of code; in the third example it is better to join them together.
 
-> 下一节将通过三个示例说明上述原理。在两个示例中，最好的方法是分离相关的代码段。在第三个示例中，最好将它们结合在一起。
+> 下一节将通过三个示例说明上述原则。在两个示例中，最好的方法是分离相关的代码段。在第三个示例中，最好将它们结合在一起。
 
 The first example consists of the insertion cursor and the selection in the GUI editor project from Chapter 6. The editor displayed a blinking vertical line indicating where text typed by the user would appear in the document. It also displayed a highlighted range of characters called the selection, which was used for copying or deleting text. The insertion cursor was always visible, but there could be times when no text was selected. If the selection existed, the insertion cursor was always positioned at one end of it.
 
@@ -122,13 +122,13 @@ This red flag occurs when a general-purpose mechanism also contains code special
 
 In this case, the selection and cursor were not closely enough related to combine them. When the code was revised to separate the selection and the cursor, both the usage and the implementation became simpler. Separate objects provided a simpler interface than a combined object from which selection and cursor information had to be extracted. The cursor implementation also got simpler because the cursor position was represented directly, rather than indirectly through a selection and a boolean. In fact, in the revised version no special classes were used for either the selection or the cursor. Instead, a new Position class was introduced to represent a location in the file (a line number and character within line). The selection was represented with two Positions and the cursor with one. Positions also found other uses in the project. This example also demonstrates the benefits of a lower-level but more general-purpose interface, which were discussed in Chapter 6.
 
-> 在这种情况下，选择和光标之间的关联度不足以将它们组合在一起。当修改代码以分隔选择和光标时，用法和实现都变得更加简单。与必须从中提取选择和光标信息的组合对象相比，单独的对象提供了更简单的接口。游标的实现也变得更加简单，因为游标的位置是直接表示的，而不是通过选择和布尔值间接表示的。实际上，在修订版中，没有特殊的类用于选择或游标。相反，引入了一个新的 Position 类来表示文件中的位置（行号和行内的字符）。选择用两个位置表示，光标用一个位置表示。职位还在项目中找到了其他用途。
+> 在这种情况下，选择和光标之间的关联度不足以将它们组合在一起。当修改代码以分隔选择和光标时，用法和实现都变得更加简单。与必须从中提取选择和光标信息的组合对象相比，单独的对象提供了更简单的接口。游标的实现也变得更加简单，因为游标的位置是直接表示的，而不是通过选择和布尔值间接表示的。实际上，在修订版中，没有特殊的类用于选择或游标。相反，引入了一个新的 Position 类来表示文件中的位置（行号和行内的字符）。选择用两个位置表示，光标用一个位置表示。Position 类还在项目中找到了其他用途。这个例子也展示了第 6 章讨论过的一个更低级但更通用的接口的好处。
 
-## 9.6 Example: separate class for logging 示例：用于记录的单独类
+## 9.6 Example: separate class for logging 示例：单独的日志记录类
 
 The second example involved error logging in a student project. A class contained several code sequences like the following:
 
-> 第二个示例涉及学生项目中的错误记录。一个类包含几个代码序列，如下所示：
+> 第二个示例涉及学生项目中的关于记录错误日志的部分。一个类包含几个代码序列，如下所示：
 
 ```java
 try {
@@ -141,7 +141,7 @@ try {
 
 Rather than logging the error at the point where it was detected, a separate method in a special error logging class was invoked. The error logging class was defined at the end of the same source file:
 
-> 而不是在检测到错误时记录错误，而是调用特殊错误记录类中的单独方法。错误记录类是在同一源文件的末尾定义的：
+> 不是在检测到错误时记录错误日志，而是调用特殊错误日志记录类中的单独方法。错误记录类是在同一源文件的末尾定义的：
 
 ```java
 private static class NetworkErrorLogger {
@@ -169,29 +169,29 @@ The NetworkErrorLogger class contained several methods such as logRpcSendError a
 
 This separation added complexity with no benefit. The logging methods were shallow: most consisted of a single line of code, but they required a considerable amount of documentation. Each method was only invoked in a single place. The logging methods were highly dependent on their invocations: someone reading the invocation would most likely flip over to the logging method to make sure that the right information was being logged; similarly, someone reading the logging method would probably flip over to the invocation site to understand the purpose of the method.
 
-> 这种分离增加了复杂性，没有任何好处。日志记录方法很浅：大多数只包含一行代码，但是它们需要大量的文档。每个方法仅在单个位置调用。日志记录方法高度依赖于它们的调用：读取调用的人很可能会切换到日志记录方法，以确保记录了正确的信息。同样，阅读日志记录方法的人可能会转到调用站点以了解该方法的目的。
+> 这种分离除了增加了复杂性，没有任何好处。日志记录方法很浅：大多数只包含一行代码，但是它们需要大量的文档。每个方法仅在单个位置调用。日志记录方法高度依赖于它们的调用方：读取调用方的人很可能会切换到日志记录方法，以确保记录了正确的信息。同样，阅读日志记录方法的人可能会转到调用方以了解该方法的目的。
 
 In this example, it would be better to eliminate the logging methods and place the logging statements at the locations where the errors were detected. This would make the code easier to read and eliminate the interfaces required for the logging methods.
 
-> 在此示例中，最好消除日志记录方法，并将日志记录语句放置在检测到错误的位置。这将使代码更易于阅读，并消除了日志记录方法所需的接口。
+> 在此示例中，最好删除日志记录方法，并将日志记录语句放置在检测到错误的位置。这将使代码更易于阅读，并消除了日志记录方法所需的接口。
 
 ## 9.7 Example: editor undo mechanism 示例：编辑器撤消机制
 
 In the GUI editor project from Section 6.2, one of the requirements was to support multi-level undo/redo, not just for changes to the text itself, but also for changes in the selection, insertion cursor, and view. For example, if a user selected some text, deleted it, scrolled to a different place in the file, and then invoked undo, the editor had to restore its state to what it was just before the deletion. This included restoring the deleted text, selecting it again, and also making the selected text visible in the window.
 
-> 在 6.2 节的 GUI 编辑器项目中，要求之一是支持多级撤消/重做，不仅要更改文本本身，还要更改选择，插入光标和视图。例如，如果用户选择了一些文本，将其删除，滚动到文件中的其他位置，然后调用 undo，则编辑器必须将其状态恢复为删除前的状态。这包括还原已删除的文本，再次选择它，并使所选的文本在窗口中可见。
+> 在 6.2 节的 GUI 编辑器项目中，要求之一是支持多个层面上的撤消/重做，不仅是文本的改动，还有选择、插入光标、和视图的改动。例如，如果用户选择了一些文本，将其删除，滚动到文件中的其他位置，然后调用 undo，则编辑器必须将其状态恢复为删除前的状态。这包括还原已删除的文本，再次选择它，并使所选的文本在窗口中可见。
 
 Some of the student projects implemented the entire undo mechanism as part of the text class. The text class maintained a list of all the undoable changes. It automatically added entries to this list whenever the text was changed. For changes to the selection, insertion cursor, and view, the user interface code invoked additional methods in the text class, which then added entries for those changes to the undo list. When undo or redo was requested by the user, the user interface code invoked a method in the text class, which then processed the entries in the undo list. For entries related to text, it updated the internals of the text class; for entries related to other things, such as the selection, the text class called back to the user interface code to carry out the undo or redo.
 
-> 一些学生项目将整个撤消机制实现为文本类的一部分。文本类维护所有不可撤消更改的列表。每当更改文本时，它将自动将条目添加到此列表中。为了更改选择，插入光标和视图，用户界面代码调用了文本类中的其他方法，然后将这些更改的条目添加到撤消列表中。当用户请求撤消或重做时，用户界面代码将调用文本类中的方法，该方法然后处理撤消列表中的条目。对于与文本相关的条目，它更新了文本类的内部。对于与其他事物（例如选择）相关的条目，将调用返回到用户界面代码的文本类来执行撤消或重做。
+> 一些学生项目将整个撤消机制实现为文本类的一部分。文本类维护所有不可撤消更改的列表。每当更改文本时，它将自动将条目添加到此列表中。对于选择、插入光标和视图的更改，用户界面代码调用文本类中的其他方法，然后将这些更改的条目添加到撤消列表中。当用户请求撤消或重做时，用户界面代码将调用文本类中的方法，该方法然后处理撤消列表中的条目。对于与文本相关的条目，它更新了文本类的内部。对于与其他事物（例如选择）相关的条目，文本类调用用户界面代码来执行撤销或重做。
 
 This approach resulted in an awkward set of features in the text class. The core of undo/redo consists of a general-purpose mechanism for managing a list of actions that have been executed and stepping through them during undo and redo operations. The core was located in the text class along with special-purpose handlers that implemented undo and redo for specific things such as text and the selection. The special-purpose undo handlers for the selection and the cursor had nothing to do with anything else in the text class; they resulted in information leakage between the text class and the user interface, as well as extra methods in each module to pass undo information back and forth. If a new sort of undoable entity were added to the system in the future, it would require changes to the text class, including new methods specific to that entity. In addition, the general-purpose undo core had little to do with the general-purpose text facilities in the class.
 
-> 这种方法在文本类中导致了一系列尴尬的功能。撤消/重做的核心由通用机制组成，用于管理已执行的动作列表，并在撤消和重做操作期间逐步执行这些动作。核心与专用处理程序一起位于 text 类中，该专用处理程序对诸如文本和选择之类的特定内容实现了撤消和重做。用于选择和光标的专用撤消处理程序与文本类中的任何其他内容均无关。它们导致文本类和用户界面之间的信息泄漏，以及每个模块中来回传递撤消信息的额外方法。如果将来将新的可撤消实体添加到系统中，则将需要更改文本类，包括特定于该实体的新方法。
+> 这种方法在文本类中导致了一系列尴尬的功能。撤消/重做的核心功能由通用机制组成，用于管理已执行的动作列表，并在撤消和重做操作期间逐步执行这些动作。核心功能与专用处理程序一起位于 text 类中，该专用处理程序对诸如文本和选择之类的特定内容实现了撤消和重做。用于选择和光标的专用撤消处理程序与文本类中的任何其他内容均无关。它们导致文本类和用户界面之间的信息泄漏，以及每个模块中来回传递撤消信息的额外方法。如果将来将新的可撤消实体添加到系统中，则将需要更改文本类，包括特定于该实体的新方法。此外，通用的撤销核心功能与类中的通用文本功能关系不大。
 
 These problems can be solved by extracting the general-purpose core of the undo/redo mechanism and placing it in a separate class:
 
-> 通过提取撤消/重做机制的通用核心并将其放在单独的类中，可以解决这些问题：
+> 通过提取撤消/重做机制的通用核心功能并将其放在单独的类中，可以解决这些问题：
 
 ```java
 public class History {
@@ -209,15 +209,15 @@ public class History {
 
 In this design, the History class manages a collection of objects that implement the interface History.Action. Each History.Action describes a single operation, such as a text insertion or a change in the cursor location, and it provides methods that can undo or redo the operation. The History class knows nothing about the information stored in the actions or how they implement their undo and redo methods. History maintains a history list describing all of the actions executed over the lifetime of an application, and it provides undo and redo methods that walk backwards and forwards through the list in response to user-requested undos and redos, calling undo and redo methods in the History.Actions.
 
-> 在此设计中，History 类管理实现接口 History.Action 的对象的集合。每个 History.Action 描述一个操作，例如插入文本或更改光标位置，并且它提供了可以撤消或重做该操作的方法。History 类对操作中存储的信息或它们如何实现其撤消和重做方法一无所知。历史记录维护一个历史记录列表，该列表描述了应用程序整个生命周期中执行的所有操作，并且它提供了撤消和重做方法，以响应用户请求的撤消和重做而在列表中前后移动，并在应用程序中调用撤消和重做方法。历史动作。
+> 在此设计中，History 类管理实现接口 History.Action 的对象的集合。每个 History.Action 描述一个操作，例如插入文本或更改光标位置，并且它提供了可以撤消或重做该操作的方法。History 类对操作中存储的信息或它们如何实现其撤消和重做方法一无所知。History 类维护一个历史记录列表，该列表描述了应用程序生命周期内执行的所有操作，它还提供了撤消和重做方法，这些方法响应用户请求的撤消和重做，在 History.Actions 中调用撤消和重做方法。
 
 History.Actions are special-purpose objects: each one understands a particular kind of undoable operation. They are implemented outside the History class, in modules that understand particular kinds of undoable actions. The text class might implement UndoableInsert and UndoableDelete objects to describe text insertions and deletions. Whenever it inserts text, the text class creates a new UndoableInsert object describing the insertion and invokes History.addAction to add it to the history list. The editor’s user interface code might create UndoableSelection and UndoableCursor objects that describe changes to the selection and insertion cursor.
 
-> 历史。动作是特殊目的的对象：每个人都了解一种特殊的不可操作。它们在 History 类之外的模块中实现，这些模块可以理解特定类型的可撤销操作。文本类可能实现 UndoableInsert 和 UndoableDelete 对象，以描述文本的插入和删除。每当插入文本时，文本类都会创建一个描述该插入的新 UndoableInsert 对象，并调用 History.addAction 将其添加到历史列表中。编辑器的用户界面代码可能会创建 UndoableSelection 和 UndoableCursor 对象，这些对象描述对选择和插入光标的更改。
+> History.Actions 是特殊目的的对象：每个人都了解一种特殊的可撤销操作。它们在 History 类之外的模块中实现，这些模块可以理解特定类型的可撤销操作。文本类可能实现 UndoableInsert 和 UndoableDelete 对象，以描述文本的插入和删除。每当插入文本时，文本类都会创建一个描述该插入的新 UndoableInsert 对象，并调用 History.addAction 将其添加到历史列表中。编辑器的用户界面代码可能会创建 UndoableSelection 和 UndoableCursor 对象，这些对象描述对选择和插入光标的更改。
 
 The History class also allows actions to be grouped so that, for example, a single undo request from the user can restore deleted text, reselect the deleted text, and reposition the insertion cursor. There are a number of ways to group actions; the History class uses fences, which are markers placed in the history list to separate groups of related actions. Each call to History.redo walks backwards through the history list, undoing actions until it reaches the next fence. The placement of fences is determined by higher-level code by invoking History.addFence.
 
-> History 类还允许对操作进行分组，例如，来自用户的单个撤消请求可以恢复已删除的文本，重新选择已删除的文本以及重新放置插入光标。有多种将动作分组的方法。历史记录类使用围栏，围栏是放置在历史记录列表中的标记，用于分隔相关动作的组。每次对 History.redo 的调用都会向后浏览历史记录列表，撤消操作，直到到达下一个栅栏。围栏的位置由更高级别的代码通过调用 History.addFence 确定。
+> History 类还允许对操作进行分组，例如，来自用户的单个撤消请求可以恢复已删除的文本，重新选择已删除的文本以及重新放置插入光标。有多种将动作分组的方法。历史类使用栅栏，栅栏是放置在历史列表中的标记，用于分隔相关动作的组。每次对 History.redo 的调用都会向后浏览历史记录列表，撤消操作，直到到达下一个栅栏。围栏的位置由更高级别的代码通过调用 History.addFence 确定。
 
 This approach divides the functionality of undo into three categories, each of which is implemented in a different place:
 
@@ -228,11 +228,11 @@ The specifics of particular actions (implemented by a variety of classes, each o
 The policy for grouping actions (implemented by high-level user interface code to provide the right overall application behavior).
 Each of these categories can be implemented without any understanding of the other categories. The History class does not know what kind of actions are being undone; it could be used in a variety of applications. Each action class understands only a single kind of action, and neither the History class nor the action classes needs to be aware of the policy for grouping actions.
 
-> 一种用于管理和分组动作以及调用撤消/重做操作的通用机制（由 History 类实现）。特定操作的细节（由各种类实现，每个类都了解少量的操作类型）。分组操作的策略（由高级用户界面代码实现，以提供正确的整体应用程序行为）。这些类别中的每一个都可以在不了解其他类别的情况下实施。历史课不知道要撤消哪种操作；它可以用于多种应用。每个动作类仅理解一种动作，并且历史记录类和动作类都不需要知道将动作分组的策略。
+> 一种用于管理和分组动作以及调用撤消/重做操作的通用机制（由 History 类实现）。特定操作的细节（由各种类实现，每个类都了解少量的操作类型）。分组操作的策略（由高级用户界面代码实现，以提供正确的整体应用程序行为）。这些类别中的每一个都可以在不了解其他类别的情况下实施。History 类不知道要撤消哪种操作；它可以用于多种应用。每个 Action 类仅理解一种动作，并且 History 类和 Action 类都不需要知道将动作分组的策略。
 
 The key design decision was the one that separated the general-purpose part of the undo mechanism from the special-purpose parts and put the general-purpose part in a class by itself. Once that was done, the rest of the design fell out naturally.
 
-> 关键的设计决策是将撤消机制的通用部分与专用部分分开，然后将通用部分单独放在一个类中的决定。一旦完成，其余的设计就会自然消失。
+> 关键的设计决策是将撤消机制的通用部分与专用部分分开，然后将通用部分单独放在一个类中。一旦完成，其余的设计就自然而然的出现了。
 
 Note: the suggestion to separate general-purpose code from special-purpose code refers to code related to a particular mechanism. For example, special-purpose undo code (such as code to undo a text insertion) should be separated from general-purpose undo code (such as code to manage the history list). However, it often makes sense to combine special-purpose code for one mechanism with general-purpose code for another. The text class is an example of this: it implements a general-purpose mechanism for managing text, but it includes special-purpose code related to undoing. The undo code is special-purpose because it only handles undo operations for text modifications. It doesn’t make sense to combine this code with the general-purpose undo infrastructure in the History class, but it does make sense to put it in the text class, since it is closely related to other text functions.
 
@@ -250,42 +250,42 @@ However, length by itself is rarely a good reason for splitting up a method. In 
 
 Long methods aren’t always bad. For example, suppose a method contains five 20-line blocks of code that are executed in order. If the blocks are relatively independent, then the method can be read and understood one block at a time; there’s not much benefit in moving each of the blocks into a separate method. If the blocks have complex interactions, it’s even more important to keep them together so readers can see all of the code at once; if each block is in a separate method, readers will have to flip back and forth between these spread-out methods in order to understand how they work together. Methods containing hundreds of lines of code are fine if they have a simple signature and are easy to read. These methods are deep (lots of functionality, simple interface), which is good.
 
-> 长方法并不总是坏的。例如，假设一个方法包含按顺序执行的五个 20 行代码块。如果这些块是相对独立的，则可以一次读取并理解该方法的一个块。将每个块移动到单独的方法中并没有太大的好处。如果这些块具有复杂的交互作用，则将它们保持在一起就显得尤为重要，这样读者就可以一次看到所有代码。如果每个块使用单独的方法，则读者将不得不在这些扩展方法之间来回切换，以了解它们如何协同工作。如果方法具有简单的签名并且易于阅读，则包含数百行代码的方法就可以了。这些方法很深入（很多功能，简单的接口），很好。
+> 长方法并不总是坏的。例如，假设一个方法包含按顺序执行的五个 20 行代码块。如果这些块是相对独立的，则可以一次读取并理解该方法的一个块。将每个块移动到单独的方法中并没有太大的好处。如果这些块具有复杂的交互作用，则将它们保持在一起就显得尤为重要，这样读者就可以一次看到所有代码。如果每个块使用单独的方法，则读者将不得不在这些扩展方法之间来回切换，以了解它们如何协同工作。如果方法具有简单的签名并且易于阅读，则包含数百行代码的方法是可以接受的。这些方法很深（功能多，接口简单），很好。
 
 ![](./figures/00019.jpeg)
 
 Figure 9.3: A method (a) can be split either by by extracting a subtask (b) or by dividing its functionality into two separate methods (c). A method should not be split if it results in shallow methods, as in (d).
 
-> 图 9.3：方法（a）可以通过提取子任务（b）或将其功能划分为两个单独的方法（c）进行拆分。如果方法导致浅层方法，则不应拆分该方法，如（d）所示。
+> 图 9.3：方法（a）可以通过提取子任务（b）或将其功能划分为两个单独的方法（c）进行拆分。如果方法导致浅方法，则不应拆分该方法，如（d）所示。
 
 When designing methods, the most important goal is to provide clean and simple abstractions. Each method should do one thing and do it completely. The method should have a clean and simple interface, so that users don’t need to have much information in their heads in order to use it correctly. The method should be deep: its interface should be much simpler than its implementation. If a method has all of these properties, then it probably doesn’t matter whether it is long or not.
 
-> 设计方法时，最重要的目标是提供简洁的抽象。每种方法都应该做一件事并且完全做到这一点。该方法应该具有简洁的接口，以便用户无需费神就可以正确使用它。该方法应该很深：其接口应该比其实现简单得多。如果一个方法具有所有这些属性，那么它的长短与否可能无关紧要。
+> 设计方法时，最重要的目标是提供简洁的抽象。每种方法都应该做一件事并且完全做的彻底。该方法应该具有简洁的接口，以便用户无需费神就可以正确使用它。该方法应该很深：其接口应该比其实现简单得多。如果一个方法具有所有这些属性，那么它的长短与否无关紧要。
 
 Splitting up a method only makes sense if it results in cleaner abstractions, overall. There are two ways to do this, which are diagrammed in Figure 9.3. The best way is by factoring out a subtask into a separate method, as shown in Figure 9.3(b). The subdivision results in a child method containing the subtask and a parent method containing the remainder of the original method; the parent invokes the child. The interface of the new parent method is the same as the original method. This form of subdivision makes sense if there is a subtask that is cleanly separable from the rest of the original method, which means (a) someone reading the child method doesn’t need to know anything about the parent method and (b) someone reading the parent method doesn’t need to understand the implementation of the child method. Typically this means that the child method is relatively general-purpose: it could conceivably be used by other methods besides the parent. If you make a split of this form and then find yourself flipping back and forth between the parent and child to understand how they work together, that is a red flag (“Conjoined Methods”) indicating that the split was probably a bad idea.
 
-> 总体而言，拆分方法只有在其导致更抽象的抽象时才有意义。有两种方法可以做到这一点，如图 9.3 所示。最佳方法是将子任务分解为单独的方法，如图 9.3（b）所示。该细分产生一个包含该子任务的子方法和一个包含原始方法其余部分的父方法；父级调用子级。新的父方法的接口与原始方法的接口相同。如果存在一个与原始方法的其余部分完全可分离的子任务，则这种细分形式是有意义的，这意味着（a）读取子方法的某人不需要了解有关父方法的任何信息，以及（b）某人在阅读父方法不需要了解子方法的实现。通常，这意味着子方法是相对通用的：可以想象除父方法外，其他方法也可以使用它。如果您对这种形式进行拆分，然后发现自己在父母和孩子之间来回翻转以了解他们如何一起工作，那是一个红色标记（“联合方法”），表明拆分可能不是一个好主意。
+> 总体而言，分割一个方法只有在产生更清晰的抽象时才有意义。有两种方式可以做到这一点，如图 9.3 所示。最佳方法是将子任务分解为单独的方法，如图 9.3（b）所示。该细分产生一个包含该子任务的子方法和一个包含原始方法其余部分的父方法；父方法调用子字方法。新的父方法的接口与原始方法的接口相同。如果存在一个与原始方法的其余部分完全可分离的子任务，则这种细分形式是有意义的，这意味着（a）读取子方法的某人不需要了解有关父方法的任何信息，以及（b）某人在阅读父方法不需要了解子方法的实现。通常，这意味着子方法是相对通用的：可以想象除父方法外，其他方法也可以使用它。如果您做了这种形式进行拆分，然后发现自己在父方法和子方法之间来回跳转以了解他们如何一起工作，那是一个警告（“联合方法”），表明拆分可能不是一个好主意。
 
 The second way to break up a method is to split it into two separate methods, each visible to callers of the original method, as in Figure 9.3(c). This makes sense if the original method had an overly complex interface because it tried to do multiple things that were not closely related. If this is the case, it may be possible to divide the method’s functionality into two or more smaller methods, each of which has only a part of the original method’s functionality. If you make a split like this, the interface for each of the resulting methods should be simpler than the interface of the original method. Ideally, most callers should only need to invoke one of the two new methods; if callers must invoke both of the new methods, then that adds complexity, which makes it less likely that the split is a good idea. The new methods will be more focused in what they do. It is a good sign if the new methods are more general-purpose than the original method (i.e., you can imagine using them separately in other situations).
 
-> 分解方法的第二种方法是将其拆分为两个单独的方法，每个方法对原始方法的调用者可见，如图 9.3（c）所示。如果原始方法的接口过于复杂，这是有道理的，因为该接口试图执行不密切相关的多项操作。在这种情况下，可以将方法的功能划分为两个或更多个较小的方法，每个方法仅具有原始方法功能的一部分。如果进行这样的拆分，则每个结果方法的接口应该比原始方法的接口更简单。理想情况下，大多数调用者只需要调用两个新方法之一即可；如果调用者必须同时调用这两个新方法，则将增加复杂性，从而降低拆分是个好主意的可能性。新方法将更加专注于它们的工作。如果新方法比原始方法更具通用性，那么这是一个好兆头（例如，您可以想象在其他情况下单独使用它们）。
+> 分解方法的第二种方法是将其拆分为两个单独的方法，每个方法对原始方法的调用者都可见，如图 9.3（c）所示。如果原始方法的接口过于复杂，这是有道理的，因为该接口试图执行不密切相关的多项操作。在这种情况下，可以将方法的功能划分为两个或更多个较小的方法，每个方法仅具有原始方法功能的一部分。如果进行这样的拆分，则每个子方法的接口应该比原始方法的接口更简单。理想情况下，大多数调用者只需要调用两个新方法之一即可；如果调用者必须同时调用这两个新方法，则将增加复杂性，从而降低拆分是个好主意的可能性。新方法将更加专注于它们的工作。如果新方法比原始方法更具通用性，那么这是一个好兆头（例如，您可以想象在其他情况下单独使用它们）。
 
 Splits of the form shown in Figure 9.3(c) don’t make sense very often, because they result in callers having to deal with multiple methods instead of one. When you split this way, you run the risk of ending up with several shallow methods, as in Figure 9.3(d). If the caller has to invoke each of the separate methods, passing state back and forth between them, then splitting is not a good idea. If you’re considering a split like the one in Figure 9.3(c), you should judge it based on whether it simplifies things for callers.
 
-> 图 9.3（c）所示形式的拆分并不是很有意义，因为它们导致调用者不得不处理多个方法而不是一个方法。当您以这种方式拆分时，您可能会遇到几种浅层方法的风险，如图 9.3（d）所示。如果调用者必须调用每个单独的方法，并在它们之间来回传递状态，则拆分不是一个好主意。如果您正在考虑像图 9.3（c）所示的拆分，则应基于它是否简化了呼叫者的情况来进行判断。
+> 图 9.3（c）所示形式的拆分并不是很有意义，因为它们导致调用者不得不处理多个方法而不是一个方法。当您以这种方式拆分时，您可能会遇到几种浅层方法的风险，如图 9.3（d）所示。如果调用者必须调用每个单独的方法，并在它们之间来回传递状态，则拆分不是一个好主意。如果您正在考虑像图 9.3（c）所示的拆分，则应基于它是否简化了调用者的情况来进行判断。
 
 There are also situations where a system can be made simpler by joining methods together. For example, joining methods might replace two shallow methods with one deeper method; it might eliminate duplication of code; it might eliminate dependencies between the original methods, or intermediate data structures; it might result in better encapsulation, so that knowledge that was previously present in multiple places is now isolated in a single place; or it might result in a simpler interface, as discussed in Section 9.2.
 
-> 在某些情况下，通过将方法结合在一起可以简化系统。例如，连接方法可以用一种更深的方法代替两种浅的方法。它可以消除重复的代码；它可以消除原始方法或中间数据结构之间的依赖关系；它可能导致更好的封装，从而使以前在多个位置存在的知识现在被隔离在一个位置；否则可能会导致接口更简单，如 9.2 节所述。
+> 在某些情况下，通过将方法结合在一起可以简化系统。例如，连接方法可以用一种更深的方法代替两种浅的方法。它可以消除重复的代码；它可以消除原始方法或中间数据结构之间的依赖关系；它可能导致更好的封装，从而使以前在多个位置存在的知识现在被隔离在一个位置；也可能会使接口更简单，如 9.2 节所述。
 
 img Red Flag: Conjoined Methods img
 
 It should be possible to understand each method independently. If you can’t understand the implementation of one method without also understanding the implementation of another, that’s a red flag. This red flag can occur in other contexts as well: if two pieces of code are physically separated, but each can only be understood by looking at the other, that is a red flag.
 
-> 应该有可能独立地理解每种方法。如果您不能不理解另一种方法的实现而无法理解一种方法的实现，那就是一个危险信号。该危险信号也可以在其他情况下发生：如果两段代码在物理上是分开的，但是只有通过查看另一段代码才能理解它们，这就是危险信号。
+> 应该可以独立理解每种方法。如果您不能不理解另一种方法的实现而导致无法理解一种方法的实现，那就是一个危险信号。该危险信号也可以在其他情况下发生：如果两段代码在物理上是分开的，但是只有通过查看另一段代码才能理解它们，这就是危险信号。
 
 ## 9.9 Conclusion 结论
 
 The decision to split or join modules should be based on complexity. Pick the structure that results in the best information hiding, the fewest dependencies, and the deepest interfaces.
 
-> 拆分或加入模块的决定应基于复杂性。选择一种结构，它可以隐藏最佳的信息，最少的依赖关系和最深的接口。
+> 拆分或合并模块的决定应基于复杂性。选择一种结构，它可以最好的隐藏信息，产生最少的依赖关系和最深的接口。
