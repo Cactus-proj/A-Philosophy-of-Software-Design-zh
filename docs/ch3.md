@@ -78,7 +78,7 @@ If you are in a company leaning in this direction, you should realize that once 
 
 Another thing to consider is that one of the most important factors for success of a company is the quality of its engineers. The best way to lower development costs is to hire great engineers: they don’t cost much more than mediocre engineers but have tremendously higher productivity. However, the best engineers care deeply about good design. If your code base is a wreck, word will get out, and this will make it harder for you to recruit. As a result, you are likely to end up with mediocre engineers. This will increase your future costs and probably cause the system structure to degrade even more.
 
-> 要考虑的另一件事是，公司成功的最重要因素之一就是工程师的素质。降低开发成本的最佳方法是聘请优秀的工程师：他们的成本不会比普通工程师高很多，但生产率却高得多。但是，最好的工程师对良好的设计深感兴趣。如果您的代码库很残酷，那么单词会变得毫无用处，这将使您难以招募。结果，您最终可能会遇到普通的工程师。这将增加您的未来成本，并可能导致系统结构进一步退化。
+> 要考虑的另一件事是，公司成功的最重要因素之一就是工程师的素质。降低开发成本的最佳方法是聘请优秀的工程师：他们的成本不会比普通工程师高很多，但生产率却高得多。但是，最好的工程师对良好的设计深感兴趣。如果您的代码库很残酷，那么单词会变得毫无用处，这将使您难以招募（如果公司的代码已经无法用言语来表达的糟糕，你的招聘也会相应增加难度）。最终可能还是只能使用普通的工程师。这将增加您的未来成本，并可能导致系统结构进一步退化。
 
 Facebook is an example of a startup that encouraged tactical programming. For many years the company’s motto was “Move fast and break things.” New engineers fresh out of college were encouraged to dive immediately into the company’s code base; it was normal for engineers to push commits into production in their first week on the job. On the positive side, Facebook developed a reputation as a company that empowered its employees. Engineers had tremendous latitude, and there were few rules and restrictions to get in their way.
 
