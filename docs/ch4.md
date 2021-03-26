@@ -22,7 +22,7 @@ In order to manage dependencies, we think of each module in two parts: an interf
 
 Consider a module that implements balanced trees. The module probably contains sophisticated code for ensuring that the tree remains balanced. However, this complexity is not visible to users of the module. Users see a relatively simple interface for invoking operations to insert, remove, and fetch nodes in the tree. To invoke an insert operation, the caller need only provide the key and value for the new node; the mechanisms for traversing the tree and splitting nodes are not visible in the interface.
 
-> 考虑一个实现平衡树的模块。该模块可能包含复杂的代码，以确保树保持平衡。但是，此复杂性对于模块用户而言是不可见的。用户可以看到一个相对简单的界面，用于调用在树中插入，删除和获取节点的操作。要调用插入操作，调用者只需提供新节点的键和值即可。遍历树和拆分节点的机制在界面中不可见。
+> 考虑一个实现平衡树的模块。该模块可能包含复杂的代码，以确保树保持平衡。但是，此复杂性对于模块用户而言是不可见的（不过这个模块的复杂性不会被上层应用模块所察觉）。用户可以看到一个相对简单的界面，用于调用在树中插入，删除和获取节点的操作（用户能看到的是对指定tree进行增删改查的相对简单的接口）。要调用插入操作，调用者只需提供新节点的键和值即可。遍历树和拆分节点的机制在界面中不可见。（遍历和拆分的具体实现同样在接口层不可见）
 
 For the purposes of this book, a module is any unit of code that has an interface and an implementation. Each class in an object-oriented programming language is a module. Methods within a class, or functions in a language that isn’t object-oriented, can also be thought of as modules: each of these has an interface and an implementation, and modular design techniques can be applied to them. Higher-level subsystems and services are also modules; their interfaces may take different forms, such as kernel calls or HTTP requests. Much of the discussion about modular design in this book focuses on designing classes, but the techniques and concepts apply to other kinds of modules as well.
 
