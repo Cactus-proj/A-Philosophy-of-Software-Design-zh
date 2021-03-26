@@ -10,7 +10,7 @@ One of the most important elements of good software design is the mindset you ad
 
 Most programmers approach software development with a mindset I call tactical programming. In the tactical approach, your main focus is to get something working, such as a new feature or a bug fix. At first glance this seems totally reasonable: what could be more important than writing code that works? However, tactical programming makes it nearly impossible to produce a good system design.
 
-> 大多数程序员以我称为战术编程的心态来进行软件开发。在战术方法中，您的主要重点是使某些功能正常工作，例如新功能或错误修复。乍一看，这似乎是完全合理的：还有什么比编写有效的代码更重要的呢？但是，战术编程几乎不可能产生出良好的系统设计。
+> 大多数程序员以我称为战术编程的心态来进行软件开发（针对大多数的开发人员的编码时的思维方式，作者称之为战术式编码）。在战术方法中，您的主要重点是使某些功能正常工作，例如新功能或错误修复。乍一看，这似乎是完全合理的：还有什么比编写有效的代码更重要的呢？但是，战术编程几乎不可能产生出良好的系统设计。
 
 The problem with tactical programming is that it is short-sighted. If you’re programming tactically, you’re trying to finish a task as quickly as possible. Perhaps you have a hard deadline. As a result, planning for the future isn’t a priority. You don’t spend much time looking for the best design; you just want to get something working soon. You tell yourself that it’s OK to add a bit of complexity or introduce a small kludge or two, if that allows the current task to be completed more quickly.
 
