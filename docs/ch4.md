@@ -40,7 +40,7 @@ The interface to a module contains two kinds of information: formal and informal
 
 Each interface also includes informal elements. These are not specified in a way that can be understood or enforced by the programming language. The informal parts of an interface include its high-level behavior, such as the fact that a function deletes the file named by one of its arguments. If there are constraints on the usage of a class (perhaps one method must be called before another), these are also part of the class’s interface. In general, if a developer needs to know a particular piece of information in order to use a module, then that information is part of the module’s interface. The informal aspects of an interface can only be described using comments, and the programming language cannot ensure that the description is complete or accurate1. For most interfaces the informal aspects are larger and more complex than the formal aspects.
 
-> 每个界面还包括非正式元素。这些没有以编程语言可以理解或执行的方式指定。接口的非正式部分包括其高级行为，例如，函数删除由其参数之一命名的文件的事实。如果对类的使用存在限制（也许必须先调用一种方法），则这些约束也是类接口的一部分。通常，如果开发人员需要了解特定信息才能使用模块，则该信息是模块界面的一部分。界面的非正式方面只能使用注释来描述，而编程语言不能确保描述是完整或准确的 1。对于大多数界面，非正式方面比正式方面更大，更复杂。
+> 每个接口还包括非正式元素。这些没有以编程语言可以理解或执行的方式指定。接口的非正式部分包括其高级行为，例如，函数删除由其参数之一命名的文件。如果对类的使用存在限制（也许必须先调用一种方法），则这些约束也是类接口的一部分。通常，如果开发人员需要了解特定信息才能使用模块，则该信息是模块接口的一部分。接口的非正式方面只能使用注释来描述，而编程语言不能确保描述是完整或准确的 1。对于大多数接口，非正式方面比正式方面更大，更复杂。
 
 One of the benefits of a clearly specified interface is that it indicates exactly what developers need to know in order to use the associated module. This helps to eliminate the “unknown unknowns” problem described in Section 2.2.
 
