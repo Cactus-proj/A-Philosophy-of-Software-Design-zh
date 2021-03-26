@@ -22,7 +22,7 @@ For the purposes of this book, I define “complexity” in a practical way. Com
 
 You can also think of complexity in terms of cost and benefit. In a complex system, it takes a lot of work to implement even small improvements. In a simple system, larger improvements can be implemented with less effort.
 
-> 您还可以考虑成本和收益方面的复杂性。在复杂的系统中，要实施甚至很小的改进都需要大量的工作。在一个简单的系统中，可以用更少的精力实现更大的改进。
+> 您还可以考虑成本和收益方面的复杂性（你还可以根据成本和收益来评估复杂性）。在复杂的系统中，要实施甚至很小的改进都需要大量的工作。在一个简单的系统中，可以用更少的精力实现更大的改进。
 
 Complexity is what a developer experiences at a particular point in time when trying to achieve a particular goal. It doesn’t necessarily relate to the overall size or functionality of the system. People often use the word “complex” to describe large systems with sophisticated features, but if such a system is easy to work on, then, for the purposes of this book, it is not complex. Of course, almost all large and sophisticated software systems are in fact hard to work on, so they also meet my definition of complexity, but this need not necessarily be the case. It is also possible for a small and unsophisticated system to be quite complex.
 
