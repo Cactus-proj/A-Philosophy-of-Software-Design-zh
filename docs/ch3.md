@@ -18,7 +18,7 @@ The problem with tactical programming is that it is short-sighted. If you’re p
 
 This is how systems become complicated. As discussed in the previous chapter, complexity is incremental. It’s not one particular thing that makes a system complicated, but the accumulation of dozens or hundreds of small things. If you program tactically, each programming task will contribute a few of these complexities. Each of them probably seems like a reasonable compromise in order to finish the current task quickly. However, the complexities accumulate rapidly, especially if everyone is programming tactically.
 
-> 这就是系统变得复杂的方式。如上一章所述，复杂度是递增的。不是使系统复杂的特定事物，而是数十或数百个小事物的积累。如果您进行战术编程，则每个编程任务都会带来一些此类复杂性。为了快速完成当前任务，他们每个人似乎都是一个合理的折衷方案。但是，复杂性迅速累积，尤其是如果每个人都在战术上进行编程的时候。
+> 这就是系统变得复杂的方式。如上一章所述，复杂度是递增的。不是使系统复杂的特定事物，而是数十或数百个小事物的积累（复杂性的提升，不是由一个特定的事物引起的，而是由数十或成百的小事物积累导致的）。如果您进行战术编程（如果编码时总是使用战术式思维方式），则每个编程任务都会带来一些此类复杂性。为了快速完成当前任务，他们每个人似乎都是一个合理的折衷方案。但是，复杂性迅速累积，尤其是如果每个人都在战术上进行编程的时候。
 
 Before long, some of the complexities will start causing problems, and you will begin to wish you hadn’t taken those early shortcuts. But, you will tell yourself that it’s more important to get the next feature working than to go back and refactor existing code. Refactoring may help out in the long run, but it will definitely slow down the current task. So, you look for quick patches to work around any problems you encounter. This just creates more complexity, which then requires more patches. Pretty soon the code is a mess, but by this point things are so bad that it would take months of work to clean it up. There’s no way your schedule can tolerate that kind of delay, and fixing one or two of the problems doesn’t seem like it will make much difference, so you just keep programming tactically.
 
