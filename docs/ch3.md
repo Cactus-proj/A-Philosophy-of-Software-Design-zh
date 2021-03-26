@@ -86,7 +86,7 @@ Facebook is an example of a startup that encouraged tactical programming. For ma
 
 Facebook has been spectacularly successful as a company, but its code base suffered because of the company’s tactical approach; much of the code was unstable and hard to understand, with few comments or tests, and painful to work with. Over time the company realized that its culture was unsustainable. Eventually, Facebook changed its motto to “Move fast with solid infrastructure” to encourage its engineers to invest more in good design. It remains to be seen whether Facebook can successfully clean up the problems that accumulated over years of tactical programming.
 
-> Facebook 作为一家公司已经取得了令人瞩目的成功，但是由于该公司的战术方法，其代码库受到了影响。许多代码不稳定且难以理解，几乎没有注释或测试，并且使用起来很痛苦。随着时间的流逝，该公司意识到其文化是不可持续的。最终，Facebook 改变了座右铭，即“以坚实的基础架构快速移动”，以鼓励其工程师在良好的设计上进行更多的投资。Facebook 是否能够成功清除多年来战术编程中积累的问题还有待观察。
+> Facebook 作为一家公司已经取得了令人瞩目的成功，但是由于该公司的战术方法，其代码库受到了影响（同样由于公司的战术编程推广，Facebook的代码库深受其害）。许多代码不稳定且难以理解，几乎没有注释或测试，并且使用起来很痛苦。随着时间的流逝，该公司意识到其文化是不可持续的。最终，Facebook 改变了座右铭，即“以坚实的基础架构快速移动”，以鼓励其工程师在良好的设计上进行更多的投资。Facebook 是否能够成功清除多年来战术编程中积累的问题还有待观察。
 
 In fairness to Facebook, I should point out that Facebook’s code probably isn’t much worse than average among startups. Tactical programming is commonplace among startups; Facebook just happens to be a particularly visible example.
 
