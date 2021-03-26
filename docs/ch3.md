@@ -14,7 +14,7 @@ Most programmers approach software development with a mindset I call tactical pr
 
 The problem with tactical programming is that it is short-sighted. If you’re programming tactically, you’re trying to finish a task as quickly as possible. Perhaps you have a hard deadline. As a result, planning for the future isn’t a priority. You don’t spend much time looking for the best design; you just want to get something working soon. You tell yourself that it’s OK to add a bit of complexity or introduce a small kludge or two, if that allows the current task to be completed more quickly.
 
-> 战术编程的问题是它是短视的。如果您是战术编程人员，那么您将尝试尽快完成任务。也许您有一个艰难的期限。因此，为未来做计划不是优先事项。您不会花费太多时间来寻找最佳设计。您只想尽快使某件事起作用。您告诉自己，可以增加一些复杂性或引入一两个小错误，如果这样可以使当前任务更快地完成，则可以。
+> 战术编程的问题是它是短视的。如果您是战术编程人员，那么您将尝试尽快完成任务。也许您有一个艰难的期限。因此，为未来做计划不是优先事项。您不会花费太多时间来寻找最佳设计。您只想尽快使某件事起作用。您告诉自己，可以增加一些复杂性或引入一两个小错误，如果这样可以使当前任务更快地完成，则可以。（多数人还会自我安慰，如果可以让功能尽快上线的话，提高一些复杂度或者引入一两个小问题不是什么大不了的事情）
 
 This is how systems become complicated. As discussed in the previous chapter, complexity is incremental. It’s not one particular thing that makes a system complicated, but the accumulation of dozens or hundreds of small things. If you program tactically, each programming task will contribute a few of these complexities. Each of them probably seems like a reasonable compromise in order to finish the current task quickly. However, the complexities accumulate rapidly, especially if everyone is programming tactically.
 
