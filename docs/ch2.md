@@ -18,7 +18,7 @@ This chapter also lays out some basic assumptions that provide a foundation for 
 
 For the purposes of this book, I define “complexity” in a practical way. Complexity is anything related to the structure of a software system that makes it hard to understand and modify the system. Complexity can take many forms. For example, it might be hard to understand how a piece of code works; it might take a lot of effort to implement a small improvement, or it might not be clear which parts of the system must be modified to make the improvement; it might be difficult to fix one bug without introducing another. If a software system is hard to understand and modify, then it is complicated; if it is easy to understand and modify, then it is simple.
 
-> 出于本书的目的，我以实用的方式定义“复杂性”。复杂性与软件系统的结构有关，这使它很难理解和修改系统。复杂性可以采取多种形式。例如，可能很难理解一段代码是如何工作的。可能需要花费很多精力才能实现较小的改进，或者可能不清楚必须修改系统的哪些部分才能进行改进；如果不引入其他错误，可能很难修复。如果一个软件系统难以理解和修改，那就很复杂。如果很容易理解和修改，那就很简单。
+> 出于本书的目的，我以实用的方式定义“复杂性”。复杂性与软件系统的结构有关，这使它很难理解和修改系统(复杂性是指那些让系统难以理解或修改的与系统相关的任何事物)。复杂性可以采取多种形式。例如，可能很难理解一段代码是如何工作的。可能需要花费很多精力才能实现较小的改进，或者可能不清楚必须修改系统的哪些部分才能进行改进；如果不引入其他错误，可能很难修复。如果一个软件系统难以理解和修改，那就很复杂。如果很容易理解和修改，那就很简单。
 
 You can also think of complexity in terms of cost and benefit. In a complex system, it takes a lot of work to implement even small improvements. In a simple system, larger improvements can be implemented with less effort.
 
