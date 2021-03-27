@@ -54,7 +54,7 @@ The term abstraction is closely related to the idea of modular design. An abstra
 
 In modular programming, each module provides an abstraction in form of its interface. The interface presents a simplified view of the module’s functionality; the details of the implementation are unimportant from the standpoint of the module’s abstraction, so they are omitted from the interface.
 
-> 在模块化编程中，每个模块以其接口的形式提供抽象。该界面提供了模块功能的简化视图；从模块抽象的角度来看，实现的细节并不重要，因此在接口中将其省略。
+> 在模块化编程中，每个模块以其接口的形式提供抽象。该界面提供了模块功能的简化视图（接口可以认为是模块功能的简单呈现）；从模块抽象的角度来看，实现的细节并不重要，因此在接口中将其省略。
 
 In the definition of abstraction, the word “unimportant” is crucial. The more unimportant details that are omitted from an abstraction, the better. However, a detail can only be omitted from an abstraction if it is unimportant. An abstraction can go wrong in two ways. First, it can include details that are not really important; when this happens, it makes the abstraction more complicated than necessary, which increases the cognitive load on developers using the abstraction. The second error is when an abstraction omits details that really are important. This results in obscurity: developers looking only at the abstraction will not have all the information they need to use the abstraction correctly. An abstraction that omits important details is a false abstraction: it might appear simple, but in reality it isn’t. The key to designing abstractions is to understand what is important, and to look for designs that minimize the amount of information that is important.
 
