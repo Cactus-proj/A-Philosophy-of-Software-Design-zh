@@ -18,11 +18,11 @@ If a system contains adjacent layers with similar abstractions, this is a red fl
 
 > 如果系统包含具有相似抽象的相邻层，则这是一个红色标记，表明类分解存在问题。本章讨论了发生这种情况的情况，导致的问题以及如何重构以消除问题。（如果一个系统中相邻的分层，存在了相似的抽象概念，这就表明分类拆解可能存在问题）
 
-## 7.1 Pass-through methods 传递方法
+## 7.1 Pass-through methods 传递方法（透传方法）
 
 When adjacent layers have similar abstractions, the problem often manifests itself in the form of pass-through methods. A pass-through method is one that does little except invoke another method, whose signature is similar or identical to that of the calling method. For example, a student project implementing a GUI text editor contained a class consisting almost entirely of pass-through methods. Here is an extract from that class:
 
-> 当相邻的层具有相似的抽象时，问题通常以直通方法的形式表现出来。传递方法是一种很少执行的方法，除了调用另一个方法（其签名与调用方法的签名相似或相同）之外。例如，一个实施 GUI 文本编辑器的学生项目包含一个几乎完全由传递方法组成的类。这是该类的摘录：
+> 当相邻的层具有相似的抽象时，问题通常以直通方法的形式表现出来（经常以透传方法的形式展现出来）。传递方法是一种很少执行的方法，除了调用另一个方法（其签名与调用方法的签名相似或相同）之外（所谓透传方法，就是指除了调用其他方法外，几乎没有处理逻辑的方法，签名和调用方法也一样）。例如，一个实施 GUI 文本编辑器的学生项目包含一个几乎完全由传递方法组成的类。这是该类的摘录：
 
 ```java
 public class TextDocument ... {
