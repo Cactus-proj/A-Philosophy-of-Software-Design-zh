@@ -14,7 +14,8 @@ On the other hand, we know that it’s hard to predict the future needs of a sof
 
 In my experience, the sweet spot is to implement new modules in a somewhat general-purpose fashion. The phrase “somewhat general-purpose” means that the module’s functionality should reflect your current needs, but its interface should not. Instead, the interface should be general enough to support multiple uses. The interface should be easy to use for today’s needs without being tied specifically to them. The word “somewhat” is important: don’t get carried away and build something so general-purpose that it is difficult to use for your current needs.
 
-> 以我的经验，最有效的方法是以某种通用的方式实现新模块。短语“有点通用”表示该模块的功能应反映您当前的需求，但其接口则不应。相反，该接口应该足够通用以支持多种用途。该界面应易于使用，以满足当今的需求，而不必专门与它们联系在一起。“有点”这个词很重要：不要被带走并建造通用的东西，以致于很难满足当前的需求。
+> 以我的经验，最有效的方法是以某种通用的方式实现新模块（最有效的方法应该是进行部分通用设计）。短语“有点通用”表示该模块的功能应反映您当前的需求，但其接口则不应（部分通用意味着在模块的功能实现中，可以着重于当前功能（或者当前所需），但接口傻姑娘应该是通用的）。相反（换句话说），该接口应该足够通用以支持多种用途。该接口应易于使用，以满足当今的需求，而不必专门与它们联系在一起。“有点”这个词很重要：不要被带走并建造通用的东西，以致于很难满足当前的需求。
+> （整体的意思就是必须要避免过度设计）
 
 The most important (and perhaps surprising) benefit of the general-purpose approach is that it results in simpler and deeper interfaces than a special-purpose approach. The general-purpose approach can also save you time in the future, if you reuse the class for other purposes. However, even if the module is only used for its original purpose, the general-purpose approach is still better because of its simplicity.
 
