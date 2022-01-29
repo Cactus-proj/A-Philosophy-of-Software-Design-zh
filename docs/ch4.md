@@ -4,7 +4,7 @@
 
 One of the most important techniques for managing software complexity is to design systems so that developers only need to face a small fraction of the overall complexity at any given time. This approach is called modular design, and this chapter presents its basic principles.
 
-> 管理软件复杂性最重要的技术之一就是设计系统，以便开发人员在任何给定时间只需要面对整体复杂性的一小部分。这种方法称为模块化设计，本章介绍其基本原理。
+> 管理软件复杂性最重要的技术之一就是设计系统，以便开发人员在任何给定时间 **只需要面对整体复杂性的一小部分**。这种方法称为模块化设计，本章介绍其基本原理。
 
 ## 4.1 Modular design 模块化设计
 
