@@ -209,7 +209,7 @@ for mdfile in os.listdir(ROOT_MD_DIR):
     latex_fname = ROOT_TEX_DIR + fname + '.tex'
 
     with open(md_fname, 'r', encoding="utf-8") as fmd:
-        with open(latex_fname, 'w') as ftex:
+        with open(latex_fname, 'w', encoding="utf-8") as ftex:
             markdown = mistune.create_markdown(renderer=LaTeXRenderer())
             markdown.before_render_hooks = [remove_english]
             ftex.writelines([
