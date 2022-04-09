@@ -47,13 +47,13 @@
 
 [nodejs]: https://nodejs.org/zh-cn/
 [yarn]: https://yarnpkg.com/
-[vuepress]: https://vuepress.vuejs.org/zh/
+[vuepress]: https://v2.vuepress.vuejs.org/zh/
 
 
 ```sh
 git clone https://github.com/Cactus-proj/A-Philosophy-of-Software-Design-zh.git
 cd A-Philosophy-of-Software-Design-zh/
-yarn install    # 安装 VuePress
+yarn install    # 安装 VuePress@next
 yarn dev        # 编译并打开网页预览
 ```
 
