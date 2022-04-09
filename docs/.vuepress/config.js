@@ -1,16 +1,18 @@
-// .vuepress/config.js
+// https://v2.vuepress.vuejs.org/zh/reference/default-theme/config.html
 module.exports = {
+  lang: 'zh-CN',
   title: "《软件设计的哲学》中文翻译",
+  description: "《软件设计的哲学》 中文翻译",
   base: "/A-Philosophy-of-Software-Design-zh/",
   themeConfig: {
     repo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
     repoLabel: "Github",
     docsRepo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
-    docsBranch: "main/docs",
-    editLinks: true,
+    docsBranch: "main",
+    docsDir: "docs",
     editLinkText: "帮助我们改善此页面！",
-    lastUpdated: "Last Updated",
-    sidebarDepth: 2,
+    lastUpdatedText: "页面最后更新时间",
+    contributors: false,
     nav: [],
     sidebar: {
       "/": [
