@@ -2,11 +2,11 @@
   "name": "A-Philosophy-of-Software-Design-zh",
   "repository": "https://github.com/Cactus-proj/A-Philosophy-of-Software-Design-zh.git",
   "license": "MIT",
-    "scripts": {
+  "scripts": {
     "dev": "vuepress dev docs --open --host 127.0.0.1",
     "build": "vuepress build docs"
   },
   "devDependencies": {
-    "vuepress": "^1.9.7"
+    "vuepress": "^2.0.0-beta.38"
   }
 }
