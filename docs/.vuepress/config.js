@@ -1,7 +1,7 @@
 // .vuepress/config.js
 module.exports = {
   title: "《软件设计的哲学》中文翻译",
-  base: "/doc-aposd/",
+  base: "/A-Philosophy-of-Software-Design-zh/",
   themeConfig: {
     repo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
     repoLabel: "Github",
