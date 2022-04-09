@@ -3,10 +3,10 @@ module.exports = {
   title: "《软件设计的哲学》中文翻译",
   base: "/doc-aposd/",
   themeConfig: {
-    repo: "gdut-yy/A-Philosophy-of-Software-Design-zh",
+    repo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
     repoLabel: "Github",
-    docsRepo: "gdut-yy/A-Philosophy-of-Software-Design-zh",
-    docsBranch: "master/docs",
+    docsRepo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
+    docsBranch: "main/docs",
     editLinks: true,
     editLinkText: "帮助我们改善此页面！",
     lastUpdated: "Last Updated",
