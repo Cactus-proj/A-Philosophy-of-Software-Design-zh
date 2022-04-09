@@ -1,18 +1,23 @@
 // https://v2.vuepress.vuejs.org/zh/reference/default-theme/config.html
 module.exports = {
-  lang: 'zh-CN',
-  title: "《软件设计的哲学》中文翻译",
-  description: "《软件设计的哲学》 中文翻译",
   base: "/A-Philosophy-of-Software-Design-zh/",
+  locales: {
+    '/': {
+      lang: 'zh-CN',
+      title: "《软件设计的哲学》中文翻译",
+    },
+    '/en/': {
+      lang: 'en-US',
+      title: '<A Philosophy of Software Design> Chinese Translation',
+    }
+  },
   themeConfig: {
     repo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
     repoLabel: "Github",
     docsRepo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
-    docsBranch: "main",
-    docsDir: "docs",
-    editLinkText: "帮助我们改善此页面！",
-    lastUpdatedText: "页面最后更新时间",
-    contributors: false,
+    docsBranch: "main/docs",
+    editLinks: true,
+    sidebarDepth: 2,
     nav: [],
     sidebar: {
       "/": [
@@ -41,6 +46,25 @@ module.exports = {
         "ch21.md",
         "summary.md"
       ]
+    },
+    locales: {
+      '/': { // zh-CN
+        // 该语言在下拉菜单中的标签
+        label: '简体中文',
+        // 多语言下拉菜单的标题
+        selectText: '选择语言',
+        ariaLabel: '选择语言',
+        editLinkText: '在 GitHub 上编辑此页',
+        lastUpdated: '上次更新',
+      },
+      '/en/': {
+        label: 'English',
+        selectText: 'Languages',
+        ariaLabel: 'Select language',
+        editLinks: false,
+        editLinkText: 'Edit this page on GitHub',
+        lastUpdated: 'Last Updated',
+      }
     }
   }
 };
