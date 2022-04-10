@@ -39,7 +39,7 @@
 15. 软件开发的增量应该是抽象而不是功能（请参见 [19.2](./ch19.md)）。
 
 
-## Summary of Red Flags 红旗摘要
+## 危险信号小结
 
 > Here are a few of of the most important red flags discussed in this book. The presence of any of these symptoms in a system suggests that there is a problem with the system’s design:
 
@@ -60,7 +60,6 @@
 > - Hard to Describe: in order to be complete, the documentation for a variable or method must be long. (see p. 131).
 > - Nonobvious Code: the behavior or meaning of a piece of code cannot be understood easily. (see p. 148).
 
----
 - 浅模块：类或方法的接口并不比其实现简单得多（请参见第 25、110 页）。
 - 信息泄漏：设计决策反映在多个模块中（请参阅第 31 页）。
 - 时间分解：代码结构基于执行操作的顺序，而不是信息隐藏（请参见第 32 页）。
@@ -76,7 +75,7 @@
 - 难以描述：为了完整起见，变量或方法的文档必须很长。（请参阅第 131 页）。
 - 非显而易见的代码：一段代码的行为或含义不容易理解。（请参阅第 148 页）。
 
-## About the Author 关于作者
+## 关于作者
 
 > John Ousterhout is the Bosack Lerner Professor of Computer Science at Stanford University. He is the creator of the Tcl scripting language and is also well known for his work in distributed operating systems and storage systems. Ousterhout received a BS degree in Physics from Yale University and a PhD in Computer Science from Carnegie Mellon University. He is a member of the National Academy of Engineering and has received numerous awards, including the ACM Software System Award, the ACM Grace Murray Hopper Award, the National Science Foundation Presidential Young Investigator Award, and the U.C. Berkeley Distinguished Teaching Award.
 
