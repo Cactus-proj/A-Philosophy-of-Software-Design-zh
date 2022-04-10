@@ -24,7 +24,7 @@ Here are the most important software design principles discussed in this book:
 
 ---
 
-> 1. 复杂性是逐步增加的：您必须流汗一些小东西（请参阅第 11 页）。
+> 1. 复杂性是逐步增加的：您必须努力处理小事情（请参阅第 11 页）。
 > 2. 工作代码还不够（请参阅第 14 页）。
 > 3. 持续进行少量投资以改善系统设计（请参阅第 15 页）。
 > 4. 模块应较深（请参见第 22 页）
