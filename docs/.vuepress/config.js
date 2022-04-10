@@ -16,6 +16,7 @@ module.exports = {
     docsRepo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
     docsBranch: "main",
     docsDir: "docs",
+    contributors: false,
     sidebarDepth: 2,
     nav: [],
     sidebar: {
