@@ -16,7 +16,7 @@ Software systems are composed in layers, where higher layers use the facilities 
 
 If a system contains adjacent layers with similar abstractions, this is a red flag that suggests a problem with the class decomposition. This chapter discusses situations where this happens, the problems that result, and how to refactor to eliminate the problems.
 
-> 如果系统包含具有相似抽象的相邻层，则这是一个红色标记，表明类分解存在问题。本章讨论了发生这种情况的情况，导致的问题以及如何重构以消除问题。
+> 如果系统包含具有相似抽象的相邻层，则这是一个红色标记，表明类分解存在问题。本章讨论了发生这种情况的情况，导致的问题以及如何重构以消除问题。（如果一个系统中相邻的分层，存在了相似的抽象概念，这就表明分类拆解可能存在问题）
 
 ## 7.1 Pass-through methods 直通方法
 

@@ -10,15 +10,15 @@ One of the most important elements of good software design is the mindset you ad
 
 Most programmers approach software development with a mindset I call tactical programming. In the tactical approach, your main focus is to get something working, such as a new feature or a bug fix. At first glance this seems totally reasonable: what could be more important than writing code that works? However, tactical programming makes it nearly impossible to produce a good system design.
 
-> 大多数程序员以我称为战术编程的心态来进行软件开发。在战术方法中，您的主要重点是使某些功能正常工作，例如新功能或错误修复。乍一看，这似乎是完全合理的：还有什么比编写有效的代码更重要的呢？但是，战术编程几乎不可能产生出良好的系统设计。
+> 大多数程序员以我称为战术编程的心态来进行软件开发（针对大多数的开发人员的编码时的思维方式，作者称之为战术式编码）。在战术方法中，您的主要重点是使某些功能正常工作，例如新功能或错误修复。乍一看，这似乎是完全合理的：还有什么比编写有效的代码更重要的呢？但是，战术编程几乎不可能产生出良好的系统设计。
 
 The problem with tactical programming is that it is short-sighted. If you’re programming tactically, you’re trying to finish a task as quickly as possible. Perhaps you have a hard deadline. As a result, planning for the future isn’t a priority. You don’t spend much time looking for the best design; you just want to get something working soon. You tell yourself that it’s OK to add a bit of complexity or introduce a small kludge or two, if that allows the current task to be completed more quickly.
 
-> 战术编程的问题是它是短视的。如果您是战术编程人员，那么您将尝试尽快完成任务。也许您有一个艰难的期限。因此，为未来做计划不是优先事项。您不会花费太多时间来寻找最佳设计。您只想尽快使某件事起作用。您告诉自己，可以增加一些复杂性或引入一两个小错误，如果这样可以使当前任务更快地完成，则可以。
+> 战术编程的问题是它是短视的。如果您是战术编程人员，那么您将尝试尽快完成任务。也许您有一个艰难的期限。因此，为未来做计划不是优先事项。您不会花费太多时间来寻找最佳设计。您只想尽快使某件事起作用。您告诉自己，可以增加一些复杂性或引入一两个小错误，如果这样可以使当前任务更快地完成，则可以。（多数人还会自我安慰，如果可以让功能尽快上线的话，提高一些复杂度或者引入一两个小问题不是什么大不了的事情）
 
 This is how systems become complicated. As discussed in the previous chapter, complexity is incremental. It’s not one particular thing that makes a system complicated, but the accumulation of dozens or hundreds of small things. If you program tactically, each programming task will contribute a few of these complexities. Each of them probably seems like a reasonable compromise in order to finish the current task quickly. However, the complexities accumulate rapidly, especially if everyone is programming tactically.
 
-> 这就是系统变得复杂的方式。如上一章所述，复杂度是递增的。不是使系统复杂的特定事物，而是数十或数百个小事物的积累。如果您进行战术编程，则每个编程任务都会带来一些此类复杂性。为了快速完成当前任务，他们每个人似乎都是一个合理的折衷方案。但是，复杂性迅速累积，尤其是如果每个人都在战术上进行编程的时候。
+> 这就是系统变得复杂的方式。如上一章所述，复杂度是递增的。不是使系统复杂的特定事物，而是数十或数百个小事物的积累（复杂性的提升，不是由一个特定的事物引起的，而是由数十或成百的小事物积累导致的）。如果您进行战术编程（如果编码时总是使用战术式思维方式），则每个编程任务都会带来一些此类复杂性。为了快速完成当前任务，他们每个人似乎都是一个合理的折衷方案。但是，复杂性迅速累积，尤其是如果每个人都在战术上进行编程的时候。
 
 Before long, some of the complexities will start causing problems, and you will begin to wish you hadn’t taken those early shortcuts. But, you will tell yourself that it’s more important to get the next feature working than to go back and refactor existing code. Refactoring may help out in the long run, but it will definitely slow down the current task. So, you look for quick patches to work around any problems you encounter. This just creates more complexity, which then requires more patches. Pretty soon the code is a mess, but by this point things are so bad that it would take months of work to clean it up. There’s no way your schedule can tolerate that kind of delay, and fixing one or two of the problems doesn’t seem like it will make much difference, so you just keep programming tactically.
 
@@ -78,7 +78,7 @@ If you are in a company leaning in this direction, you should realize that once 
 
 Another thing to consider is that one of the most important factors for success of a company is the quality of its engineers. The best way to lower development costs is to hire great engineers: they don’t cost much more than mediocre engineers but have tremendously higher productivity. However, the best engineers care deeply about good design. If your code base is a wreck, word will get out, and this will make it harder for you to recruit. As a result, you are likely to end up with mediocre engineers. This will increase your future costs and probably cause the system structure to degrade even more.
 
-> 要考虑的另一件事是，公司成功的最重要因素之一就是工程师的素质。降低开发成本的最佳方法是聘请优秀的工程师：他们的成本不会比普通工程师高很多，但生产率却高得多。但是，最好的工程师对良好的设计深感兴趣。如果您的代码库很残酷，那么单词会变得毫无用处，这将使您难以招募。结果，您最终可能会遇到普通的工程师。这将增加您的未来成本，并可能导致系统结构进一步退化。
+> 要考虑的另一件事是，公司成功的最重要因素之一就是工程师的素质。降低开发成本的最佳方法是聘请优秀的工程师：他们的成本不会比普通工程师高很多，但生产率却高得多。但是，最好的工程师对良好的设计深感兴趣。如果您的代码库很残酷，那么单词会变得毫无用处，这将使您难以招募（如果公司的代码已经无法用言语来表达的糟糕，你的招聘也会相应增加难度）。最终可能还是只能使用普通的工程师。这将增加您的未来成本，并可能导致系统结构进一步退化。
 
 Facebook is an example of a startup that encouraged tactical programming. For many years the company’s motto was “Move fast and break things.” New engineers fresh out of college were encouraged to dive immediately into the company’s code base; it was normal for engineers to push commits into production in their first week on the job. On the positive side, Facebook developed a reputation as a company that empowered its employees. Engineers had tremendous latitude, and there were few rules and restrictions to get in their way.
 
@@ -86,7 +86,7 @@ Facebook is an example of a startup that encouraged tactical programming. For ma
 
 Facebook has been spectacularly successful as a company, but its code base suffered because of the company’s tactical approach; much of the code was unstable and hard to understand, with few comments or tests, and painful to work with. Over time the company realized that its culture was unsustainable. Eventually, Facebook changed its motto to “Move fast with solid infrastructure” to encourage its engineers to invest more in good design. It remains to be seen whether Facebook can successfully clean up the problems that accumulated over years of tactical programming.
 
-> Facebook 作为一家公司已经取得了令人瞩目的成功，但是由于该公司的战术方法，其代码库受到了影响。许多代码不稳定且难以理解，几乎没有注释或测试，并且使用起来很痛苦。随着时间的流逝，该公司意识到其文化是不可持续的。最终，Facebook 改变了座右铭，即“以坚实的基础架构快速移动”，以鼓励其工程师在良好的设计上进行更多的投资。Facebook 是否能够成功清除多年来战术编程中积累的问题还有待观察。
+> Facebook 作为一家公司已经取得了令人瞩目的成功，但是由于该公司的战术方法，其代码库受到了影响（同样由于公司的战术编程推广，Facebook的代码库深受其害）。许多代码不稳定且难以理解，几乎没有注释或测试，并且使用起来很痛苦。随着时间的流逝，该公司意识到其文化是不可持续的。最终，Facebook 改变了座右铭，即“以坚实的基础架构快速移动”，以鼓励其工程师在良好的设计上进行更多的投资。Facebook 是否能够成功清除多年来战术编程中积累的问题还有待观察。
 
 In fairness to Facebook, I should point out that Facebook’s code probably isn’t much worse than average among startups. Tactical programming is commonplace among startups; Facebook just happens to be a particularly visible example.
 

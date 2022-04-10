@@ -18,11 +18,11 @@ This chapter also lays out some basic assumptions that provide a foundation for 
 
 For the purposes of this book, I define “complexity” in a practical way. Complexity is anything related to the structure of a software system that makes it hard to understand and modify the system. Complexity can take many forms. For example, it might be hard to understand how a piece of code works; it might take a lot of effort to implement a small improvement, or it might not be clear which parts of the system must be modified to make the improvement; it might be difficult to fix one bug without introducing another. If a software system is hard to understand and modify, then it is complicated; if it is easy to understand and modify, then it is simple.
 
-> 出于本书的目的，我以实用的方式定义“复杂性”。复杂性与软件系统的结构有关，这使它很难理解和修改系统。复杂性可以采取多种形式。例如，可能很难理解一段代码是如何工作的。可能需要花费很多精力才能实现较小的改进，或者可能不清楚必须修改系统的哪些部分才能进行改进；如果不引入其他错误，可能很难修复。如果一个软件系统难以理解和修改，那就很复杂。如果很容易理解和修改，那就很简单。
+> 出于本书的目的，我以实用的方式定义“复杂性”。复杂性与软件系统的结构有关，这使它很难理解和修改系统(复杂性是指那些让系统难以理解或修改的与系统相关的任何事物)。复杂性可以采取多种形式。例如，可能很难理解一段代码是如何工作的。可能需要花费很多精力才能实现较小的改进，或者可能不清楚必须修改系统的哪些部分才能进行改进；如果不引入其他错误，可能很难修复（也可以是不引入额外问题的情况下，很难修复一个bug）。如果一个软件系统难以理解和修改，那就很复杂。如果很容易理解和修改，那就很简单。
 
 You can also think of complexity in terms of cost and benefit. In a complex system, it takes a lot of work to implement even small improvements. In a simple system, larger improvements can be implemented with less effort.
 
-> 您还可以考虑成本和收益方面的复杂性。在复杂的系统中，要实施甚至很小的改进都需要大量的工作。在一个简单的系统中，可以用更少的精力实现更大的改进。
+> 您还可以考虑成本和收益方面的复杂性（你还可以根据成本和收益来评估复杂性）。在复杂的系统中，要实施甚至很小的改进都需要大量的工作。在一个简单的系统中，可以用更少的精力实现更大的改进。
 
 Complexity is what a developer experiences at a particular point in time when trying to achieve a particular goal. It doesn’t necessarily relate to the overall size or functionality of the system. People often use the word “complex” to describe large systems with sophisticated features, but if such a system is easy to work on, then, for the purposes of this book, it is not complex. Of course, almost all large and sophisticated software systems are in fact hard to work on, so they also meet my definition of complexity, but this need not necessarily be the case. It is also possible for a small and unsophisticated system to be quite complex.
 
@@ -54,7 +54,7 @@ Change amplification: The first symptom of complexity is that a seemingly simple
 
 Cognitive load: The second symptom of complexity is cognitive load, which refers to how much a developer needs to know in order to complete a task. A higher cognitive load means that developers have to spend more time learning the required information, and there is a greater risk of bugs because they have missed something important. For example, suppose a function in C allocates memory, returns a pointer to that memory, and assumes that the caller will free the memory. This adds to the cognitive load of developers using the function; if a developer fails to free the memory, there will be a memory leak. If the system can be restructured so that the caller doesn’t need to worry about freeing the memory (the same module that allocates the memory also takes responsibility for freeing it), it will reduce the cognitive load. Cognitive load arises in many ways, such as APIs with many methods, global variables, inconsistencies, and dependencies between modules.
 
-> 认知负荷：复杂性的第二个症状是认知负荷，这是指开发人员需要多少知识才能完成一项任务。较高的认知负担意味着开发人员必须花更多的时间来学习所需的信息，并且由于错过了重要的东西而导致错误的风险也更大。例如，假设 C 中的一个函数分配了内存，返回了指向该内存的指针，并假定调用者将释放该内存。这增加了使用该功能的开发人员的认知负担。如果开发人员无法释放内存，则会发生内存泄漏。如果可以对系统进行重组，以使调用者不必担心释放内存（分配内存的同一模块也负责释放内存），它将减少认知负担。
+> 认知负荷：复杂性的第二个症状是认知负荷，这是指开发人员需要多少知识才能完成一项任务。较高的认知负担意味着开发人员必须花更多的时间来学习所需的信息，并且由于错过了重要的东西而导致错误的风险也更大。例如，假设 C 中的一个函数分配了内存，返回了指向该内存的指针，并假定调用者将释放该内存。这增加了使用该功能的开发人员的认知负担。如果开发人员无法释放内存，则会发生内存泄漏。如果可以对系统进行重组，以使调用者不必担心释放内存（分配内存的同一模块也负责释放内存），它将减少认知负担。（认知负荷出现在很多方面，例如很多方法的API，全局变量，不一致和模块间依赖）
 
 System designers sometimes assume that complexity can be measured by lines of code. They assume that if one implementation is shorter than another, then it must be simpler; if it only takes a few lines of code to make a change, then the change must be easy. However, this view ignores the costs associated with cognitive load. I have seen frameworks that allowed applications to be written with only a few lines of code, but it was extremely difficult to figure out what those lines were. Sometimes an approach that requires more lines of code is actually simpler, because it reduces cognitive load.
 
