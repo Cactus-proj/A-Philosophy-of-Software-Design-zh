@@ -1,35 +1,39 @@
-# 《软件设计的哲学》中文
+# A Philosophy of Software Design
 
 <div style="margin: 0 auto;">
   <img src="../cover.jpeg" width="210px" height="280px" />
 </div>
 
-## 前言
+## Content Introduction
 
-斯坦福教授、Tcl 语言发明者 John Ousterhout 的著作《A Philosophy of Software Design》，自出版以来，好评如潮。按照 IT 图书出版的惯例，如果冠名为“实践”，书中内容关注的是某项技术的细节和技巧；冠名为“艺术”，内容可能是记录一件优秀作品的设计过程和经验；而冠名为“哲学”，则是一些通用的原则和方法论，这些原则方法论串起来，能够形成一个体系。正如”知行合一”、“世界是由原子构成的”、“我思故我在”，这些耳熟能详的句子能够一定程度上代表背后的人物和思想。用一句话概括《A Philosophy of Software Design》，软件设计的核心在于降低复杂性。
+This book addresses the topic of software design: how to decompose complex software systems into modules (such as classes and methods) that can be implemented relatively independently. The book first introduces the fundamental problem in software design, which is managing complexity. It then discusses philosophical issues about how to approach the software design process, and it presents a collection of design principles to apply during software design. The book also introduces a set of red flags that identify design problems. You can apply the ideas in this book to minimize the complexity of large software systems, so that you can write software more quickly.
 
-## 目录
+## Author Profile
 
-- [前言](preface.md)
-- [第 1 章 介绍](ch01.md)
-- [第 2 章 复杂性的本质](ch02.md)
-- [第 3 章 工作代码是不够的](ch03.md)
-- [第 4 章 模块应该是深的](ch04.md)
-- [第 5 章 信息隐藏(和泄漏)](ch05.md)
-- [第 6 章 通用模块更深入](ch06.md)
-- [第 7 章 不同的层，不同的抽象](ch07.md)
-- [第 8 章 降低复杂性](ch08.md)
-- [第 9 章 在一起更好还是分开更好？](ch09.md)
-- [第 10 章 定义不存在的错误](ch10.md)
-- [第 11 章 设计它两次](ch11.md)
-- [第 12 章 为什么写评论呢？四个理由](ch12.md)
-- [第 13 章 注释应该描述代码中不明显的内容](ch13.md)
-- [第 14 章 选择的名字](ch14.md)
-- [第 15 章 先写评论](ch15.md)
-- [第 16 章 修改现有的代码](ch16.md)
-- [第 17 章 一致性](ch17.md)
-- [第 18 章 代码应该是显而易见的](ch18.md)
-- [第 19 章 软件发展趋势](ch19.md)
-- [第 20 章 设计性能](ch20.md)
-- [第 21 章 结论](ch21.md)
-- [总结](summary.md)
+John Ousterhout is the Bosack Lerner Professor of Computer Science at Stanford University. His current research focuses on new software stack layers to allow datacenter applications to take advantage of communication and storage technologies with microsecond-scale latencies. Ousterhout's prior positions include 14 years in industry, where he founded two companies (Scriptics and Electric Cloud), preceded by 14 years as Professor of Computer Science at U.C. Berkeley. He is the creator of the Tcl scripting language and is also well known for his work in distributed operating systems and storage systems. Ousterhout received a BS degree in Physics from Yale University and a PhD in Computer Science from Carnegie Mellon University. He is a member of the National Academy of Engineering and has received numerous awards, including the ACM Software System Award, the ACM Grace Murray Hopper Award, the National Science Foundation Presidential Young Investigator Award, and the U.C. Berkeley Distinguished Teaching Award.
+
+## Contents
+
+- [Preface](preface.md)
+- [Chapter 1 Introduction](ch01.md)
+- [Chapter 2 The Nature of Complexity](ch02.md)
+- [Chapter 3 Working Code Isn’t Enough](ch03.md)
+- [Chapter 4 Modules Should Be Deep](ch04.md)
+- [Chapter 5 Information Hiding (and Leakage)](ch05.md)
+- [Chapter 6 General-Purpose Modules are Deeper](ch06.md)
+- [Chapter 7 Different Layer, Different Abstraction](ch07.md)
+- [Chapter 8 Pull Complexity Downwards](ch08.md)
+- [Chapter 9 Better Together Or Better Apart?](ch09.md)
+- [Chapter 10 Define Errors Out Of Existence](ch10.md)
+- [Chapter 11 Design it Twice](ch11.md)
+- [Chapter 12 Why Write Comments? The Four Excuses](ch12.md)
+- [Chapter 13 Comments Should Describe Things that Aren’t Obvious from the Code](ch13.md)
+- [Chapter 14 Choosing Names](ch14.md)
+- [Chapter 15 Write The Comments First](ch15.md)
+- [Chapter 16 Modifying Existing Code](ch16.md)
+- [Chapter 17 Consistency](ch17.md)
+- [Chapter 18 Code Should be Obvious](ch18.md)
+- [Chapter 19 Software Trends](ch19.md)
+- [Chapter 20 Designing for Performance](ch20.md)
+- [Chapter 21 Conclusion](ch21.md)
+- [Summary](summary.md)

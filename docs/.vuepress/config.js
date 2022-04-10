@@ -8,7 +8,7 @@ module.exports = {
     },
     '/en/': {
       lang: 'en-US',
-      title: '<A Philosophy of Software Design> Chinese Translation',
+      title: '<A Philosophy of Software Design>',
     }
   },
   themeConfig: {
