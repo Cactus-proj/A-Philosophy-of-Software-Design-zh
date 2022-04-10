@@ -16,11 +16,11 @@ Good development tools can help us deal with complexity, and many great tools ha
 
 There are two general approaches to fighting complexity, both of which will be discussed in this book. The first approach is to eliminate complexity by making code simpler and more obvious. For example, complexity can be reduced by eliminating special cases or using identifiers in a consistent fashion.
 
-> 有两种解决复杂性的通用方法，这两种方法都将在本书中进行讨论。第一种方法是通过使代码更简单和更明显来消除复杂性。例如，可以通过消除特殊情况或以一致的方式使用标识符来降低复杂性。
+> 有两种解决复杂性的通用方法，这两种方法都将在本书中进行讨论。第一种方法是通过**使代码更简单和更明显**来消除复杂性。例如，可以通过消除特殊情况或以一致的方式使用标识符来降低复杂性。
 
 The second approach to complexity is to encapsulate it, so that programmers can work on a system without being exposed to all of its complexity at once. This approach is called modular design. In modular design, a software system is divided up into modules, such as classes in an object-oriented language. The modules are designed to be relatively independent of each other, so that a programmer can work on one module without having to understand the details of other modules.
 
-> 解决复杂性的第二种方法是封装它，以便程序员可以在系统上工作而不会立即暴露其所有复杂性。这种方法称为模块化设计。在模块化设计中，软件系统分为模块，例如面向对象语言的类。这些模块被设计为彼此相对独立，以便程序员可以在一个模块上工作而不必了解其他模块的细节。
+> 解决复杂性的第二种方法是**封装它**，以便程序员可以在系统上工作而**不会立即暴露其所有复杂性**。这种方法称为模块化设计。在模块化设计中，软件系统分为模块，例如面向对象语言的类。这些模块被设计为彼此相对独立（低耦合），以便程序员可以**在一个模块上工作而不必了解其他模块的细节**。
 
 Because software is so malleable, software design is a continuous process that spans the entire lifecycle of a software system; this makes software design different from the design of physical systems such as buildings, ships, or bridges. However, software design has not always been viewed this way. For much of the history of programming, design was concentrated at the beginning of a project, as it is in other engineering disciplines. The extreme of this approach is called the waterfall model, in which a project is divided into discrete phases such as requirements definition, design, coding, testing, and maintenance. In the waterfall model, each phase completes before the next phase starts; in many cases different people are responsible for each phase. The entire system is designed at once, during the design phase. The design is frozen at the end of this phase, and the role of the subsequent phases is to flesh out and implement that design.
 
@@ -40,7 +40,7 @@ The incremental approach works for software because software is malleable enough
 
 Incremental development means that software design is never done. Design happens continuously over the life of a system: developers should always be thinking about design issues. Incremental development also means continuous redesign. The initial design for a system or component is almost never the best one; experience inevitably shows better ways to do things. As a software developer, you should always be on the lookout for opportunities to improve the design of the system you are working on, and you should plan on spending some fraction of your time on design improvements.
 
-> 增量开发意味着永远不会完成软件设计。设计在系统的整个生命周期中不断发生：开发人员应始终在思考设计问题。增量开发还意味着不断的重新设计。系统或组件的初始设计几乎从来都不是最好的。经验不可避免地显示出更好的做事方式。作为软件开发人员，您应该始终在寻找机会来改进正在开发的系统的设计，并且应该计划将部分时间花费在设计改进上。
+> **增量开发意味着永远不会完成软件设计**。**设计在系统的整个生命周期中不断发生**：开发人员应始终在思考设计问题。增量开发还意味着不断的重新设计。系统或组件的初始设计几乎从来都不是最好的。经验不可避免地显示出更好的做事方式。作为软件开发人员，您应该始终在寻找机会来改进正在开发的系统的设计，并且应该计划将部分时间花费在设计改进上。
 
 If software developers should always be thinking about design issues, and reducing complexity is the most important element of software design, then software developers should always be thinking about complexity. This book is about how to use complexity to guide the design of software throughout its lifetime.
 
@@ -58,7 +58,7 @@ Many of the design principles described here are somewhat abstract, so they may 
 
 The best way to use this book is in conjunction with code reviews. When you read other people’s code, think about whether it conforms to the concepts discussed here and how that relates to the complexity of the code. It’s easier to see design problems in someone else’s code than your own. You can use the red flags described here to identify problems and suggest improvements. Reviewing code will also expose you to new design approaches and programming techniques.
 
-> 使用本书的最佳方法是与代码审查结合使用。阅读其他人的代码时，请考虑它是否符合此处讨论的概念，以及它与代码的复杂性之间的关系。在别人的代码中比在您的代码中更容易看到设计问题。您可以使用此处描述的红色标记来发现问题并提出改进建议。查看代码还将使您接触到新的设计方法和编程技术。
+> 使用本书的最佳方法是与**代码审查**结合使用。阅读其他人的代码时，请考虑它是否符合此处讨论的概念，以及它与代码的复杂性之间的关系。**在别人的代码中比在您的代码中更容易看到设计问题**。您可以使用此处描述的红色标记来发现问题并提出改进建议。查看代码还将使您接触到新的设计方法和编程技术。
 
 One of the best ways to improve your design skills is to learn to recognize red flags: signs that a piece of code is probably more complicated than it needs to be. Over the course of this book I will point out red flags that suggest problems related to each major design issue; the most important ones are summarized at the back of the book. You can then use these when you are coding: when you see a red flag, stop and look for an alternate design that eliminates the problem. When you first try this approach, you may have to try several design alternatives before you find one that eliminates the red flag. Don’t give up easily: the more alternatives you try before fixing the problem, the more you will learn. Over time, you will find that your code has fewer and fewer red flags, and your designs are cleaner and cleaner. Your experience will also show you other red flags that you can use to identify design problems (I’d be happy to hear about these).
 
@@ -75,3 +75,8 @@ Almost all of the examples in this book are in Java or C++, and much of the disc
 With this background, let’s discuss in more detail what causes complexity, and how to make software systems simpler.
 
 > 在这种背景下，让我们详细讨论导致复杂性的原因以及如何简化软件系统。
+
+> 
+解决复杂性的方法
+1.使代码更简单和更明显。
+2.封装它，使用时不必了解细节。

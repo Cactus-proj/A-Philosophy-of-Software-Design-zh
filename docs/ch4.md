@@ -4,7 +4,7 @@
 
 One of the most important techniques for managing software complexity is to design systems so that developers only need to face a small fraction of the overall complexity at any given time. This approach is called modular design, and this chapter presents its basic principles.
 
-> 管理软件复杂性最重要的技术之一就是设计系统，以便开发人员在任何给定时间只需要面对整体复杂性的一小部分。这种方法称为模块化设计，本章介绍其基本原理。
+> 管理软件复杂性最重要的技术之一就是设计系统，以便开发人员在任何给定时间 **只需要面对整体复杂性的一小部分**。这种方法称为模块化设计，本章介绍其基本原理。
 
 ## 4.1 Modular design 模块化设计
 
@@ -14,7 +14,7 @@ In modular design, a software system is decomposed into a collection of modules 
 
 Unfortunately, this ideal is not achievable. Modules must work together by calling each others’s functions or methods. As a result, modules must know something about each other. There will be dependencies between the modules: if one module changes, other modules may need to change to match. For example, the arguments for a method create a dependency between the method and any code that invokes the method. If the required arguments change, all invocations of the method must be modified to conform to the new signature. Dependencies can take many other forms, and they can be quite subtle. The goal of modular design is to minimize the dependencies between modules.
 
-> 不幸的是，这种理想是无法实现的。模块必须通过调用彼此的函数或方法来协同工作。结果，模块必须相互了解。模块之间将存在依赖关系：如果一个模块发生更改，则可能需要更改其他模块以进行匹配。例如，方法的参数在方法与调用该方法的任何代码之间创建依赖关系。如果必需的参数更改，则必须修改该方法的所有调用以符合新的签名。依赖关系可以采用许多其他形式，并且它们可能非常微妙。模块化设计的目标是最大程度地减少模块之间的依赖性。
+> 不幸的是，这种理想是无法实现的。模块必须通过调用彼此的函数或方法来协同工作。结果，***模块必须相互了解。模块之间将存在依赖关系***：如果一个模块发生更改，则可能需要更改其他模块以进行匹配。例如，方法的参数在方法与调用该方法的任何代码之间创建依赖关系。如果必需的参数更改，则必须修改该方法的所有调用以符合新的签名。依赖关系可以采用许多其他形式，并且它们可能非常微妙。模块化设计的目标是最大程度地 ***减少模块之间的依赖性***。
 
 In order to manage dependencies, we think of each module in two parts: an interface and an implementation. The interface consists of everything that a developer working in a different module must know in order to use the given module. Typically, the interface describes what the module does but not how it does it. The implementation consists of the code that carries out the promises made by the interface. A developer working in a particular module must understand the interface and implementation of that module, plus the interfaces of any other modules invoked by the given module. A developer should not need to understand the implementations of modules other than the one he or she is working in.
 
