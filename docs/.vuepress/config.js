@@ -13,10 +13,9 @@ module.exports = {
   },
   themeConfig: {
     repo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
-    repoLabel: "Github",
     docsRepo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
-    docsBranch: "main/docs",
-    editLinks: true,
+    docsBranch: "main",
+    docsDir: "docs",
     sidebarDepth: 2,
     nav: [],
     sidebar: {
@@ -50,20 +49,21 @@ module.exports = {
     locales: {
       '/': { // zh-CN
         // 该语言在下拉菜单中的标签
-        label: '简体中文',
+        selectLanguageName: '简体中文',
         // 多语言下拉菜单的标题
-        selectText: '选择语言',
-        ariaLabel: '选择语言',
+        selectLanguageText: '选择语言',
+        selectLanguageAriaselectLanguageName: '选择语言',
+        editLink: true,
         editLinkText: '在 GitHub 上编辑此页',
-        lastUpdated: '上次更新',
+        lastUpdatedText: '上次更新',
       },
       '/en/': {
-        label: 'English',
-        selectText: 'Languages',
-        ariaLabel: 'Select language',
-        editLinks: false,
+        selectLanguageName: 'English',
+        selectLanguageText: 'Languages',
+        selectLanguageAriaselectLanguageName: 'Select language',
+        editLink: false,
         editLinkText: 'Edit this page on GitHub',
-        lastUpdated: 'Last Updated',
+        lastUpdatedText: 'Last Updated',
       }
     }
   }
