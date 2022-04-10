@@ -1,0 +1,41 @@
+% \documentclass[UTF8,oneside]{ctexbook}
+% \usepackage{amsmath}
+% \begin{document}
+
+\begin{flalign} % 左对齐
+&\nonumber
+\hspace{-0.7em}
+    \begin{array}{cccc} % 说明文字
+        % 第一行
+        Method
+            & \quad URL
+            & \quad\,Parameter\left(s\right)
+            & Protocol Version
+        \\ % 第二行
+        \downarrow 
+            & \downarrow
+            & \quad\,\downarrow 
+            & \downarrow
+    \end{array} \\
+&\nonumber
+    \hspace{0.75em} % Post
+    \texttt{POST /comments/create?photo\_id=246 HTTP/1.1} \\
+&\nonumber
+    \left. 
+    \begin{array}{l} % 包头
+        \texttt{Host:\ www.example.com}  \\
+        \texttt{User-Agent:\ Mozilla/5.0} \\
+        \texttt{Accept:\ text/html,\ */*}   \\
+        \texttt{Accept-Language:\ en-us}  \\
+        \texttt{Accept-Charset:\ lSO-8859-l,utf-8} \\
+        \texttt{Content-Length:\ 40}  \\
+    \end{array}
+    \hspace{4em}
+    \right\} Headers \\
+&\nonumber
+    \hspace{0.75em} % body
+    \texttt{comment=what+a+cute+baby\%21\&priority=low} 
+    \longleftarrow Body
+\end{flalign}
+
+% \end{document}

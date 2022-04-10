@@ -87,7 +87,9 @@ class LaTeXRenderer(mistune.HTMLRenderer):
         
         jmp_list = [
             '00009',  # equ
-            '00017', '00018', '00023', '00024' # code
+            '00017', '00018', '00023', '00024', # code
+            # plots
+            '00011', '00012', '00014',
         ]
 
         if '00013' == fname:  # icon
@@ -207,7 +209,7 @@ for mdfile in os.listdir(ROOT_MD_DIR):
     latex_fname = ROOT_TEX_DIR + fname + '.tex'
 
     with open(md_fname, 'r', encoding="utf-8") as fmd:
-        with open(latex_fname, 'w') as ftex:
+        with open(latex_fname, 'w', encoding="utf-8") as ftex:
             markdown = mistune.create_markdown(renderer=LaTeXRenderer())
             markdown.before_render_hooks = [remove_english]
             ftex.writelines([
