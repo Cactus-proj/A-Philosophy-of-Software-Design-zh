@@ -54,6 +54,30 @@ cd A-Philosophy-of-Software-Design-zh/
 yarn docs:dev
 ```
 
+## Contributors
+
+<table>
+  <tr>
+    <td align="center"><a href="https://gdut-yy.github.io/"><img src="https://avatars2.githubusercontent.com/u/33390928?s=460&v=4" width="100px;" /><br /><sub><b>gdut-yy</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/inkydragon"><img src="https://avatars1.githubusercontent.com/u/5158738?s=460&u=b9cbd51a3d1bbff1df994214e50058b9b3a9715a&v=4" width="100px;" /><br /><sub><b>inkydragon</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/chenpy228"><img src="https://avatars2.githubusercontent.com/u/5305370?s=460&v=4" width="100px;" /><br /><sub><b>chenpy228</b></sub></a><br /></td>    
+    <td align="center"><a href="https://github.com/wuwenzhao"><img src="https://avatars0.githubusercontent.com/u/4035972?s=400&v=4" width="100px;" /><br /><sub><b>wuwenzhao</b></sub></a><br /></td>    
+    <td align="center"><a href="https://github.com/BlackGlory"><img src="https://avatars3.githubusercontent.com/u/1365962?s=400&u=5a810f678ad49f010670436cca78fd0c5dc1863b&v=4" width="100px;" /><br /><sub><b>BlackGlory</b></sub></a><br /></td>    
+    <td align="center"><a href="https://github.com/xulongfei"><img src="https://avatars3.githubusercontent.com/u/9260697?s=400&u=134db0399963d2a7741db02c837282a93b6b1b40&v=4" width="100px;" /><br /><sub><b>xulongfei</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/inkinworld"><img src="https://avatars1.githubusercontent.com/u/12553724?s=400&u=828ff5f286d697fe3235c6198b0aee2b0dfc5151&v=4" width="100px;" /><br /><sub><b>inkinworld</b></sub></a><br /></td>
+  </tr>
+    <tr>
+    <td align="center"><a href="https://github.com/wangzhongliang"><img src="https://avatars1.githubusercontent.com/u/17668601?s=400&u=b796a585d9aa3577bf78033f5ae689c461ae7a02&v=4" width="100px;" /><br /><sub><b>wangzhongliang</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/fanjiangqi"><img src="https://avatars0.githubusercontent.com/u/19711488?s=400&u=37821dd702ab00848cb3a7cbca9235863f8deeb1&v=4" width="100px;" /><br /><sub><b>fanjiangqi</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/AllenKaiChen"><img src="https://avatars3.githubusercontent.com/u/49896664?s=400&u=21a54e715cbdfe854c8d6cb51bb91b7aae0f270f&v=4" width="100px;" /><br /><sub><b>AllenKaiChen</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/liquid207"><img src="https://avatars3.githubusercontent.com/u/48850370?s=400&v=4" width="100px;" /><br /><sub><b>liquid207</b></sub></a><br /></td>
+  </tr>
+</table>
+
+## 更多书籍
+
+[https://github.com/xx-zh/xx-zh-roadmap](https://github.com/xx-zh/xx-zh-roadmap)
+
 ## License
 
-[MIT](https://github.com/gdut-yy/A-Philosophy-of-Software-Design-zh/blob/master/LICENSE)
+[MIT](./LICENSE)

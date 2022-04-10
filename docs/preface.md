@@ -8,7 +8,7 @@ People have been writing programs for electronic computers for more than 80 year
 
 The most fundamental problem in computer science is problem decomposition: how to take a complex problem and divide it up into pieces that can be solved independently. Problem decomposition is the central design task that programmers face every day, and yet, other than the work described here, I have not been able to identify a single class in any university where problem decomposition is a central topic. We teach for loops and object-oriented programming, but not software design.
 
-> 计算机科学中最基本的问题是问题分解：如何处理复杂的问题并将其分解为可以独立解决的部分。问题分解是程序员每天都要面对的中心设计任务，但是，除了这里描述的工作之外，我还无法在任何将问题分解作为中心主题的大学中确定一个班级。我们讲授循环和面向对象的程序设计，而不是软件设计。
+> 计算机科学中最基本的问题是问题分解：如何处理复杂的问题并将其分解为可以独立解决的部分。问题分解是程序员每天都要面对的中心设计任务，但是，除了这里描述的工作之外，我还没有在任何一所大学里找到一门以问题分解为中心的课程。我们讲授循环和面向对象的程序设计，而不是软件设计。
 
 In addition, there is a huge variation in quality and productivity among programmers, but we have made little attempt to understand what makes the best programmers so much better or to teach those skills in our classes. I have talked with several people I consider to be great programmers, but most of them had difficulty articulating specific techniques that give them their advantage. Many people assume that software design skill is an innate talent that cannot be taught. However, there is quite a bit of scientific evidence that outstanding performance in many fields is related more to high-quality practice than innate ability (see, for example, Talent is Overrated by Geoff Colvin).
 

@@ -1,0 +1,44 @@
+\begin{lstlisting}[language=Java]
+char* Buffer::alloc(int numBytes)
+{
+    char* data = allocateAppend(numBytes);
+    Buffer::Chunk* lastChunk = this->chunksTail; 
+    if ((lastChunk != NULL && lastChunk->isInternal()) &&
+            (data - lastChunk->length == lastChunk->data)) { 
+        // Fast path: grow the existing Chunk. 
+        lastChunk->length += numBytes; 
+        this->totalLength += numBytes;
+    } else {
+        // Creates a new Chunk out of the allocated data.
+        append(data, numByte s);
+    }
+    return data;
+}
+
+// Allocates new space at the end of the Buffer; uses space at the end 
+// of the last current allocation, if possible; otherwise creates a 
+// new allocation. Returns a pointer to the new space, 
+char* Buffer::allocateAppend(int size) { 
+    void* data;
+    if (this->allocations != NULL) {
+        data = this->allocations->allocateAppend(size); 
+        if (data != NULL) {
+            // Fast path 
+            return data;
+        }
+    }
+    data = newAllocation(0, size)->allocateAppend(size); 
+    assert(data != NULL); 
+    return data;
+}
+
+// Tries to allocate space at the end of an existing allocation. Returns 
+// a pointer to the new space, or NULL if not enough room, 
+char* Buffer::Allocation::allocateAppend(int size) { 
+    if ((this->chunkTop - this->appendTop) < size) 
+        return NULL:
+    char *retVal = &data[this->appendTop]; 
+    this->appendTop += size; 
+    return retVal;
+}
+\end{lstlisting}

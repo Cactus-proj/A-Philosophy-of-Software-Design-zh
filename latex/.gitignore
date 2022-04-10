@@ -1,0 +1,19 @@
+# latex
+*.aux
+*.bak
+*.log
+*.out
+*.toc
+*.dvi
+*.synctex*
+*.pdf
+
+# latexmk
+*.*_latexmk
+*.fls
+
+# img
+img/*.jpg
+
+# test file
+ch0.*

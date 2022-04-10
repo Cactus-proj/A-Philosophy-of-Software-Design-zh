@@ -4,25 +4,25 @@
 
 Software systems are composed in layers, where higher layers use the facilities provided by lower layers. In a well-designed system, each layer provides a different abstraction from the layers above and below it; if you follow a single operation as it moves up and down through layers by invoking methods, the abstractions change with each method call. For example:
 
-> 软件系统由层组成，其中较高的层使用较低层提供的功能。在设计良好的系统中，每一层都提供与其上，下两层不同的抽象。如果您通过调用方法遵循单个操作在层中上下移动，则每个方法调用的抽象都会改变。例如：
+> 软件系统由层组成，其中较高的层使用较低层提供的功能。在设计良好的系统中，每一层都提供与其上，下两层不同的抽象。如果您通过调用方法来跟踪一个在层中上下移动的操作，那么抽象会随着每次方法调用而改变。例如：
 
 - In a file system, the uppermost layer implements a file abstraction. A file consists of a variable-length array of bytes, which can be updated by reading and writing variable-length byte ranges. The next lower layer in the file system implements a cache in memory of fixed-size disk blocks; callers can assume that frequently used blocks will stay in memory where they can be accessed quickly. The lowest layer consists of device drivers, which move blocks between secondary storage devices and memory.
 - In a network transport protocol such as TCP, the abstraction provided by the topmost layer is a stream of bytes delivered reliably from one machine to another. This level is built on a lower level that transmits packets of bounded size between machines on a best-effort basis: most packets will be delivered successfully, but some packets may be lost or delivered out of order.
 
 ---
 
-> - 在文件系统中，最上层实现文件抽象。文件由可变长度的字节数组组成，可以通过读写可变长度的字节范围来更新该字节。文件系统的下一个下一层在固定大小的磁盘块的内存中实现了高速缓存。调用者可以假定经常使用的块将保留在内存中，以便可以快速访问它们。最低层由设备驱动程序组成，它们在辅助存储设备和内存之间移动块。
-> - 在诸如 TCP 的网络传输协议中，最顶层提供的抽象是从一台机器可靠地传递到另一台机器的字节流。此级别在较低级别上构建，该级别可以尽最大努力在计算机之间传输有限大小的数据包：大多数数据包将成功交付，但某些数据包可能会丢失或乱序交付。
+> - 在文件系统中，最上层实现文件抽象。文件由可变长度的字节数组组成，可以通过读写可变长度的字节范围来更新该字节。文件系统的下一层在固定大小的磁盘块的内存中实现了高速缓存。调用者可以假定经常使用的块将保留在内存中，以便可以快速访问它们。最低层由设备驱动程序组成，它们在辅助存储设备和内存之间移动块。
+> - 在诸如 TCP 的网络传输协议中，最顶层提供的抽象是从一台机器可靠地传递到另一台机器的字节流。这个级别建立在一个较低的级别上，它在机器之间尽最大努力传输有限大小的数据包:大多数数据包会成功传递，但有些数据包可能会丢失或传递顺序错误。
 
 If a system contains adjacent layers with similar abstractions, this is a red flag that suggests a problem with the class decomposition. This chapter discusses situations where this happens, the problems that result, and how to refactor to eliminate the problems.
 
 > 如果系统包含具有相似抽象的相邻层，则这是一个红色标记，表明类分解存在问题。本章讨论了发生这种情况的情况，导致的问题以及如何重构以消除问题。
 
-## 7.1 Pass-through methods 传递方法
+## 7.1 Pass-through methods 直通方法
 
 When adjacent layers have similar abstractions, the problem often manifests itself in the form of pass-through methods. A pass-through method is one that does little except invoke another method, whose signature is similar or identical to that of the calling method. For example, a student project implementing a GUI text editor contained a class consisting almost entirely of pass-through methods. Here is an extract from that class:
 
-> 当相邻的层具有相似的抽象时，问题通常以直通方法的形式表现出来。传递方法是一种很少执行的方法，除了调用另一个方法（其签名与调用方法的签名相似或相同）之外。例如，一个实施 GUI 文本编辑器的学生项目包含一个几乎完全由传递方法组成的类。这是该类的摘录：
+> 当相邻的层具有相似的抽象时，问题通常以直通方法的形式表现出来。直通方法是一种很少执行的方法，除了调用另一个方法（其签名与调用方法的签名相似或相同）之外。例如，一个实现 GUI 文本编辑器的学生项目包含一个几乎完全由直通方法组成的类。这是该类的摘录：
 
 ```java
 public class TextDocument ... {
@@ -49,53 +49,53 @@ public class TextDocument ... {
 
 13 of the 15 public methods in that class were pass-through methods.
 
-> 该类别中 15 个公共方法中的 13 个是传递方法。
+> 该类别中 15 个公共方法中的 13 个是直通方法。
 
 img Red Flag: Pass-Through Method img
 
 A pass-through method is one that does nothing except pass its arguments to another method, usually with the same API as the pass-through method. This typically indicates that there is not a clean division of responsibility between the classes.
 
-> 传递方法是一种不执行任何操作的方法，只是将其参数传递给另一个方法，通常使用与传递方法相同的 API。这通常表示各类之间没有明确的职责划分。
+> 直通方法除了将参数传递给另外一个与其有相同 API 的方法外，不执行任何操作。这通常表示各类之间没有明确的职责划分。
 
 Pass-through methods make classes shallower: they increase the interface complexity of the class, which adds complexity, but they don’t increase the total functionality of the system. Of the four methods above, only the last one has any functionality, and even there it is trivial: the method checks the validity of one variable. Pass-through methods also create dependencies between classes: if the signature changes for the insertString method in TextArea, then the insertString method in TextDocument will have to change to match.
 
-> 传递方法使类变浅：它们增加了类的接口复杂性，从而增加了复杂性，但是并没有增加系统的整体功能。在上述四个方法中，只有最后一个具有任何功能，甚至没有什么功能：该方法检查一个变量的有效性。直通方法还会在类之间创建依赖关系：如果针对 TextArea 中的 insertString 方法更改了签名，则必须更改 TextDocument 中的 insertString 方法以进行匹配。
+> 直通方法使类变浅：它们增加了类的接口复杂性，从而增加了复杂性，但是并没有增加系统的整体功能。在上述四个方法中，只有最后一个具有极少的功能，即使有也微乎其微：该方法检查一个变量的有效性。直通方法还会在类之间创建依赖关系：如果针对 TextArea 中的 insertString 方法更改了签名，则必须更改 TextDocument 中的 insertString 方法以进行匹配。
 
 Pass-through methods indicate that there is confusion over the division of responsibility between classes. In the example above, the TextDocument class offers an insertString method, but the functionality for inserting text is implemented entirely in TextArea. This is usually a bad idea: the interface to a piece of functionality should be in the same class that implements the functionality. When you see pass-through methods from one class to another, consider the two classes and ask yourself “Exactly which features and abstractions is each of these classes responsible for?” You will probably notice that there is an overlap in responsibility between the classes.
 
-> 传递方法表明类之间的责任划分存在混淆。在上面的示例中，TextDocument 类提供了 insertString 方法，但是用于插入文本的功能完全在 TextArea 中实现。这通常是一个坏主意：某个功能的接口应该在实现该功能的同一类中。当您看到从一个类到另一个类的传递方法时，请考虑这两个类，并问自己“这些类分别负责哪些功能和抽象？” 您可能会注意到，各类之间的职责重叠。
+> 直通方法表明类之间的责任划分存在混淆。在上面的示例中，TextDocument 类提供了 insertString 方法，但是用于插入文本的功能完全在 TextArea 中实现。这通常是一个坏主意：某个功能的接口应该在实现该功能的同一类中。当您看到从一个类到另一个类的直通方法时，请考虑这两个类，并问自己“这些类分别负责哪些功能和抽象？” 您可能会注意到，各类之间的职责重叠。
 
 The solution is to refactor the classes so that each class has a distinct and coherent set of responsibilities. Figure 7.1 illustrates several ways to do this. One approach, shown in Figure 7.1(b), is to expose the lower level class directly to the callers of the higher level class, removing all responsibility for the feature from the higher level class. Another approach is to redistribute the functionality between the classes, as in Figure 7.1(c). Finally, if the classes can’t be disentangled, the best solution may be to merge them as in Figure 7.1(d).
 
 > 解决方案是重构类，以使每个类都有各自不同且连贯的职责。图 7.1 说明了几种方法。一种方法，如图 7.1（b）所示，是将较低级别的类直接暴露给较高级别的类的调用者，而从较高级别的类中删除对该功能的所有责任。另一种方法是在类之间重新分配功能，如图 7.1（c）所示。最后，如果无法解开这些类，最好的解决方案可能是如图 7.1（d）所示合并它们。
 
-In the example above, there were three classes with intertwined responsibilities: TextDocument, TextArea, and TextDocumentListener. The student eliminated the pass-through methods by moving methods between classes and collapsing the three classes into just two, whose responsibilities were more clearly differentiated.
-
-> 在上面的示例中，职责交织的三个类为：TextDocument，TextArea 和 TextDocumentListener。学生通过在班级之间移动方法并将三个班级缩减为两个班级来消除传递方法，这两个班级的职责更加明确。
-
-## 7.2 When is interface duplication OK? 接口复制何时可以？
-
-Having methods with the same signature is not always bad. The important thing is that each new method should contribute significant functionality. Pass-through methods are bad because they contribute no new functionality.
-
-> 具有相同签名的方法并不总是不好的。重要的是，每种新方法都应贡献重要的功能。传递方法很糟糕，因为它们不提供任何新功能。
-
-One example where it’s useful for a method to call another method with the same signature is a dispatcher. A dispatcher is a method that uses its arguments to select one of several other methods to invoke; then it passes most or all of its arguments to the chosen method. The signature for the dispatcher is often the same as the signature for the methods that it calls. Even so, the dispatcher provides useful functionality: it chooses which of several other methods should carry out each task.
-
-> 分派器是一个示例，该示例对于一种方法调用具有相同签名的另一种方法很有用。调度程序是一种使用其参数选择要调用的其他方法之一的方法。然后将其大部分或所有参数传递给所选方法。调度程序的签名通常与其调用的方法的签名相同。即便如此，调度程序仍提供有用的功能：它可以选择其他几种方法中的哪一种来执行每个任务。
-
 ![](./figures/00015.jpeg)
 
 Figure 7.1: Pass-through methods. In (a), class C1 contains three pass-through methods, which do nothing but invoke methods with the same signature in C2 (each symbol represents a particular method signature). The pass-through methods can be eliminated by having C1’s callers invoke C2 directly as in (b), by redistributing functionality between C1 and C2 to avoid calls between the classes as in (c), or by combining the classes as in (d).
 
-> 图 7.1：直通方法。在（a）中，类 C1 包含三个直通方法，这些方法只调用 C2 中具有相同签名的方法（每个符号代表一个特定的方法签名）。可以通过使 C1 的调用方像在（b）中那样直接调用 C2，通过在 C1 和 C2 之间重新分配功能以避免在（c）中的类之间进行调用，或者通过组合在（d）中的类来消除传递方法。 。
+> 图 7.1：直通方法。在（a）中，类 C1 包含三个直通方法，这些方法只调用 C2 中具有相同签名的方法（每个符号代表一个特定的方法签名）。可以通过使 C1 的调用方像在（b）中那样直接调用 C2，通过在 C1 和 C2 之间重新分配功能以避免在（c）中的类之间进行调用，或者通过组合在（d）中的类来消除直通方法。 。
+
+In the example above, there were three classes with intertwined responsibilities: TextDocument, TextArea, and TextDocumentListener. The student eliminated the pass-through methods by moving methods between classes and collapsing the three classes into just two, whose responsibilities were more clearly differentiated.
+
+> 在上面的示例中，职责交织的三个类为：TextDocument，TextArea 和 TextDocumentListener。学生通过在类之间移动方法并将三个类缩减为两个类来消除直通方法，这两个类的职责更加明确。
+
+## 7.2 When is interface duplication OK? 什么时候可以有重复的接口？
+
+Having methods with the same signature is not always bad. The important thing is that each new method should contribute significant functionality. Pass-through methods are bad because they contribute no new functionality.
+
+> 具有相同签名的方法并不总是不好的。重要的是，每种新方法都应贡献重要的功能。直通方法很糟糕，因为它们不提供任何新功能。
+
+One example where it’s useful for a method to call another method with the same signature is a dispatcher. A dispatcher is a method that uses its arguments to select one of several other methods to invoke; then it passes most or all of its arguments to the chosen method. The signature for the dispatcher is often the same as the signature for the methods that it calls. Even so, the dispatcher provides useful functionality: it chooses which of several other methods should carry out each task.
+
+> 一个方法调用另一个具有相同签名的方法很有用的例子是调度器。调度器是一种方法，它使用自己的参数从其他几种方法中选择一种来调用；然后，它将其大部分或全部参数传递给选定的方法。调度程序的签名通常与其调用的方法的签名相同。尽管如此，调度程序还是提供了有用的功能:它选择其他几种方法中的哪一种来执行每个任务。
 
 For example, when a Web server receives an incoming HTTP request from a Web browser, it invokes a dispatcher that examines the URL in the incoming request and selects a specific method to handle the request. Some URLs might be handled by returning the contents of a file on disk; others might be handled by invoking a procedure in a language such as PHP or JavaScript. The dispatch process can be quite intricate, and is usually driven by a set of rules that are matched against the incoming URL.
 
-> 例如，当 Web 服务器从 Web 浏览器接收到传入的 HTTP 请求时，它将调用一个调度程序，该调度程序检查传入请求中的 URL 并选择一种特定的方法来处理该请求。某些 URL 可以通过返回磁盘上文件的内容来处理。其他人则可以通过调用诸如 PHP 或 JavaScript 之类的语言的过程来处理。分发过程可能非常复杂，通常由与传入 URL 匹配的一组规则来驱动。
+> 例如，当 Web 服务器从 Web 浏览器接收到传入的 HTTP 请求时，它将调用一个调度器来检查传入请求中的 URL 并选择一种特定的方法来处理该请求。某些 URL 可以通过返回磁盘上文件的内容来处理；其他的则可能通过调用诸如 PHP 或 JavaScript 之类的语言的程序来处理。分发过程可能非常复杂，通常由与传入 URL 匹配的一组规则来驱动。
 
 It is fine for several methods to have the same signature as long as each of them provides useful and distinct functionality. The methods invoked by a dispatcher have this property. Another example is interfaces with multiple implementations, such as disk drivers in an operating system. Each driver provides support for a different kind of disk, but they all have the same interface. When several methods provide different implementations of the same interface, it reduces cognitive load. Once you have worked with one of these methods, it’s easier to work with the others, since you don’t need to learn a new interface. Methods like this are usually in the same layer and they don’t invoke each other.
 
-> 只要每种方法都提供有用且独特的功能，几种方法都应具有相同的签名。调度程序调用的方法具有此属性。另一个示例是具有多种实现方式的接口，例如操作系统中的磁盘驱动程序。每个驱动程序都支持不同类型的磁盘，但是它们都有相同的接口。当几种方法提供同一接口的不同实现时，它将减少认知负担。使用其中一种方法后，与其他方法一起使用会更容易，因为您无需学习新的界面。像这样的方法通常位于同一层，并且它们不会相互调用。
+> 只要每种方法都提供有用且独特的功能，几种方法都具有相同的签名是可以接受的。调度程序调用的方法具有此属性。另一个示例是具有多种实现方式的接口，例如操作系统中的磁盘驱动程序。每个驱动程序都支持不同类型的磁盘，但是它们都有相同的接口。当几种方法提供同一接口的不同实现时，它将减少认知负担。使用其中一种方法后，与其他方法一起使用会更容易，因为您无需学习新的接口。像这样的方法通常位于同一层，并且它们不会相互调用。
 
 ## 7.3 Decorators 装饰器
 
@@ -105,7 +105,7 @@ The decorator design pattern (also known as a “wrapper”) is one that encoura
 
 The motivation for decorators is to separate special-purpose extensions of a class from a more generic core. However, decorator classes tend to be shallow: they introduce a large amount of boilerplate for a small amount of new functionality. Decorator classes often contain many pass-through methods. It’s easy to overuse the decorator pattern, creating a new class for every small new feature. This results in an explosion of shallow classes, such as the Java I/O example.
 
-> 装饰器的动机是将类的专用扩展与更通用的核心分开。但是，装饰器类往往很浅：它们引入了大量的样板，以实现少量的新功能。装饰器类通常包含许多传递方法。过度使用装饰器模式很容易，为每个小的新功能创建一个新类。这导致诸如 Java I/O 示例之类的浅层类激增。
+> 装饰器的动机是将类的专用扩展与更通用的核心分开。但是，装饰器类往往很浅：它们引入了大量的样板，以实现少量的新功能。装饰器类通常包含许多直通方法。过度使用装饰器模式很容易，为每个小的新功能创建一个新类。这导致诸如 Java I/O 示例之类的浅层类激增。
 
 Before creating a decorator class, consider alternatives such as the following:
 
@@ -120,7 +120,7 @@ Before creating a decorator class, consider alternatives such as the following:
 
 > - 您能否将新功能直接添加到基础类，而不是创建装饰器类？如果新功能是相对通用的，或者在逻辑上与基础类相关，或者如果基础类的大多数使用也将使用新功能，则这是有意义的。例如，几乎每个创建 Java InputStream 的人都会创建一个 BufferedInputStream，并且缓冲是 I/O 的自然组成部分，因此应该合并这些类。
 > - 如果新功能专用于特定用例，将其与用例合并而不是创建单独的类是否有意义？
-> - 您可以将新功能与现有的装饰器合并，而不是创建新的装饰器吗？这将导致一个更深的装饰器类，而不是多个浅的装饰器类。
+> - 您可以将新功能与现有的装饰器合并，而不是创建新的装饰器吗？这将产生一个更深的装饰器类，而不是多个浅的装饰器类。
 > - 最后，问问自己新功能是否真的需要包装现有功能：是否可以将其实现为独立于基类的独立类？在窗口示例中，滚动条可能与主窗口分开实现，而无需包装其所有现有功能。
 
 Sometimes decorators make sense, but there is usually a better alternative.
@@ -141,7 +141,7 @@ The text classes were much easier to use when they provided a character-oriented
 
 Another form of API duplication across layers is a pass-through variable, which is a variable that is passed down through a long chain of methods. Figure 7.2(a) shows an example from a datacenter service. A command-line argument describes certificates to use for secure communication. This information is only needed by a low-level method m3, which calls a library method to open a socket, but it is passed down through all the methods on the path between main and m3. The cert variable appears in the signature of each of the intermediate methods.
 
-> 跨层 API 复制的另一种形式是传递变量，该变量是通过一长串方法向下传递的变量。图 7.2（a）显示了数据中心服务的示例。命令行参数描述用于安全通信的证书。只有底层方法 m3 才需要此信息，该方法调用一个库方法来打开套接字，但是该信息会通过 main 和 m3 之间路径上的所有方法向下传递。cert 变量出现在每个中间方法的签名中。
+> 跨层 API 重复的另一种形式是传递变量，该变量是通过一长串方法向下传递的变量。图 7.2（a）显示了数据中心服务的示例。命令行参数描述用于安全通信的证书。只有底层方法 m3 才需要此信息，该方法调用一个库方法来打开套接字，但是该信息会通过 main 和 m3 之间路径上的所有方法向下传递。cert 变量出现在每个中间方法的签名中。
 
 Pass-through variables add complexity because they force all of the intermediate methods to be aware of their existence, even though the methods have no use for the variables. Furthermore, if a new variable comes into existence (for example, a system is initially built without support for certificates, but you later decide to add that support), you may have to modify a large number of interfaces and methods to pass the variable through all of the relevant paths.
 
@@ -181,8 +181,8 @@ Contexts are far from an ideal solution. The variables stored in a context have 
 
 Each piece of design infrastructure added to a system, such as an interface, argument, function, class, or definition, adds complexity, since developers must learn about this element. In order for an element to provide a net gain against complexity, it must eliminate some complexity that would be present in the absence of the design element. Otherwise, you are better off implementing the system without that particular element. For example, a class can reduce complexity by encapsulating functionality so that users of the class needn’t be aware of it.
 
-> 界面，参数，函数，类或定义之类的添加到系统中的每个设计基础架构都会增加复杂性，因为开发人员必须了解该元素。为了使元素能够提供相对于复杂性的净收益，它必须消除在没有设计元素的情况下会出现的一些复杂性。否则，最好不要使用该特定元素来实施系统。例如，一个类可以通过封装功能来降低复杂性，以使该类的用户无需意识到这一点。
+> 添加到系统中的每一个设计基础设施，如接口、参数、函数、类或定义，都会增加复杂性，因为开发人员必须了解这个元素。为了使一个元素提供对抗复杂性的净增益，它必须消除在没有设计元素的情况下出现的一些复杂性。否则，您最好在没有该特定元素的情况下实现该系统。例如，一个类可以通过封装功能来降低复杂性，这样该类的用户就不必知道它了。
 
 The “different layer, different abstraction” rule is just an application of this idea: if different layers have the same abstraction, such as pass-through methods or decorators, then there’s a good chance that they haven’t provided enough benefit to compensate for the additional infrastructure they represent. Similarly, pass-through arguments require each of several methods to be aware of their existence (which adds to complexity) without contributing additional functionality.
 
-> “不同的层，不同的抽象”规则只是此思想的一种应用：如果不同的层具有相同的抽象，例如传递方法或装饰器，则很有可能它们没有提供足够的利益来补偿它们代表的其他基础结构。类似地，传递参数要求几种方法中的每一种都知道它们的存在（这增加了复杂性），而又不提供其他功能。
+> “不同的层，不同的抽象”规则只是此思想的一种应用：如果不同的层具有相同的抽象，例如直通方法或装饰器，则很有可能它们没有提供足够的利益来补偿它们代表的其他基础结构。类似地，传递参数要求几种方法中的每一种都知道它们的存在（这增加了复杂性），而又不提供其他功能。
