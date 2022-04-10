@@ -1,1 +1,0 @@
-const e={key:"v-35d78988",path:"/en/ch21.html",title:"Chapter 21 Conclusion",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1649599657e3},filePathRelative:"en/ch21.md"};export{e as data};

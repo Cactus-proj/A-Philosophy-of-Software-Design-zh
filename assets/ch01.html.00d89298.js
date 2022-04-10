@@ -1,0 +1,1 @@
+const t={key:"v-6c315ecc",path:"/ch01.html",title:"\u7B2C 1 \u7AE0 \u4ECB\u7ECD",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[{level:2,title:"1.1 How to use this book \u5982\u4F55\u4F7F\u7528\u8FD9\u672C\u4E66",slug:"_1-1-how-to-use-this-book-\u5982\u4F55\u4F7F\u7528\u8FD9\u672C\u4E66",children:[]}],git:{updatedTime:1649599758e3},filePathRelative:"ch01.md"};export{t as data};
