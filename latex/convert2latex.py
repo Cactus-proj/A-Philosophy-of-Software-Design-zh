@@ -2,11 +2,20 @@ import mistune
 import re
 import os
 import time
+from pathlib import Path
 
-ROOT_MD_DIR  = '../docs/'
-ROOT_IMG_DIR = ROOT_MD_DIR + 'figures/'
+TEX_ROOT_DIR = Path(os.path.dirname(__file__))
+MD_ROOT__DIR = TEX_ROOT_DIR.joinpath('../docs/').resolve()
+IMG_ROOT_DIR = MD_ROOT__DIR.joinpath('figures').resolve()
+TEX_CHAP_DIR = TEX_ROOT_DIR.joinpath('chaps').resolve()
 
-ROOT_TEX_DIR = './chaps/'
+debug_str = f"""
+THIS_FILE_DIR = {TEX_ROOT_DIR}
+MD_ROOT__DIR  = {MD_ROOT__DIR}
+ROOT_IMG_DIR  = {IMG_ROOT_DIR}
+ROOT_TEX_DIR  = {TEX_CHAP_DIR}
+"""
+print(debug_str)
 
 
 # LaTeXRenderer
@@ -199,19 +208,21 @@ def remove_english(self, tokens, state):
 
 
 # main
-if not os.path.isdir('chaps'):
-    os.mkdir('chaps')
-for mdfile in os.listdir(ROOT_MD_DIR):
+if not os.path.isdir(TEX_CHAP_DIR):
+    print(f'mkdir {TEX_CHAP_DIR}...')
+    os.mkdir(TEX_CHAP_DIR)
+for mdfile in os.listdir(MD_ROOT__DIR):
     # mdfile = 'ch0.md' # for debug
     fname, ext = os.path.splitext(mdfile)
     # 跳过非 markdown 文件 和 README.md
     if ('.md' != ext) or ('README'==fname):
+        print("[md2tex] Skip file {}".format(mdfile))
         continue
     else:
         print("[md2tex] Converting {}".format(mdfile))
 
-    md_fname    = ROOT_MD_DIR  + fname + '.md'
-    latex_fname = ROOT_TEX_DIR + fname + '.tex'
+    md_fname    = MD_ROOT__DIR.joinpath(f"{fname}.md")
+    latex_fname = TEX_CHAP_DIR.joinpath(f"{fname}.tex")
 
     with open(md_fname, 'r', encoding="utf-8") as fmd:
         with open(latex_fname, 'w', encoding="utf-8") as ftex:
