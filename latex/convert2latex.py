@@ -15,6 +15,7 @@ class LaTeXRenderer(mistune.HTMLRenderer):
     IS_TREE = False
 
     def __init__(self, is_book_or_report=True):
+        super(LaTeXRenderer, self).__init__()
         self._is_book_or_report = is_book_or_report
         # latex 对特殊字符的转义
         self._ltx_esc_dict = {
@@ -89,7 +90,9 @@ class LaTeXRenderer(mistune.HTMLRenderer):
             '00009',  # equ
             '00017', '00018', '00023', '00024', # code
             # plots
-            '00011', '00012', '00014',
+            '00011', '00012', '00014', 
+            # bad img
+            '00016'
         ]
 
         if '00013' == fname:  # icon
@@ -176,22 +179,22 @@ def remove_english(self, tokens, state):
     # 删除所有英文节点
     # print(tokens) # for debug
     for tok in tokens:
-        if 'list' == tok['type']:
-            # 顶层的列表
-            tok['type'] = 'english_list'
+        if 'block_quote' == tok['type']:
+            # 顶层的引用
+            tok['type'] = 'english'
             continue
         elif 'paragraph' != tok['type']:
             # 其他 md 节点
             continue
         
         # 是否有子节点
-        if ('children' in tok.keys() and
-                'text' == tok['children'][0]['type']):
-            if None == re.match(r"!\[\]\(", tok['children'][0]['text']):
-                tok['type'] = 'english'
-        elif None==re.match(r"!\[\]\(", tok['text']):
-            # 非图片
-            tok['type'] = 'english'
+        # if ('children' in tok.keys() and
+        #         'text' == tok['children'][0]['type']):
+        #     if None == re.match(r"!\[\]\(", tok['children'][0]['text']):
+        #         tok['type'] = 'english'
+        # elif None==re.match(r"!\[\]\(", tok['text']):
+        #     # 非图片
+        #     tok['type'] = 'english'
     return tokens
 
 
