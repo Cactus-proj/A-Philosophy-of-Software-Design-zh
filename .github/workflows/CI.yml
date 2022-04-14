@@ -19,3 +19,28 @@ jobs:
         with:
           branch: gh-pages
           folder: docs/.vuepress/dist
+
+  latex-build:
+    name: "PDF Build"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - run: pip install mistune
+      - uses: wtfjoke/setup-tectonic@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'gen tex files'
+        run: python latex/convert2latex.py
+      - name: Run Tectonic
+        run: tectonic --keep-logs  latex/APoSD-zh.tex
+      - name: Upload PDF
+        uses: actions/upload-artifact@v3
+        with:
+          name: pdf
+          if-no-files-found: error
+          path: |
+            latex/APoSD-zh.pdf
+            latex/APoSD-zh.log

@@ -198,7 +198,9 @@ def remove_english(self, tokens, state):
     return tokens
 
 
-# main 
+# main
+if not os.path.isdir('chaps'):
+    os.mkdir('chaps')
 for mdfile in os.listdir(ROOT_MD_DIR):
     # mdfile = 'ch0.md' # for debug
     fname, ext = os.path.splitext(mdfile)
