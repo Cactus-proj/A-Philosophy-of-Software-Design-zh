@@ -1,0 +1,1 @@
+const e={key:"v-00f14e47",path:"/en/ch11.html",title:"Chapter 11 Design it Twice",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1649936515e3},filePathRelative:"en/ch11.md"};export{e as data};
