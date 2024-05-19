@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 import mistune
 import re
 import os
