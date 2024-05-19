@@ -15,7 +15,7 @@ jobs:
           yarn install
           yarn run build
       - name: Deploy  
-        uses: JamesIves/github-pages-deploy-action@v4.3.0
+        uses: JamesIves/github-pages-deploy-action@v4.6.1
         with:
           branch: gh-pages
           folder: docs/.vuepress/dist
