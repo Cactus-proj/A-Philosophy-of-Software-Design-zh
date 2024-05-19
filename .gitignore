@@ -1,9 +1,13 @@
 # vuepress@next
 node_modules/
-.temp
-.cache
-# vuepress@v1
-docs/.vuepress/dist/
+
+# vuepress@v2
+# VuePress 默认临时文件目录
+docs/.vuepress/.temp
+# VuePress 默认缓存目录
+docs/.vuepress/.cache
+# VuePress 默认构建生成的静态文件目录
+docs/.vuepress/dist
 
 package-lock.json
 yarn.lock
