@@ -30,17 +30,17 @@ class LaTeXRenderer(mistune.HTMLRenderer):
         self._ltx_esc_dict = {
             '~': r'\textasciitilde{}',
 
-            '#': '\#',
-            '$': '\$',
-            '%': '\%',
-            '^': '\^{}',
-            '&': '\&',
+            '#': r'\#',
+            '$': r'\$',
+            '%': r'\%',
+            '^': r'\^{}',
+            '&': r'\&',
 
             '-': '{-}',
-            '_': '\_',
+            '_': r'\_',
 
-            '{': '\{',
-            '}': '\}',
+            '{': r'\{',
+            '}': r'\}',
             '[': '{[}',
             ']': '{]}',
             
@@ -78,11 +78,15 @@ class LaTeXRenderer(mistune.HTMLRenderer):
     def text(self, text):
         return self.escape_latex(text)
     
-    def link(self, link, text=None, title=None):
+    def link(self, text=None, url=None, title=None):
+        """link(self, text: str, url: str, title: Optional[str] = None) -> str:"""
         # 不支持 title
-        return ' \\href{'+link+'}' + '{'+(text or link)+'} '
+        return ' \\href{'+url+'}' + '{'+(text or url)+'} '
 
-    def image(self, src, alt="", title=None):
+    def image(self, src, url="", title=None):
+        """
+        image(self, text: str, url: str, title: Optional[str] = None) -> str:
+        """
         _, fname = os.path.split(src)
         fname = fname[0:5]
 
@@ -172,20 +176,23 @@ class LaTeXRenderer(mistune.HTMLRenderer):
             return text
 
     # 列表
-    def list(self, text, ordered, level, start=None):
+    def list(self, text, ordered, **attrs):
+        """list(self, text: str, ordered: bool, **attrs: Any) -> str:"""
         if ordered:
             return '\\begin{enumerate}\n' + text + '\\end{enumerate}\n'
         else:
             return '\\begin{itemize}\n' + text + '\\end{itemize}\n'
 
-    def list_item(self, text, level):
-        return '\item ' + text + '\n'
+    def list_item(self, text):
+        """list_item(self, text: str) -> str:"""
+        return r'\item ' + text + '\n'
 
 # LaTeXRenderer end
 
-# hook func
-def remove_english(self, tokens, state):
+# hook func:  Callable[["Markdown", BlockState], Any]
+def remove_english(self, state):
     # 删除所有英文节点
+    tokens = state.tokens
     # print(tokens) # for debug
     for tok in tokens:
         if 'block_quote' == tok['type']:
