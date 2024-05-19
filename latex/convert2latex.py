@@ -83,11 +83,11 @@ class LaTeXRenderer(mistune.HTMLRenderer):
         # 不支持 title
         return ' \\href{'+url+'}' + '{'+(text or url)+'} '
 
-    def image(self, src, url="", title=None):
+    def image(self, text, url="", title=None):
         """
         image(self, text: str, url: str, title: Optional[str] = None) -> str:
         """
-        _, fname = os.path.split(src)
+        _, fname = os.path.split(url)
         fname = fname[0:5]
 
         ltx_fig = """
