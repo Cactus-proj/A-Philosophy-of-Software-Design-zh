@@ -20,8 +20,7 @@ export default defineUserConfig({
     }
   },
 
-  theme: defaultTheme(),
-  themeConfig: {
+  theme: defaultTheme({
     repo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
     docsRepo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
     docsBranch: "main",
@@ -73,6 +72,6 @@ export default defineUserConfig({
         lastUpdatedText: 'Last Updated',
       }
     }
-  }
+  }),
 
 })
