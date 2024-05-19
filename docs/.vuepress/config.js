@@ -10,11 +10,13 @@ export default defineUserConfig({
   locales: {
     '/': {
       lang: 'zh-CN',
-      title: "《软件设计的哲学》中文翻译",
+      title: "《软件设计的哲学》",
+      description: '《软件设计的哲学》中文翻译',
     },
     '/en/': {
       lang: 'en-US',
       title: '<A Philosophy of Software Design>',
+      description: '<A Philosophy of Software Design>',
     }
   },
 
