@@ -19,6 +19,7 @@ jobs:
           yarn run build
       - name: Deploy  
         uses: JamesIves/github-pages-deploy-action@v4.6.1
+        if: github.ref == 'refs/heads/main'
         with:
           branch: gh-pages
           folder: docs/.vuepress/dist
