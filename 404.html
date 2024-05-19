@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="generator" content="VuePress 2.0.0-beta.38">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.11" />
     <style>
       :root {
         --c-bg: #fff;
@@ -11,23 +11,27 @@
       html.dark {
         --c-bg: #22272e;
       }
-      html, body {
+      html,
+      body {
         background-color: var(--c-bg);
       }
     </style>
     <script>
-      const userMode = localStorage.getItem('vuepress-color-scheme');
-			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
-				document.documentElement.classList.toggle('dark', true);
-			}
+      const userMode = localStorage.getItem('vuepress-color-scheme')
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+        document.documentElement.classList.toggle('dark', true)
+      }
     </script>
-    <title>《软件设计的哲学》中文翻译</title><meta name="description" content="">
-    <link rel="modulepreload" href="/A-Philosophy-of-Software-Design-zh/assets/app.b848372c.js"><link rel="modulepreload" href="/A-Philosophy-of-Software-Design-zh/assets/404.html.93146c89.js"><link rel="modulepreload" href="/A-Philosophy-of-Software-Design-zh/assets/404.html.9cf00729.js">
-    <link rel="stylesheet" href="/A-Philosophy-of-Software-Design-zh/assets/style.79799630.css">
+    <title>《软件设计的哲学》</title><meta name="description" content="《软件设计的哲学》中文翻译">
+    <link rel="preload" href="/A-Philosophy-of-Software-Design-zh/assets/style-BgjzFGSy.css" as="style"><link rel="stylesheet" href="/A-Philosophy-of-Software-Design-zh/assets/style-BgjzFGSy.css">
+    <link rel="modulepreload" href="/A-Philosophy-of-Software-Design-zh/assets/app-Dz1NnotG.js"><link rel="modulepreload" href="/A-Philosophy-of-Software-Design-zh/assets/404.html-ncLZc-hS.js">
+    <link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/index.html-DFX8sWdt.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch01.html-CIPyyXs8.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch02.html-BLbpGLWP.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch03.html-DvAjPoJu.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch04.html-DJLbweaQ.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch05.html-BY9g8WF4.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch06.html-DhxzMslZ.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch07.html-D67lBaxe.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch08.html-C__aBRxM.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch09.html-DTzY77Ab.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch10.html-BHLnERs3.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch11.html-BwYOXgP5.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch12.html-Dbn-O2_8.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch13.html-Cq-OWUSr.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch14.html-CIXgYt5s.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch15.html-wZq1isTI.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch16.html-BFNp46d8.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch17.html-DWr5VqCN.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch18.html-Dk5uNn3G.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch19.html-r7nJkO6P.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch20.html-y91wPYbo.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch21.html-BGf0vcHY.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/preface.html-JCfi4p7O.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/summary.html-CjETBYkS.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/index.html-DigV-vlH.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch01.html-Ci6TN6dE.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch02.html-BX96Q-xI.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch03.html-CSnhpy3g.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch04.html-DtiW2SBi.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch05.html-BX1PVpcq.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch06.html-A-ulLPdL.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch07.html-BA_-5zIw.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch08.html-CyBpEJ1B.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch09.html-b09F8dQT.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch10.html-Dzf9UUxD.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch11.html-B9ulhEIi.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch12.html-DcAyron-.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch13.html-CPLbNnn1.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch14.html-DRvuY5pX.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch15.html-BDd8IANw.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch16.html-BHwwLmRg.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch17.html-soCQ_b0B.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch18.html-B0o4K-yd.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch19.html-uiNok--n.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch20.html-B5DvXtPr.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/ch21.html-CdLDmdjK.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/preface.html-CW8GLRlQ.js" as="script"><link rel="prefetch" href="/A-Philosophy-of-Software-Design-zh/assets/summary.html-BNsmp6bx.js" as="script">
   </head>
   <body>
-    <div id="app"><!--[--><div class="theme-container"><div class="theme-default-content"><h1>404</h1><blockquote>There&#39;s nothing here.</blockquote><a href="/A-Philosophy-of-Software-Design-zh/" class="">Take me home</a></div></div><!----><!--]--></div>
-    <script type="module" src="/A-Philosophy-of-Software-Design-zh/assets/app.b848372c.js" defer></script>
+    <div id="app"><!--[--><div class="theme-container"><main class="page"><div class="theme-default-content"><h1>404</h1><blockquote>Looks like we&#39;ve got some broken links.</blockquote><a class="route-link" href="/A-Philosophy-of-Software-Design-zh/">Take me home</a></div></main></div><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/A-Philosophy-of-Software-Design-zh/assets/app-Dz1NnotG.js" defer></script>
   </body>
 </html>

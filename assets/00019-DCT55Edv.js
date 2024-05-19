@@ -1,0 +1,1 @@
+const s="/A-Philosophy-of-Software-Design-zh/assets/00017-DPuvif3w.gif",o="/A-Philosophy-of-Software-Design-zh/assets/00018-DrRJ431J.gif",t="/A-Philosophy-of-Software-Design-zh/assets/00019-BXkohvDw.jpeg";export{s as _,o as a,t as b};
