@@ -13,11 +13,6 @@ export default defineUserConfig({
       title: "《软件设计的哲学》",
       description: '《软件设计的哲学》中文翻译',
     },
-    '/en/': {
-      lang: 'en-US',
-      title: '<A Philosophy of Software Design>',
-      description: '<A Philosophy of Software Design>',
-    }
   },
 
   // https://v2.vuepress.vuejs.org/zh/guide/theme.html
@@ -34,14 +29,6 @@ export default defineUserConfig({
         editLinkText: '在 GitHub 上编辑此页',
         lastUpdatedText: '上次更新',
       },
-      '/en/': {
-        selectLanguageName: 'English',
-        selectLanguageText: 'Languages',
-        selectLanguageAriaselectLanguageName: 'Select language',
-        editLink: false,
-        editLinkText: 'Edit this page on GitHub',
-        lastUpdatedText: 'Last Updated',
-      }
     },
   
     repo: "Cactus-proj/A-Philosophy-of-Software-Design-zh",
