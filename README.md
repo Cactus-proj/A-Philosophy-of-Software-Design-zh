@@ -44,18 +44,17 @@
 
 本项目基于 VuePress 进行开发，以提供比 Github Mardown 更佳的阅读体验
 
-依赖于 [`node.js`][nodejs]、[`yarn`][yarn]、[`vuepress`][vuepress] 等环境
+依赖于 [`node.js`][nodejs]、[`vuepress`][vuepress] 等环境
 
 [nodejs]: https://nodejs.org/zh-cn/
-[yarn]: https://yarnpkg.com/
 [vuepress]: https://v2.vuepress.vuejs.org/zh/
 
 
 ```sh
 git clone https://github.com/Cactus-proj/A-Philosophy-of-Software-Design-zh.git
 cd A-Philosophy-of-Software-Design-zh/
-yarn install    # 安装 VuePress@next
-yarn dev        # 编译并打开网页预览
+npm install   # 安装 VuePress@next
+npm run dev   # 编译并打开网页预览
 ```
 
 
