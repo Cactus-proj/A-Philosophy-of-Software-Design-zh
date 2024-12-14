@@ -1,5 +1,6 @@
-[![Build and Deploy](https://github.com/Cactus-proj/A-Philosophy-of-Software-Design-zh/actions/workflows/CI.yml/badge.svg)](https://github.com/Cactus-proj/A-Philosophy-of-Software-Design-zh/actions/workflows/CI.yml)
 # 《软件设计的哲学》中文翻译
+
+[![Build and Deploy](https://github.com/Cactus-proj/A-Philosophy-of-Software-Design-zh/actions/workflows/CI.yml/badge.svg)](https://github.com/Cactus-proj/A-Philosophy-of-Software-Design-zh/actions/workflows/CI.yml)
 
 在线阅读：https://Cactus-proj.github.io/A-Philosophy-of-Software-Design-zh/
 
