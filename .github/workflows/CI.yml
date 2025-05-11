@@ -1,12 +1,15 @@
-name: Build and Deploy
+name: CI
 
 on:
   push:
     branches:
     - main
-  pull_request:
-    branches:
-    - main
+  workflow_dispatch:
+
+# Allow one concurrent deployment
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
@@ -16,35 +19,9 @@ jobs:
       - name: Install and Build   
         run: |
           npm install
-          npm run build
-      - name: Deploy  
-        uses: JamesIves/github-pages-deploy-action@v4.7.3
-        if: github.ref == 'refs/heads/main'
+          npm run docs:build
+      - name: Deploy (main)
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: docs/.vuepress/dist
-
-  latex-build:
-    name: "PDF Build"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-      - run: pip install mistune
-      - uses: wtfjoke/setup-tectonic@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: 'gen tex files'
-        run: python latex/convert2latex.py
-      - name: Run Tectonic
-        run: tectonic --keep-logs  latex/APoSD-zh.tex
-      - name: Upload PDF
-        uses: actions/upload-artifact@v4
-        with:
-          name: pdf
-          if-no-files-found: error
-          path: |
-            latex/APoSD-zh.pdf
-            latex/APoSD-zh.log
+          folder: docs/.vitepress/dist

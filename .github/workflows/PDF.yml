@@ -1,0 +1,32 @@
+name: PDF
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+jobs:
+  latex-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: pip install mistune
+      - uses: wtfjoke/setup-tectonic@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'gen tex files'
+        run: python latex/convert2latex.py
+      - name: Run Tectonic
+        run: tectonic --keep-logs  latex/APoSD-zh.tex
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf
+          if-no-files-found: error
+          path: |
+            latex/APoSD-zh.pdf
+            latex/APoSD-zh.log
