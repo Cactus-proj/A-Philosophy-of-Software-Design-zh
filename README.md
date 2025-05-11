@@ -2,11 +2,7 @@
 
 [![Build and Deploy](https://github.com/Cactus-proj/A-Philosophy-of-Software-Design-zh/actions/workflows/CI.yml/badge.svg)](https://github.com/Cactus-proj/A-Philosophy-of-Software-Design-zh/actions/workflows/CI.yml)
 
-在线阅读：https://Cactus-proj.github.io/A-Philosophy-of-Software-Design-zh/
-
-<div style="inline">
-  <img src="./docs/cover.jpeg" width="210px" height="280px" />
-</div>
+在线阅读：
 
 
 ## 前言
