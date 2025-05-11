@@ -1,0 +1,24 @@
+name: PR Preview
+
+on:
+  pull_request:
+
+concurrency:
+  group: 'preview-${{ github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install and Build   
+        env: 
+          BASE_URL: "/A-Philosophy-of-Software-Design-zh/pr-preview/pr-${{ github.event.pull_request.number }}/"
+        run: |
+          npm install
+          npm run docs:build -- --base $BASE_URL
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: docs/.vitepress/dist
