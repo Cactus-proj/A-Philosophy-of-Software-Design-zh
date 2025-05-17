@@ -55,8 +55,8 @@
 ```sh
 git clone https://github.com/Cactus-proj/A-Philosophy-of-Software-Design-zh.git
 cd A-Philosophy-of-Software-Design-zh/
-npm install   # 安装 VuePress@next
-npm run dev   # 编译并打开网页预览
+npm install         # 安装 VuePress@next
+npm run docs:dev    # 编译并打开网页预览
 ```
 
 
