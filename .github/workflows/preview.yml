@@ -11,7 +11,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install and Build   
         env: 
           BASE_URL: "/A-Philosophy-of-Software-Design-zh/pr-preview/pr-${{ github.event.pull_request.number }}/"
