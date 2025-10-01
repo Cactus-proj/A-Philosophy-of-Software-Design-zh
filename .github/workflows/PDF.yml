@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.x'
       - run: pip install mistune
-      - uses: wtfjoke/setup-tectonic@v3
+      - uses: wtfjoke/setup-tectonic@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: 'gen tex files'
