@@ -23,7 +23,7 @@ jobs:
       - name: Run Tectonic
         run: tectonic --keep-logs  latex/APoSD-zh.tex
       - name: Upload PDF
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: pdf
           if-no-files-found: error
