@@ -3,6 +3,10 @@ name: PR Preview
 on:
   pull_request:
 
+permissions:
+  contents: write  # upload gh-pages
+  pull-requests: write  # create pr comment
+
 concurrency:
   group: 'preview-${{ github.ref }}'
   cancel-in-progress: true
