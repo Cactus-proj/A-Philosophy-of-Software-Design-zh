@@ -1,0 +1,12 @@
+title:
+  - type: main
+    text: "《软件设计的哲学》中文版"
+  - type: subtitle
+    text: "如何将复杂的软件系统分解为可以相对独立实现的模块"
+
+creator:
+  - role: author
+    name: "[美] John Ousterhout"
+
+rights: "Creative Commons Non-Commercial Share Alike 3.0"
+language: 中文
